@@ -34,11 +34,16 @@ import { Alert } from '@bmi/mui-tonic-components';
 
 The `severity` prop controls the icon, background color, and accent color. Choose the severity that best matches the meaning of the message.
 
-| Severity | Use when |
-|---|---|
-| `warning` | Action is required soon, but not urgent |
-| `error` | A blocking issue has occurred or access has been restricted |
-| `success` | A positive action has been completed |
+<table>
+  <thead>
+    <tr><th>Severity</th><th>Use when</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>warning</code></td><td>Action is required soon, but not urgent</td></tr>
+    <tr><td><code>error</code></td><td>A blocking issue has occurred or access has been restricted</td></tr>
+    <tr><td><code>success</code></td><td>A positive action has been completed</td></tr>
+  </tbody>
+</table>
 
 <Canvas of={AlertStories.Severities} />
 
@@ -69,22 +74,63 @@ This component wraps [`MuiAlert`](https://mui.com/material-ui/api/alert/) and [`
 
 All visual styling - background color, left accent bar, icon container, and typography weight - lives in the theme override.
 
-| Tonic prop | Maps to MUI prop | Notes |
-|---|---|---|
-| `severity` | `severity` | Restricted to `'warning' \| 'error' \| 'success'` (no `info`) |
-| `title` | `AlertTitle` children | Rendered inside the `message` slot as a bold header |
-| `description` | Alert children | Rendered below the title; omit to show title-only layout |
-| `icon` | `icon` | Pre-wired to Tonic icons per severity; not exposed as a prop |
+<table>
+  <thead>
+    <tr><th>Tonic prop</th><th>Maps to MUI prop</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>severity</code></td>
+      <td><code>severity</code></td>
+      <td>Restricted to <code>'warning' | 'error' | 'success'</code> (no <code>info</code>)</td>
+    </tr>
+    <tr>
+      <td><code>title</code></td>
+      <td><code>AlertTitle</code> children</td>
+      <td>Rendered inside the <code>message</code> slot as a bold header</td>
+    </tr>
+    <tr>
+      <td><code>description</code></td>
+      <td>Alert children</td>
+      <td>Rendered below the title; omit to show title-only layout</td>
+    </tr>
+    <tr>
+      <td><code>icon</code></td>
+      <td><code>icon</code></td>
+      <td>Pre-wired to Tonic icons per severity; not exposed as a prop</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
 ## Props
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `severity` | `'warning' \| 'error' \| 'success'` | `'warning'` | Determines icon, background, and accent color |
-| `title` | `string` | - | Primary message rendered as a bold alert title (required) |
-| `description` | `string` | - | Optional supporting text rendered below the title |
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>severity</code></td>
+      <td><code>'warning' | 'error' | 'success'</code></td>
+      <td><code>'warning'</code></td>
+      <td>Determines icon, background, and accent color</td>
+    </tr>
+    <tr>
+      <td><code>title</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>Primary message rendered as a bold alert title (required)</td>
+    </tr>
+    <tr>
+      <td><code>description</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>Optional supporting text rendered below the title</td>
+    </tr>
+  </tbody>
+</table>
 
 > All other [MUI AlertProps](https://mui.com/material-ui/api/alert/) are accepted.
 

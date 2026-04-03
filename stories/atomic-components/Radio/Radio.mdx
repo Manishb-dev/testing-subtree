@@ -42,10 +42,15 @@ rather than the neutral Neutral-400 used by all other colors.
 
 ## Sizes
 
-| Size | Diameter |
-|---|---|
-| `small` | 20px |
-| `medium` | 24px |
+<table>
+  <thead>
+    <tr><th>Size</th><th>Diameter</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>small</code></td><td>20px</td></tr>
+    <tr><td><code>medium</code></td><td>24px</td></tr>
+  </tbody>
+</table>
 
 <Canvas of={RadioStories.Sizes} />
 
@@ -80,33 +85,102 @@ vocabulary and forwards everything else to MUI. Hover states, checked colors, er
 color, and disabled opacity are all driven by theme-level `variants` entries - never by
 conditional `sx` inside the component.
 
-| Tonic prop | Maps to MUI prop | Notes |
-|---|---|---|
-| `size` | `size` | `'small'` = 20px icon, `'medium'` = 24px (MUI default) |
-| `color` | `color` | Restricted to Tonic semantic palette names |
-| `label` | - | Triggers `FormControlLabel` wrapper when provided |
-| `labelPlacement` | `labelPlacement` on `FormControlLabel` | Only effective when `label` is set |
-| `FormControlLabelProps` | Spread onto `FormControlLabel` | Excludes `label`, `labelPlacement`, `control` |
+<table>
+  <thead>
+    <tr><th>Tonic prop</th><th>Maps to MUI prop</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>size</code></td>
+      <td><code>'small'</code> = 20px icon, <code>'medium'</code> = 24px (MUI default)</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>color</code></td>
+      <td>Restricted to Tonic semantic palette names</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td>-</td>
+      <td>Triggers <code>FormControlLabel</code> wrapper when provided</td>
+    </tr>
+    <tr>
+      <td><code>labelPlacement</code></td>
+      <td><code>labelPlacement</code> on <code>FormControlLabel</code></td>
+      <td>Only effective when <code>label</code> is set</td>
+    </tr>
+    <tr>
+      <td><code>FormControlLabelProps</code></td>
+      <td>Spread onto <code>FormControlLabel</code></td>
+      <td>Excludes <code>label</code>, <code>labelPlacement</code>, <code>control</code></td>
+    </tr>
+  </tbody>
+</table>
 
 **Internal MUI slots used by the theme override:**
 
-| Selector | What it targets |
-|---|---|
-| `.MuiSvgIcon-root:first-of-type` | The outer ring (RadioButtonUnchecked - always visible) |
-| `.MuiSvgIcon-root:last-of-type` | The inner filled dot (RadioButtonChecked - visible when selected) |
-| `.MuiRadio-sizeSmall` | Root class added when `size="small"` |
+<table>
+  <thead>
+    <tr><th>Selector</th><th>What it targets</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.MuiSvgIcon-root:first-of-type</code></td>
+      <td>The outer ring (RadioButtonUnchecked - always visible)</td>
+    </tr>
+    <tr>
+      <td><code>.MuiSvgIcon-root:last-of-type</code></td>
+      <td>The inner filled dot (RadioButtonChecked - visible when selected)</td>
+    </tr>
+    <tr>
+      <td><code>.MuiRadio-sizeSmall</code></td>
+      <td>Root class added when <code>size="small"</code></td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
 ## Props
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `size` | `RadioSize` | `'medium'` | Visual size of the radio button |
-| `color` | `RadioColor` | `'primary'` | Semantic color applied when selected |
-| `label` | `ReactNode` | - | Opt-in label via `FormControlLabel` |
-| `labelPlacement` | `'end' \| 'start' \| 'top' \| 'bottom'` | `'end'` | Label position (requires `label`) |
-| `FormControlLabelProps` | `Omit<FormControlLabelProps, ...>` | - | Extra props forwarded to the label wrapper |
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>RadioSize</code></td>
+      <td><code>'medium'</code></td>
+      <td>Visual size of the radio button</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>RadioColor</code></td>
+      <td><code>'primary'</code></td>
+      <td>Semantic color applied when selected</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>Opt-in label via <code>FormControlLabel</code></td>
+    </tr>
+    <tr>
+      <td><code>labelPlacement</code></td>
+      <td><code>'end' | 'start' | 'top' | 'bottom'</code></td>
+      <td><code>'end'</code></td>
+      <td>Label position (requires <code>label</code>)</td>
+    </tr>
+    <tr>
+      <td><code>FormControlLabelProps</code></td>
+      <td><code>Omit&lt;FormControlLabelProps, ...&gt;</code></td>
+      <td>-</td>
+      <td>Extra props forwarded to the label wrapper</td>
+    </tr>
+  </tbody>
+</table>
 
 > All other [MUI RadioProps](https://mui.com/material-ui/api/radio/) are accepted.
 

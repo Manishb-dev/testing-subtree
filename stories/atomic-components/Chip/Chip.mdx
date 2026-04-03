@@ -42,10 +42,15 @@ import { Chip } from '@bmi/mui-tonic-components';
 
 ## Sizes
 
-| Size | Height |
-|---|---|
-| `small` | 24px |
-| `medium` | 32px |
+<table>
+  <thead>
+    <tr><th>Size</th><th>Height</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>small</code></td><td>24px</td></tr>
+    <tr><td><code>medium</code></td><td>32px</td></tr>
+  </tbody>
+</table>
 
 <Canvas of={ChipStories.Sizes} />
 
@@ -116,15 +121,55 @@ All visual styling lives in the theme override. The component's only job is to e
 
 ## Props
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | `React.ReactNode` | - | The chip's text content |
-| `variant` | `'filled' \| 'outlined'` | `'filled'` | Visual style |
-| `size` | `ChipSize` | `'medium'` | Size of the chip |
-| `color` | `ChipColor` | `'default'` | Color scheme |
-| `onDelete` | `() => void` | - | If provided, renders a delete icon |
-| `disabled` | `boolean` | `false` | Disables interaction and reduces visual emphasis |
-| `onClick` | `() => void` | - | Makes the chip interactive (hover/focus styles activate) |
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>React.ReactNode</code></td>
+      <td>-</td>
+      <td>The chip's text content</td>
+    </tr>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>'filled' | 'outlined'</code></td>
+      <td><code>'filled'</code></td>
+      <td>Visual style</td>
+    </tr>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>ChipSize</code></td>
+      <td><code>'medium'</code></td>
+      <td>Size of the chip</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>ChipColor</code></td>
+      <td><code>'default'</code></td>
+      <td>Color scheme</td>
+    </tr>
+    <tr>
+      <td><code>onDelete</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td>-</td>
+      <td>If provided, renders a delete icon</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Disables interaction and reduces visual emphasis</td>
+    </tr>
+    <tr>
+      <td><code>onClick</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td>-</td>
+      <td>Makes the chip interactive (hover/focus styles activate)</td>
+    </tr>
+  </tbody>
+</table>
 
 > All other [MUI ChipProps](https://mui.com/material-ui/api/chip/) are accepted.
 
