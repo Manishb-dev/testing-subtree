@@ -1,0 +1,151 @@
+﻿import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ChipStories from './Chip.stories';
+
+<Meta of={ChipStories} />
+
+# Chip
+
+Compact element representing an input, attribute, or action. Use chips to surface filterable tags, status labels, or user-generated values in a space-efficient way.
+
+---
+
+## Usage
+
+```tsx
+import { Chip } from '@bmi/mui-tonic-components';
+
+<Chip label="Active" color="success" variant="filled" />
+```
+
+---
+
+## Playground
+
+<Canvas of={ChipStories.Playground} />
+<Controls of={ChipStories.Playground} />
+
+---
+
+## Variants
+
+`filled` uses a solid background; `outlined` uses a transparent background with a colored border. Prefer `filled` for status indicators and `outlined` for filter chips where deselected state must remain visible.
+
+<Canvas of={ChipStories.Variants} />
+
+---
+
+## States
+
+<Canvas of={ChipStories.States} />
+
+---
+
+## Sizes
+
+| Size | Height |
+|---|---|
+| `small` | 24px |
+| `medium` | 32px |
+
+<Canvas of={ChipStories.Sizes} />
+
+---
+
+## Colors
+
+<Canvas of={ChipStories.Colors} />
+
+---
+
+## Deletable
+
+Pass `onDelete` to render a delete icon inside the chip. MUI automatically renders the `CancelIcon` and fires `onDelete` on click. Works with both `filled` and `outlined` variants.
+
+<Canvas of={ChipStories.Deletable} />
+
+---
+
+## Under the Hood
+
+This component wraps [`MuiChip`](https://mui.com/material-ui/api/chip/).
+
+**MUI base:** `@mui/material/Chip`  
+**Theme override:** `packages/theme/src/overrides/chip.ts`
+
+All visual styling lives in the theme override. The component's only job is to enforce the Tonic prop vocabulary and forward everything to MUI.
+
+<table>
+  <thead>
+    <tr><th>Tonic prop</th><th>Maps to MUI prop</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>size</code></td>
+      <td>Restricted to <code>'small' | 'medium'</code> (24px / 32px)</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>color</code></td>
+      <td>Restricted to <code>'default' | 'error' | 'warning' | 'info' | 'success'</code></td>
+    </tr>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>variant</code></td>
+      <td>Restricted to <code>'filled' | 'outlined'</code></td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>label</code></td>
+      <td>The chip's text content - accepts any React node</td>
+    </tr>
+    <tr>
+      <td><code>onDelete</code></td>
+      <td><code>onDelete</code></td>
+      <td>When provided, renders a delete icon and fires this callback on click</td>
+    </tr>
+    <tr>
+      <td><code>sx</code></td>
+      <td><code>sx</code></td>
+      <td>Normalized to array and forwarded as-is</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `React.ReactNode` | - | The chip's text content |
+| `variant` | `'filled' \| 'outlined'` | `'filled'` | Visual style |
+| `size` | `ChipSize` | `'medium'` | Size of the chip |
+| `color` | `ChipColor` | `'default'` | Color scheme |
+| `onDelete` | `() => void` | - | If provided, renders a delete icon |
+| `disabled` | `boolean` | `false` | Disables interaction and reduces visual emphasis |
+| `onClick` | `() => void` | - | Makes the chip interactive (hover/focus styles activate) |
+
+> All other [MUI ChipProps](https://mui.com/material-ui/api/chip/) are accepted.
+
+---
+
+## Accessibility
+
+- When `onDelete` is provided, the delete icon receives an implicit `aria-label="Delete"`. Override it with `deleteIcon` if the context requires a more specific label.
+- For clickable chips, ensure the `label` text is descriptive enough to convey the chip's action without additional context.
+- Disabled chips are correctly announced as disabled by screen readers via the underlying `<div aria-disabled>` attribute.
+
+---
+
+## Do / Don't
+
+**Do**
+- Use `color="success"` / `color="error"` for status chips that need immediate semantic recognition
+- Use `outlined` variant when the chip represents a filter that can be toggled off - the transparent background signals a non-selected state
+- Keep chip labels short (1–3 words); long text wraps awkwardly inside the pill shape
+
+**Don't**
+- Don't use chips as primary action buttons - use `Button` instead
+- Don't mix `filled` and `outlined` chips in the same filter group; pick one variant and apply it consistently
+- Don't rely solely on color to communicate status - always pair with a descriptive label

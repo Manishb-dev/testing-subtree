@@ -1,0 +1,223 @@
+﻿import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SwitchStories from './Switch.stories';
+
+<Meta of={SwitchStories} />
+
+# Switch
+
+A Tonic wrapper around [MUI Switch](https://mui.com/material-ui/react-switch/) that enforces the Tonic size vocabulary and provides integrated label support via `FormControlLabel`.
+
+---
+
+## Usage
+
+```tsx
+import { Switch } from '@bmi/mui-tonic-components';
+
+<Switch color="primary" size="medium" />
+```
+
+---
+
+## Playground
+
+Click the switch to toggle it on and off. All props are adjustable via the Controls panel below.
+
+<Canvas of={SwitchStories.Playground} />
+<Controls of={SwitchStories.Playground} />
+
+---
+
+## States
+
+Static reference for all four meaningful states - Default (off), Checked (on), Disabled (off), and Disabled Checked. These cells are not interactive by design; use the Playground or Interactive story to toggle.
+
+<Canvas of={SwitchStories.States} />
+
+---
+
+## Sizes
+
+Two sizes matched to the Figma spec.
+
+<table>
+  <thead>
+    <tr><th>Size</th><th>Track height</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>small</code></td><td>20px</td></tr>
+    <tr><td><code>medium</code></td><td>24px</td></tr>
+  </tbody>
+</table>
+
+<Canvas of={SwitchStories.Sizes} />
+
+---
+
+## Colors
+
+All semantic palette colors applied to a checked switch.
+
+<Canvas of={SwitchStories.Colors} />
+
+---
+
+## With Label
+
+The base Switch renders without a label. When a `label` prop is provided the component is automatically wrapped in `FormControlLabel`.
+
+<Canvas of={SwitchStories.WithLabel} />
+
+---
+
+## Interactive
+
+<Canvas of={SwitchStories.Interactive} />
+
+---
+
+## Under the Hood
+
+This component is a thin wrapper around [`MuiSwitch`](https://mui.com/material-ui/api/switch/).
+
+**MUI base:** `@mui/material/Switch`  
+**Tonic override file:** `packages/theme/src/overrides/switch.ts`
+
+All visual styling - track shape, thumb size, colors, padding - lives in the theme override, not in the component. The component's only job is to enforce the Tonic prop vocabulary and forward everything else to MUI.
+
+<table>
+  <thead>
+    <tr><th>Tonic prop</th><th>Maps to MUI prop</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>size</code></td>
+      <td>Restricted to <code>'small' | 'medium'</code> (Figma track heights)</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>color</code></td>
+      <td>Restricted to semantic palette names; excludes <code>'inherit'</code></td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td>-</td>
+      <td>Triggers <code>FormControlLabel</code> wrapping; not a native MUI Switch prop</td>
+    </tr>
+    <tr>
+      <td><code>labelPlacement</code></td>
+      <td><code>FormControlLabel.labelPlacement</code></td>
+      <td>Forwarded to inner <code>FormControlLabel</code></td>
+    </tr>
+    <tr>
+      <td><code>FormControlLabelProps</code></td>
+      <td>-</td>
+      <td>Spread onto inner <code>FormControlLabel</code>; <code>label</code>, <code>labelPlacement</code>, <code>control</code> excluded</td>
+    </tr>
+    <tr>
+      <td><code>sx</code></td>
+      <td><code>sx</code></td>
+      <td>Normalized to array and forwarded as-is</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>disabled</code></td>
+      <td>Also forwarded to <code>FormControlLabel</code> when label is present</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Props
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>'small' | 'medium'</code></td>
+      <td><code>'medium'</code></td>
+      <td>Visual size of the switch track.</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success' | 'default'</code></td>
+      <td><code>'primary'</code></td>
+      <td>Semantic palette color applied to the track when checked.</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>Optional label rendered via <code>FormControlLabel</code>. Omit to render the bare switch.</td>
+    </tr>
+    <tr>
+      <td><code>labelPlacement</code></td>
+      <td><code>'end' | 'start' | 'top' | 'bottom'</code></td>
+      <td><code>'end'</code></td>
+      <td>Position of the label relative to the switch. Only applies when <code>label</code> is provided.</td>
+    </tr>
+    <tr>
+      <td><code>FormControlLabelProps</code></td>
+      <td><code>Omit&lt;FormControlLabelProps, 'label' | 'labelPlacement' | 'control'&gt;</code></td>
+      <td>-</td>
+      <td>Extra props forwarded to the inner <code>FormControlLabel</code>.</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Disables interaction and applies reduced-opacity styling.</td>
+    </tr>
+  </tbody>
+</table>
+
+> All other [MUI SwitchProps](https://mui.com/material-ui/api/switch/) are also accepted.
+
+---
+
+## Figma Reference
+
+<table>
+  <thead>
+    <tr><th>Field</th><th>Value</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Component path</td>
+      <td><code>Tonic/Switch</code></td>
+    </tr>
+    <tr>
+      <td>Variants mapped</td>
+      <td><code>size</code>, <code>color</code>, <code>state</code>, <code>toggle</code></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility
+
+- Always pair a switch with a visible label - use the `label` prop or a sibling `<label>` element so the purpose is clear.
+- When used without a label (e.g. in a settings table row), provide `inputProps={{ 'aria-label': '…' }}` to describe what the switch controls.
+- The switch communicates its on/off state via `aria-checked` automatically - do not duplicate this in visible text.
+- Disabled switches retain their role in the accessibility tree but are non-interactive; ensure surrounding context still explains the feature.
+- All Tonic theme colors meet WCAG AA contrast requirements for the track against a white background.
+
+---
+
+## Do / Don't
+
+**Do**
+- Use a switch for settings that take immediate effect without requiring a confirm action (e.g. "Enable dark mode").
+- Use `color="error"` to indicate a toggle that activates a destructive or high-risk feature.
+- Pair with a concise label that describes the effect in the on state (e.g. "Receive email notifications", not "Notifications").
+
+**Don't**
+- Don't use a switch for multi-step forms where the change needs explicit submission - use a Checkbox instead.
+- Don't control `checked` without also wiring `onChange` - a controlled switch with no handler locks the UI.
+- Don't use more than one `color` palette per group of related switches - keep a consistent color within a settings section.

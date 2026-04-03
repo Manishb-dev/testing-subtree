@@ -1,0 +1,55 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as WarningIconStories from './WarningIcon.stories';
+
+<Meta of={WarningIconStories} />
+
+# WarningIcon
+
+Triangle with an exclamation mark. Used for caution and alert states. Accepts a `size` prop (px) and inherits `currentColor` from its parent.
+
+---
+
+## Usage
+
+```tsx
+import { WarningIcon } from '@bmi/mui-tonic-components';
+
+<WarningIcon />
+<WarningIcon size={32} />
+<WarningIcon size={20} color="warning" />
+```
+
+---
+
+## Playground
+
+<Canvas of={WarningIconStories.Default} />
+<Controls of={WarningIconStories.Default} />
+
+---
+
+## Under the Hood
+
+**Package:** `@bmi/mui-tonic-icons`
+**MUI base:** `@mui/material/SvgIcon`
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>48 | 32 | 24 | 20 | 16 | 14</code></td>
+      <td><code>24</code></td>
+      <td>Width and height in px</td>
+    </tr>
+  </tbody>
+</table>
+
+All other [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/) are accepted.

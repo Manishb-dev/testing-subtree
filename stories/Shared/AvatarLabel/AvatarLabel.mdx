@@ -1,0 +1,143 @@
+﻿import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as AvatarLabelStories from './AvatarLabel.stories';
+
+<Meta of={AvatarLabelStories} />
+
+# AvatarLabel
+
+Combines a Tonic `Avatar` with a title and an optional subtitle. Use it wherever a user, account, or entity needs a visual identity badge alongside readable metadata - profile headers, list rows, and table cells.
+
+---
+
+## Usage
+
+```tsx
+import { AvatarLabel, StarIcon } from '@bmi/mui-tonic-components';
+
+<AvatarLabel
+  title="John Doe"
+  subtitle="Account Manager"
+  avatarIcon={<StarIcon />}
+/>
+```
+
+---
+
+## Playground
+
+<Canvas of={AvatarLabelStories.Default} />
+<Controls of={AvatarLabelStories.Default} />
+
+---
+
+## States
+
+All meaningful configurations: title only, with subtitle, with a subtitle suffix appended inline, and without an avatar.
+
+<Canvas of={AvatarLabelStories.States} />
+
+---
+
+## Subtitle Variants
+
+The `subtitleVariant` prop controls the typography scale of the subtitle text.
+
+| Value | When to use |
+|---|---|
+| `body4` | Default - compact secondary text for dense layouts |
+| `body3` | Slightly larger - use when the subtitle needs more visual weight |
+
+<Canvas of={AvatarLabelStories.SubtitleVariants} />
+
+---
+
+## Custom Avatar Color
+
+`avatarBgColor` accepts any MUI palette color token string (e.g. `'primary.main'`, `'success.main'`). Defaults to `'background.paper'`.
+
+<Canvas of={AvatarLabelStories.CustomAvatarColor} />
+
+---
+
+## Under the Hood
+
+This is a **shared** component composed from base Tonic primitives.
+
+**Uses:** `Avatar` (Tonic), `Stack` (MUI), `Typography` (MUI)  
+**No theme override** is required - all visual styling comes from the consumed base components and their existing theme overrides.
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>title</code></td>
+      <td><code>React.ReactNode</code></td>
+      <td>-</td>
+      <td>Required. String renders as <code>h5</code> Typography; any other node renders as-is.</td>
+    </tr>
+    <tr>
+      <td><code>subtitle</code></td>
+      <td><code>React.ReactNode</code></td>
+      <td>-</td>
+      <td>Optional secondary text below the title.</td>
+    </tr>
+    <tr>
+      <td><code>subTitleSuffix</code></td>
+      <td><code>React.ReactNode</code></td>
+      <td>-</td>
+      <td>Appended inline after the subtitle text.</td>
+    </tr>
+    <tr>
+      <td><code>subtitleVariant</code></td>
+      <td><code>'body3' | 'body4'</code></td>
+      <td><code>'body4'</code></td>
+      <td>Typography variant for the subtitle.</td>
+    </tr>
+    <tr>
+      <td><code>subtitleColor</code></td>
+      <td><code>string</code></td>
+      <td><code>'text.secondary'</code></td>
+      <td>MUI color token applied to the subtitle.</td>
+    </tr>
+    <tr>
+      <td><code>avatarIcon</code></td>
+      <td><code>React.ReactNode</code></td>
+      <td>-</td>
+      <td>Content rendered inside the Avatar. When omitted, no avatar is rendered.</td>
+    </tr>
+    <tr>
+      <td><code>avatarBgColor</code></td>
+      <td><code>string</code></td>
+      <td><code>'background.paper'</code></td>
+      <td>MUI color token for the Avatar background.</td>
+    </tr>
+    <tr>
+      <td><code>AvatarProps</code></td>
+      <td><code>Omit&lt;TonicAvatarProps, 'children' | 'sx'&gt;</code></td>
+      <td>-</td>
+      <td>Props forwarded to the inner Tonic Avatar (e.g. <code>size</code>, <code>variant</code>).</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility
+
+- The avatar is purely decorative when it contains an icon - ensure the `title` prop always provides the accessible label for the entity.
+- When using an image inside the avatar via `AvatarProps`, pass a descriptive `alt` string through `AvatarProps.alt`.
+
+---
+
+## Do / Don't
+
+**Do**
+- Keep titles concise - one or two words for names, short entity identifiers for codes
+- Use `subtitle` to surface the primary attribute of the entity (role, status, account number)
+- Use `subTitleSuffix` for badge-style inline metadata that must stay on the same line as the subtitle
+
+**Don't**
+- Don't pass multi-line strings as `subtitle` - use the `subTitleSuffix` pattern or compose a custom `title` node instead
+- Don't rely on `subtitleColor` for semantic meaning (error, success) without also providing a text label

@@ -1,0 +1,77 @@
+﻿import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as StackStories from './Stack.stories';
+
+<Meta of={StackStories} />
+
+# Stack
+
+A one-dimensional layout component that arranges children in a row or column with uniform spacing. Spacing values map to the Tonic theme's 8px spacing unit (`spacing={1}` = 8px, `spacing={2}` = 16px, etc.).
+
+---
+
+## Usage
+
+```tsx
+import { Stack } from '@bmi/mui-tonic-components';
+
+<Stack direction="row" spacing={2} alignItems="center">
+  <Item />
+  <Item />
+  <Item />
+</Stack>
+```
+
+---
+
+## Playground
+
+<Canvas of={StackStories.Playground} />
+<Controls of={StackStories.Playground} />
+
+---
+
+## Directions
+
+Stack supports four `direction` values. Use `row` for horizontal layouts and `column` for vertical ones. The `-reverse` variants flip the order without changing the DOM structure.
+
+<Canvas of={StackStories.Directions} />
+
+---
+
+## Spacing Scale
+
+Spacing maps to `theme.spacing(n)` - multiples of the base 8px unit. Use whole and half values from the scale for consistency.
+
+| `spacing` | px |
+|---|---|
+| 1 | 8px |
+| 2 | 16px |
+| 3 | 24px |
+| 4 | 32px |
+| 6 | 48px |
+
+<Canvas of={StackStories.SpacingScale} />
+
+---
+
+## Under the Hood
+
+This component wraps [`MuiStack`](https://mui.com/material-ui/react-stack/).
+
+**MUI base:** `@mui/material/Stack`  
+**Theme override:** none - all styling is done through props and `sx`.
+
+<table>
+  <thead>
+    <tr><th>Tonic prop</th><th>Maps to MUI prop</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>`direction`</td><td>`direction`</td><td>Row or column axis</td></tr>
+    <tr><td>`spacing`</td><td>`spacing`</td><td>Maps to `theme.spacing(n)` - 8px base unit</td></tr>
+    <tr><td>`alignItems`</td><td>`alignItems`</td><td>Cross-axis alignment</td></tr>
+    <tr><td>`justifyContent`</td><td>`justifyContent`</td><td>Main-axis distribution</td></tr>
+    <tr><td>`divider`</td><td>`divider`</td><td>Optional divider element between children</td></tr>
+    <tr><td>`sx`</td><td>`sx`</td><td>Always forwarded as an array for safe composition</td></tr>
+    <tr><td>`...rest`</td><td>all MUI Stack props</td><td>Passed through unchanged</td></tr>
+  </tbody>
+</table>

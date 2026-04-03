@@ -1,0 +1,222 @@
+﻿import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './MUIButton.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+The `Button` component is a thin wrapper around [MUI Button](https://mui.com/material-ui/react-button/), inheriting all its props and behaviour while being themed via the Tonic design system.
+
+---
+
+## Usage
+
+```tsx
+import { Button } from '@bmi/mui-tonic-components';
+
+<Button variant="contained" color="primary">Pay Now</Button>
+```
+
+---
+
+## Playground
+
+<Canvas of={ButtonStories.Playground} />
+<Controls of={ButtonStories.Playground} />
+
+---
+
+## Variants
+
+MUI Button supports three visual variants - `contained` (high-emphasis primary action), `outlined` (medium-emphasis secondary action), and `text` (low-emphasis tertiary or inline action).
+
+<Canvas of={ButtonStories.Variants} />
+
+---
+
+## States
+
+Default, disabled, loading (4-dot pulse animation), and success (check-circle icon) - all shown side-by-side. For the animated loading → success transition, see the Interactive Loading Flow story.
+
+<Canvas of={ButtonStories.States} />
+
+---
+
+## Sizes
+
+| Size | Height |
+|---|---|
+| `small` | 32px |
+| `medium` | 40px |
+| `large` | 44px |
+| `extraLarge` | 48px |
+
+<Canvas of={ButtonStories.Sizes} />
+
+---
+
+## Colors
+
+All six semantic palette colors across all three variants.
+
+<Canvas of={ButtonStories.Colors} />
+
+---
+
+## With Icons
+
+Buttons accept `startIcon` and `endIcon` props for leading or trailing icon placement.
+
+<Canvas of={ButtonStories.WithIcons} />
+
+---
+
+## Under the Hood
+
+This component is a thin wrapper around [`MuiButton`](https://mui.com/material-ui/api/button/).
+
+**MUI base:** `@mui/material/Button`  
+**Tonic override file:** `packages/theme/src/overrides/button.ts`
+
+All visual styling - border-radius, padding per size, text transform - lives in the theme override. The component additionally handles the `loadingState` prop to render the `DotsLoader` or `CheckCircleIcon` and conditionally apply loading/success `sx`.
+
+<table>
+  <thead>
+    <tr><th>Tonic prop</th><th>Maps to MUI prop</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>size</code></td>
+      <td>Extended with <code>'extraLarge'</code> via MUI type augmentation</td>
+    </tr>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>variant</code></td>
+      <td>Forwarded as-is</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>color</code></td>
+      <td>Forwarded as-is</td>
+    </tr>
+    <tr>
+      <td><code>loadingState</code></td>
+      <td>-</td>
+      <td>Not a native MUI prop; drives <code>startIcon</code>, <code>disabled</code>, and <code>sx</code> overrides internally</td>
+    </tr>
+    <tr>
+      <td><code>sx</code></td>
+      <td><code>sx</code></td>
+      <td>Merged with internal loading/success styles via array passthrough</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Props
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>'contained' | 'outlined' | 'text'</code></td>
+      <td><code>'text'</code></td>
+      <td>Visual style of the button</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success'</code></td>
+      <td><code>'primary'</code></td>
+      <td>Semantic theme color</td>
+    </tr>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>'small' | 'medium' | 'large' | 'extraLarge'</code></td>
+      <td><code>'medium'</code></td>
+      <td>Button size - each value maps to a padding set in the theme override</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Disables interaction and dims the button</td>
+    </tr>
+    <tr>
+      <td><code>loadingState</code></td>
+      <td><code>'loading' | 'success'</code></td>
+      <td>-</td>
+      <td><code>'loading'</code>: shows 4-dot pulse, disables button. <code>'success'</code>: shows check-circle, applies success color.</td>
+    </tr>
+    <tr>
+      <td><code>startIcon</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>Icon before label. Overridden by <code>loadingState</code> when set.</td>
+    </tr>
+    <tr>
+      <td><code>endIcon</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>Icon after label</td>
+    </tr>
+    <tr>
+      <td><code>children</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>Button label content</td>
+    </tr>
+  </tbody>
+</table>
+
+> All other [MUI ButtonProps](https://mui.com/material-ui/api/button/) are also accepted.
+
+---
+
+## Figma Reference
+
+<table>
+  <thead>
+    <tr><th>Field</th><th>Value</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Component path</td>
+      <td><code>Tonic/Button/Button_v3</code></td>
+    </tr>
+    <tr>
+      <td>Variants mapped</td>
+      <td><code>variant</code>, <code>size</code>, <code>color</code>, <code>loadingState</code></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility
+
+- Always provide meaningful `children` text - avoid icon-only buttons without `aria-label`.
+- The `loadingState="loading"` state sets `disabled` internally; screen readers will announce the button as disabled.
+- Ensure sufficient color contrast - all Tonic theme colors meet WCAG AA at the button's font size.
+- Use `contained` sparingly - only one high-emphasis action should appear per section.
+
+---
+
+## Do / Don't
+
+**Do**
+- Use `contained` for the single primary action per view (e.g. Submit, Save, Pay Now).
+- Use `outlined` for secondary actions that sit alongside a primary button.
+- Use `text` for low-priority or inline actions (e.g. Cancel, Learn more).
+- Use `loadingState` to give feedback during async operations without adding extra state UI.
+
+**Don't**
+- Don't use more than one `contained` button per section.
+- Don't use `text` buttons as standalone CTAs without surrounding context.
+- Don't leave `loadingState="loading"` indefinitely - always resolve to `success` or reset.
+- Don't hardcode disabled colors or loading styles - let `loadingState` handle it.
+

@@ -1,0 +1,49 @@
+{
+  "state": {
+    "default": "Default",
+    "selected": "Selected",
+    "checked": "Checked",
+    "disabled": "Disabled",
+    "disabledSelected": "Disabled\nSelected",
+    "disabledChecked": "Disabled\nChecked",
+    "error": "Error",
+    "errorSelected": "Error\nSelected",
+    "indeterminate": "Indeterminate",
+    "loading": "Loading",
+    "success": "Success"
+  },
+  "button": {
+    "label": "Button",
+    "saveChanges": "Save Changes",
+    "saving": "Saving…",
+    "saved": "Saved",
+    "startIcon": "Start Icon",
+    "endIcon": "End Icon",
+    "bothIcons": "Both Icons"
+  },
+  "radio": {
+    "label": "Radio label"
+  },
+  "checkbox": {
+    "label": "Checkbox label"
+  },
+  "switch": {
+    "label": "Enable notifications"
+  },
+  "chip": {
+    "label": "Chip"
+  },
+  "avatarLabel": {
+    "title": "John Doe",
+    "subtitle": "Account Manager",
+    "suffix": " · Active"
+  },
+  "alert": {
+    "warningTitle": "License Renew Reminder",
+    "errorTitle": "License Suspended",
+    "successTitle": "Congratulations",
+    "warningDescription": "Your license is expiring soon. Please renew to avoid disruption.",
+    "errorDescription": "Your license has been suspended. Please contact support.",
+    "successDescription": "Olive Garden - New York, NY license has been renewed."
+  }
+}

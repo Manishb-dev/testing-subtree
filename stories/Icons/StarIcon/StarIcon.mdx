@@ -1,0 +1,55 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as StarIconStories from './StarIcon.stories';
+
+<Meta of={StarIconStories} />
+
+# StarIcon
+
+Used for ratings, favorites, and bookmarks. Accepts a `size` prop (px) and inherits `currentColor` from its parent.
+
+---
+
+## Usage
+
+```tsx
+import { StarIcon } from '@bmi/mui-tonic-components';
+
+<StarIcon />
+<StarIcon size={32} />
+<StarIcon size={20} color="warning" />
+```
+
+---
+
+## Playground
+
+<Canvas of={StarIconStories.Default} />
+<Controls of={StarIconStories.Default} />
+
+---
+
+## Under the Hood
+
+**Package:** `@bmi/mui-tonic-icons`
+**MUI base:** `@mui/material/SvgIcon`
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>48 | 32 | 24 | 20 | 16 | 14</code></td>
+      <td><code>24</code></td>
+      <td>Width and height in px</td>
+    </tr>
+  </tbody>
+</table>
+
+All other [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/) are accepted.

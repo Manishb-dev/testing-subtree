@@ -1,0 +1,49 @@
+{
+  "state": {
+    "default": "Predeterminado",
+    "selected": "Seleccionado",
+    "checked": "Marcado",
+    "disabled": "Deshabilitado",
+    "disabledSelected": "Deshabilitado\nSeleccionado",
+    "disabledChecked": "Deshabilitado\nMarcado",
+    "error": "Error",
+    "errorSelected": "Error\nSeleccionado",
+    "indeterminate": "Indeterminado",
+    "loading": "Cargando",
+    "success": "Éxito"
+  },
+  "button": {
+    "label": "Botón",
+    "saveChanges": "Guardar cambios",
+    "saving": "Guardando…",
+    "saved": "Guardado",
+    "startIcon": "Ícono inicio",
+    "endIcon": "Ícono final",
+    "bothIcons": "Ambos íconos"
+  },
+  "radio": {
+    "label": "Etiqueta de radio"
+  },
+  "checkbox": {
+    "label": "Etiqueta de casilla"
+  },
+  "switch": {
+    "label": "Activar notificaciones"
+  },
+  "chip": {
+    "label": "Chip"
+  },
+  "avatarLabel": {
+    "title": "Juan García",
+    "subtitle": "Gestor de cuentas",
+    "suffix": " · Activo"
+  },
+  "alert": {
+    "warningTitle": "Recordatorio de renovación",
+    "errorTitle": "Licencia suspendida",
+    "successTitle": "¡Felicitaciones!",
+    "warningDescription": "Su licencia está por vencer. Renuévela para evitar interrupciones.",
+    "errorDescription": "Su licencia ha sido suspendida. Contacte soporte.",
+    "successDescription": "La licencia de Olive Garden - Nueva York, NY ha sido renovada."
+  }
+}

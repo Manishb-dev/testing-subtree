@@ -1,0 +1,136 @@
+﻿import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as RadioStories from './Radio.stories';
+
+<Meta of={RadioStories} />
+
+# Radio
+
+Single-selection control for choosing one option from a mutually exclusive set - use inside a `RadioGroup` to enforce one-at-a-time selection across multiple options in a form.
+
+---
+
+## Usage
+
+```tsx
+import { Radio } from '@bmi/mui-tonic-components';
+
+{/* Bare radio - embed in a RadioGroup for mutual exclusivity */}
+<Radio color="primary" size="medium" value="option-a" />
+
+{/* With label - rendered via FormControlLabel */}
+<Radio label="Option A" labelPlacement="end" color="primary" />
+```
+
+---
+
+## Playground
+
+<Canvas of={RadioStories.Playground} />
+<Controls of={RadioStories.Playground} />
+
+---
+
+## States
+
+Default, Selected, Disabled, and Error states as seen in Figma.
+The `error` color is distinctive: even when unchecked the outer ring is `error.main`
+rather than the neutral Neutral-400 used by all other colors.
+
+<Canvas of={RadioStories.States} />
+
+---
+
+## Sizes
+
+| Size | Diameter |
+|---|---|
+| `small` | 20px |
+| `medium` | 24px |
+
+<Canvas of={RadioStories.Sizes} />
+
+---
+
+## Colors
+
+All semantic palette colors in their selected state.
+
+<Canvas of={RadioStories.Colors} />
+
+---
+
+## With Label
+
+When a `label` prop is provided the radio is automatically wrapped in `FormControlLabel`.
+Use `labelPlacement` to position the label relative to the control.
+
+<Canvas of={RadioStories.WithLabel} />
+
+---
+
+## Under the Hood
+
+This component wraps [`MuiRadio`](https://mui.com/material-ui/api/radio/).
+
+**MUI base:** `@mui/material/Radio`
+**Theme override:** `packages/theme/src/overrides/radio.ts`
+
+All visual styling lives in the theme override. The component enforces the Tonic prop
+vocabulary and forwards everything else to MUI. Hover states, checked colors, error ring
+color, and disabled opacity are all driven by theme-level `variants` entries - never by
+conditional `sx` inside the component.
+
+| Tonic prop | Maps to MUI prop | Notes |
+|---|---|---|
+| `size` | `size` | `'small'` = 20px icon, `'medium'` = 24px (MUI default) |
+| `color` | `color` | Restricted to Tonic semantic palette names |
+| `label` | - | Triggers `FormControlLabel` wrapper when provided |
+| `labelPlacement` | `labelPlacement` on `FormControlLabel` | Only effective when `label` is set |
+| `FormControlLabelProps` | Spread onto `FormControlLabel` | Excludes `label`, `labelPlacement`, `control` |
+
+**Internal MUI slots used by the theme override:**
+
+| Selector | What it targets |
+|---|---|
+| `.MuiSvgIcon-root:first-of-type` | The outer ring (RadioButtonUnchecked - always visible) |
+| `.MuiSvgIcon-root:last-of-type` | The inner filled dot (RadioButtonChecked - visible when selected) |
+| `.MuiRadio-sizeSmall` | Root class added when `size="small"` |
+
+---
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `RadioSize` | `'medium'` | Visual size of the radio button |
+| `color` | `RadioColor` | `'primary'` | Semantic color applied when selected |
+| `label` | `ReactNode` | - | Opt-in label via `FormControlLabel` |
+| `labelPlacement` | `'end' \| 'start' \| 'top' \| 'bottom'` | `'end'` | Label position (requires `label`) |
+| `FormControlLabelProps` | `Omit<FormControlLabelProps, ...>` | - | Extra props forwarded to the label wrapper |
+
+> All other [MUI RadioProps](https://mui.com/material-ui/api/radio/) are accepted.
+
+---
+
+## Accessibility
+
+- Always pair `Radio` with a visible label - use the `label` prop or an external `aria-label`.
+- Wrap related radios in MUI `RadioGroup` with a `FormLabel` to communicate the group's
+  purpose; `RadioGroup` manages `aria-required`, `role="radiogroup"`, and keyboard navigation.
+- The `error` color alone does not communicate invalidity to assistive technology - pair it
+  with a visible error message linked via `aria-describedby` on the `RadioGroup` or form field.
+- Avoid using a single `Radio` as a standalone yes/no toggle; use `Checkbox` or `Switch` instead.
+
+---
+
+## Do / Don't
+
+**Do**
+- Use `RadioGroup` from MUI to wrap multiple radios and handle mutual exclusivity and keyboard navigation automatically
+- Use `color="error"` together with a form-level validation message to communicate which option group has a problem
+- Provide a `label` so users can click the label text - not just the 20–24px icon - to make a selection
+
+**Don't**
+- Don't use a lone `Radio` as a binary toggle - the pattern implies "one of several"; use `Checkbox` for binary opt-in/out
+- Don't rely on `color="error"` alone to signal an invalid state; always accompany with text
+- Don't set `checked` and `onChange` on individual radios without a controlling `RadioGroup`; let the group own the value

@@ -1,0 +1,222 @@
+﻿import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+A Tonic wrapper around [MUI Checkbox](https://mui.com/material-ui/react-checkbox/) that enforces the Tonic size vocabulary and provides integrated label support via `FormControlLabel`.
+
+---
+
+## Usage
+
+```tsx
+import { Checkbox } from '@bmi/mui-tonic-components';
+
+<Checkbox color="primary" size="medium" label="Accept terms" />
+```
+
+---
+
+## Playground
+
+<Canvas of={CheckboxStories.Playground} />
+<Controls of={CheckboxStories.Playground} />
+
+---
+
+## States
+
+Default, Checked, Indeterminate, Disabled, Disabled-Checked, and the Error color state are shown side-by-side.
+
+<Canvas of={CheckboxStories.States} />
+
+---
+
+## Sizes
+
+Checkbox ships in two sizes matching the Figma spec - `small` (20 px) for dense layouts and `medium` (24 px) for standard forms.
+
+| Size | Icon size |
+|---|---|
+| `small` | 20px |
+| `medium` | 24px |
+
+<Canvas of={CheckboxStories.Sizes} />
+
+---
+
+## Colors
+
+All semantic palette colors applied to a checked checkbox.
+
+<Canvas of={CheckboxStories.Colors} />
+
+---
+
+## With Label
+
+The base Checkbox renders without a label. When a `label` prop is provided, the component is automatically wrapped in `FormControlLabel`. The `labelPlacement` prop controls which side the label appears on.
+
+<Canvas of={CheckboxStories.WithLabel} />
+
+---
+
+## Interactive
+
+<Canvas of={CheckboxStories.Interactive} />
+
+---
+
+## Under the Hood
+
+This component is a thin wrapper around [`MuiCheckbox`](https://mui.com/material-ui/api/checkbox/).
+
+**MUI base:** `@mui/material/Checkbox`  
+**Tonic override file:** `packages/theme/src/overrides/checkbox.ts`
+
+All visual styling - sizes, colors, border-radius, padding - lives in the theme override, not in the component. The component’s only job is to enforce the Tonic prop vocabulary and forward everything else to MUI.
+
+<table>
+  <thead>
+    <tr><th>Tonic prop</th><th>Maps to MUI prop</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>size</code></td>
+      <td>Restricted to <code>'small' | 'medium'</code> (Figma SM 20px / Med 24px)</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>color</code></td>
+      <td>Restricted to semantic palette names; excludes <code>'inherit'</code></td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td>-</td>
+      <td>Triggers <code>FormControlLabel</code> wrapping; not a native MUI Checkbox prop</td>
+    </tr>
+    <tr>
+      <td><code>labelPlacement</code></td>
+      <td><code>FormControlLabel.labelPlacement</code></td>
+      <td>Forwarded to inner <code>FormControlLabel</code></td>
+    </tr>
+    <tr>
+      <td><code>FormControlLabelProps</code></td>
+      <td>-</td>
+      <td>Spread onto inner <code>FormControlLabel</code>; <code>label</code>, <code>labelPlacement</code>, <code>control</code> excluded</td>
+    </tr>
+    <tr>
+      <td><code>sx</code></td>
+      <td><code>sx</code></td>
+      <td>Normalized to array and forwarded as-is</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>disabled</code></td>
+      <td>Also forwarded to <code>FormControlLabel</code> when label is present</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Props
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>'small' | 'medium'</code></td>
+      <td><code>'medium'</code></td>
+      <td>Visual size of the checkbox. Maps to Figma SM 20px / Med 24px.</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success' | 'default'</code></td>
+      <td><code>'primary'</code></td>
+      <td>Semantic palette color applied when checked.</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>Optional label rendered via <code>FormControlLabel</code>. Omit to render the bare checkbox.</td>
+    </tr>
+    <tr>
+      <td><code>labelPlacement</code></td>
+      <td><code>'end' | 'start' | 'top' | 'bottom'</code></td>
+      <td><code>'end'</code></td>
+      <td>Position of the label relative to the checkbox. Only applies when <code>label</code> is provided.</td>
+    </tr>
+    <tr>
+      <td><code>FormControlLabelProps</code></td>
+      <td><code>Omit&lt;FormControlLabelProps, 'label' | 'labelPlacement' | 'control'&gt;</code></td>
+      <td>-</td>
+      <td>Extra props forwarded to the inner <code>FormControlLabel</code>.</td>
+    </tr>
+    <tr>
+      <td><code>indeterminate</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Renders a dash icon to represent a partially-selected group.</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Disables interaction and applies reduced-opacity styling.</td>
+    </tr>
+  </tbody>
+</table>
+
+> All other [MUI CheckboxProps](https://mui.com/material-ui/api/checkbox/) are also accepted.
+
+---
+
+## Figma Reference
+
+<table>
+  <thead>
+    <tr><th>Field</th><th>Value</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Component path</td>
+      <td><code>Tonic/Checkbox</code></td>
+    </tr>
+    <tr>
+      <td>Variants mapped</td>
+      <td><code>size</code>, <code>color</code>, <code>state</code></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility
+
+- Always pair a checkbox with a visible label - use the `label` prop or a sibling `<label>` element.
+- When used without a label (e.g. in a table row), provide `inputProps={{ 'aria-label': '…' }}` to describe the action.
+- The `indeterminate` state must be accompanied by a visible parent-selection affordance so its meaning is clear to all users.
+- Disabled checkboxes retain their role in the accessibility tree but are non-interactive - do not rely on CSS alone to communicate disabled state.
+- All Tonic theme colors meet WCAG AA contrast requirements against a white background at the standard checkbox sizes.
+
+---
+
+## Do / Don't
+
+**Do**
+- Use `color="error"` to indicate a validation failure on a required checkbox (e.g. consent checkbox not checked on form submit).
+- Use `size="small"` inside dense tables or filter panels where vertical space is constrained.
+- Use `indeterminate` on a parent checkbox that controls a partially-selected group of children.
+
+**Don't**
+- Don't use a standalone unchecked checkbox as a primary call-to-action - use a `Button` instead.
+- Don't control the `checked` prop without also wiring `onChange` - a controlled checkbox with no handler locks the UI.
+- Don't rely solely on color to convey state; ensure disabled and error states are communicated structurally (e.g. helper text, `aria-describedby`).
