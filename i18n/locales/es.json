@@ -10,7 +10,9 @@
     "errorSelected": "Error\nSeleccionado",
     "indeterminate": "Indeterminado",
     "loading": "Cargando",
-    "success": "Éxito"
+    "success": "Éxito",
+    "hover": "Hover",
+    "active": "Activo"
   },
   "button": {
     "label": "Botón",
@@ -53,5 +55,9 @@
   "select": {
     "label": "Etiqueta",
     "placeholder": "Seleccionar una opción"
+  },
+  "listItem": {
+    "primaryText": "Elemento de lista",
+    "secondaryText": "Texto secundario"
   }
 }
