@@ -49,5 +49,9 @@
   "tooltip": {
     "content": "Helpful information goes here",
     "trigger": "Hover over me"
+  },
+  "select": {
+    "label": "Label",
+    "placeholder": "Select an option"
   }
 }

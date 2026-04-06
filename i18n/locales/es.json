@@ -49,5 +49,9 @@
   "tooltip": {
     "content": "La información útil va aquí",
     "trigger": "Pasa el cursor sobre mí"
+  },
+  "select": {
+    "label": "Etiqueta",
+    "placeholder": "Seleccionar una opción"
   }
 }

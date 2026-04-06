@@ -1,30 +1,76 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+﻿import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as CheckCircleIconStories from './CheckCircleIcon.stories';
 
 <Meta of={CheckCircleIconStories} />
 
 # CheckCircleIcon
 
-Circle with a checkmark. Used for success and confirmation states. Accepts a `size` prop (px) and inherits `currentColor` from its parent.
+Check circle icon. Used for success, confirmation, and completion. Accepts `size`, `color`, `variant`, `containedShape`, and `bgColor` props.
 
 ---
 
 ## Usage
 
 ```tsx
-import { CheckCircleIcon } from '@bmi/mui-tonic-components';
+import { CheckCircleIcon } from '@bmi/mui-tonic-icons';
 
 <CheckCircleIcon />
-<CheckCircleIcon size={32} />
-<CheckCircleIcon size={20} color="success" />
+<CheckCircleIcon size="large" />
+<CheckCircleIcon size="small" color="primary" />
+<CheckCircleIcon variant="filled" />
+<CheckCircleIcon variant="contained" containedShape="circle" bgColor="primary.main" />
 ```
 
 ---
 
 ## Playground
 
-<Canvas of={CheckCircleIconStories.Default} />
-<Controls of={CheckCircleIconStories.Default} />
+<Canvas of={CheckCircleIconStories.Playground} />
+<Controls of={CheckCircleIconStories.Playground} />
+
+---
+
+## Variants
+
+**Outlined** uses the stroke-weight paths (default). **Filled** uses the solid-weight paths for higher visual emphasis. **Contained** places the icon inside a shaped, colored background.
+
+<Canvas of={CheckCircleIconStories.Variants} />
+
+---
+
+## Sizes
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Pixels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>small</td><td>16 × 16 px</td></tr>
+    <tr><td>medium</td><td>24 × 24 px (default)</td></tr>
+    <tr><td>large</td><td>32 × 32 px</td></tr>
+  </tbody>
+</table>
+
+<Canvas of={CheckCircleIconStories.Sizes} />
+
+---
+
+## Colors
+
+All MUI semantic palette colors are supported via the `color` prop.
+
+<Canvas of={CheckCircleIconStories.Colors} />
+
+---
+
+## Contained Shapes
+
+The contained variant supports three shapes: **circle**, **square**, and **rounded**.
+
+<Canvas of={CheckCircleIconStories.ContainedShapes} />
 
 ---
 
@@ -45,9 +91,33 @@ import { CheckCircleIcon } from '@bmi/mui-tonic-components';
   <tbody>
     <tr>
       <td><code>size</code></td>
-      <td><code>48 | 32 | 24 | 20 | 16 | 14</code></td>
-      <td><code>24</code></td>
-      <td>Width and height in px</td>
+      <td><code>'small' | 'medium' | 'large'</code></td>
+      <td><code>'medium'</code></td>
+      <td>Icon size (small = 16px, medium = 24px, large = 32px)</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>'inherit' | 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success' | 'action' | 'disabled'</code></td>
+      <td><code>'inherit'</code></td>
+      <td>Semantic theme color</td>
+    </tr>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>'outlined' | 'filled' | 'contained'</code></td>
+      <td><code>'outlined'</code></td>
+      <td>Icon rendering style</td>
+    </tr>
+    <tr>
+      <td><code>containedShape</code></td>
+      <td><code>'circle' | 'square' | 'rounded'</code></td>
+      <td><code>'circle'</code></td>
+      <td>Background shape (only when variant is contained)</td>
+    </tr>
+    <tr>
+      <td><code>bgColor</code></td>
+      <td><code>string</code></td>
+      <td><code>'primary.main'</code></td>
+      <td>Background color (only when variant is contained)</td>
     </tr>
   </tbody>
 </table>

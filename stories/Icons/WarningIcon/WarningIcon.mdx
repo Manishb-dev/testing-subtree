@@ -1,30 +1,76 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+﻿import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as WarningIconStories from './WarningIcon.stories';
 
 <Meta of={WarningIconStories} />
 
 # WarningIcon
 
-Triangle with an exclamation mark. Used for caution and alert states. Accepts a `size` prop (px) and inherits `currentColor` from its parent.
+Warning icon. Used for caution, alerts, and potential issues. Accepts `size`, `color`, `variant`, `containedShape`, and `bgColor` props.
 
 ---
 
 ## Usage
 
 ```tsx
-import { WarningIcon } from '@bmi/mui-tonic-components';
+import { WarningIcon } from '@bmi/mui-tonic-icons';
 
 <WarningIcon />
-<WarningIcon size={32} />
-<WarningIcon size={20} color="warning" />
+<WarningIcon size="large" />
+<WarningIcon size="small" color="primary" />
+<WarningIcon variant="filled" />
+<WarningIcon variant="contained" containedShape="circle" bgColor="primary.main" />
 ```
 
 ---
 
 ## Playground
 
-<Canvas of={WarningIconStories.Default} />
-<Controls of={WarningIconStories.Default} />
+<Canvas of={WarningIconStories.Playground} />
+<Controls of={WarningIconStories.Playground} />
+
+---
+
+## Variants
+
+**Outlined** uses the stroke-weight paths (default). **Filled** uses the solid-weight paths for higher visual emphasis. **Contained** places the icon inside a shaped, colored background.
+
+<Canvas of={WarningIconStories.Variants} />
+
+---
+
+## Sizes
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Pixels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>small</td><td>16 × 16 px</td></tr>
+    <tr><td>medium</td><td>24 × 24 px (default)</td></tr>
+    <tr><td>large</td><td>32 × 32 px</td></tr>
+  </tbody>
+</table>
+
+<Canvas of={WarningIconStories.Sizes} />
+
+---
+
+## Colors
+
+All MUI semantic palette colors are supported via the `color` prop.
+
+<Canvas of={WarningIconStories.Colors} />
+
+---
+
+## Contained Shapes
+
+The contained variant supports three shapes: **circle**, **square**, and **rounded**.
+
+<Canvas of={WarningIconStories.ContainedShapes} />
 
 ---
 
@@ -45,9 +91,33 @@ import { WarningIcon } from '@bmi/mui-tonic-components';
   <tbody>
     <tr>
       <td><code>size</code></td>
-      <td><code>48 | 32 | 24 | 20 | 16 | 14</code></td>
-      <td><code>24</code></td>
-      <td>Width and height in px</td>
+      <td><code>'small' | 'medium' | 'large'</code></td>
+      <td><code>'medium'</code></td>
+      <td>Icon size (small = 16px, medium = 24px, large = 32px)</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>'inherit' | 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success' | 'action' | 'disabled'</code></td>
+      <td><code>'inherit'</code></td>
+      <td>Semantic theme color</td>
+    </tr>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>'outlined' | 'filled' | 'contained'</code></td>
+      <td><code>'outlined'</code></td>
+      <td>Icon rendering style</td>
+    </tr>
+    <tr>
+      <td><code>containedShape</code></td>
+      <td><code>'circle' | 'square' | 'rounded'</code></td>
+      <td><code>'circle'</code></td>
+      <td>Background shape (only when variant is contained)</td>
+    </tr>
+    <tr>
+      <td><code>bgColor</code></td>
+      <td><code>string</code></td>
+      <td><code>'primary.main'</code></td>
+      <td>Background color (only when variant is contained)</td>
     </tr>
   </tbody>
 </table>
