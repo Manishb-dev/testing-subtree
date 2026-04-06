@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
-import { type ComponentProps } from 'react';
+import { useState, type ComponentProps } from 'react';
 import { Select, Stack, Typography } from '@bmi/mui-tonic-components';
 import MenuItem from '@mui/material/MenuItem';
 import { useTranslation } from 'react-i18next';
@@ -32,6 +32,7 @@ const meta = {
     },
     disabled: { control: 'boolean' },
     displayEmpty: { control: 'boolean' },
+    multiple: { control: 'boolean' },
   },
   args: {
     onChange: fn(),
@@ -43,17 +44,39 @@ type Story = StoryObj<typeof meta>;
 
 // ─── Playground ───────────────────────────────────────────────────────────────
 
+const PlaygroundWrapper = (args: ComponentProps<typeof Select>) => {
+  const [value, setValue] = useState<string | string[]>(
+    args.multiple ? ['option-1'] : 'option-1',
+  );
+
+  const normalizedValue = args.multiple
+    ? Array.isArray(value) ? value : [value]
+    : Array.isArray(value) ? value[0] ?? '' : value;
+
+  return (
+    <Select
+      {...args}
+      value={normalizedValue}
+      onChange={(e) => {
+        setValue(e.target.value as string | string[]);
+        args.onChange?.(e, undefined);
+      }}
+    >
+      {sampleOptions.map(({ value: v, label }) => (
+        <MenuItem key={v} value={v}>
+          {label}
+        </MenuItem>
+      ))}
+    </Select>
+  );
+};
+
 export const Playground: Story = {
+  render: (args) => <PlaygroundWrapper {...args} />,
   args: {
     variant: 'filled',
     size: 'medium',
-    value: 'option-1',
     displayEmpty: true,
-    children: sampleOptions.map(({ value, label }) => (
-      <MenuItem key={value} value={value}>
-        {label}
-      </MenuItem>
-    )),
   },
 };
 
@@ -155,4 +178,43 @@ const SizesRenderer = (args: ComponentProps<typeof Select>) => {
 export const Sizes: Story = {
   render: (args) => <SizesRenderer {...args} />,
   args: { variant: 'filled' },
+};
+
+// ─── Multiple ─────────────────────────────────────────────────────────────────
+
+const MultipleRenderer = (args: ComponentProps<typeof Select>) => {
+  const { t } = useTranslation();
+  return (
+    <Stack direction="row" spacing={3} alignItems="center">
+      {([
+        { key: 'default', extraProps: {} },
+        { key: 'disabled', extraProps: { disabled: true } },
+      ]).map(({ key, extraProps }) => (
+        <Stack key={key} alignItems="center" spacing={1}>
+          <Select
+            {...args}
+            {...extraProps}
+            multiple
+            value={['option-1', 'option-3']}
+            displayEmpty
+          >
+            {sampleOptions.map(({ value, label }) => (
+              <MenuItem key={value} value={value}>
+                {label}
+              </MenuItem>
+            ))}
+          </Select>
+          <Typography variant="caption" color="text.secondary">
+            {t(`state.${key}`)}
+          </Typography>
+        </Stack>
+      ))}
+    </Stack>
+  );
+};
+
+/** Multi-select mode — multiple values rendered as a comma-separated list. */
+export const Multiple: Story = {
+  render: (args) => <MultipleRenderer {...args} />,
+  args: { variant: 'filled', size: 'medium' },
 };

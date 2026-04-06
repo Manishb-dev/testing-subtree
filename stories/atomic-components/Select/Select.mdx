@@ -60,6 +60,14 @@ import MenuItem from '@mui/material/MenuItem';
 
 ---
 
+## Multiple
+
+Set `multiple` to allow selecting more than one option. When enabled, `value` must be an array. Selected values render as a comma-separated list by default — pass `renderValue` for custom rendering (e.g. chips).
+
+<Canvas of={SelectStories.Multiple} />
+
+---
+
 ## Under the Hood
 
 This component wraps [`MuiSelect`](https://mui.com/material-ui/api/select/).
@@ -85,9 +93,14 @@ All visual styling lives in the theme override. The component's only job is to e
       <td>Restricted to <code>'filled' | 'outlined'</code></td>
     </tr>
     <tr>
+      <td><code>multiple</code></td>
+      <td><code>multiple</code></td>
+      <td>Maps directly — enables multi-select mode</td>
+    </tr>
+    <tr>
       <td><code>value</code></td>
       <td><code>value</code></td>
-      <td>The currently selected value</td>
+      <td>The currently selected value (array when <code>multiple</code>)</td>
     </tr>
     <tr>
       <td><code>onChange</code></td>
@@ -145,6 +158,12 @@ All visual styling lives in the theme override. The component's only job is to e
       <td><code>boolean</code></td>
       <td><code>false</code></td>
       <td>Render select even when value is empty</td>
+    </tr>
+    <tr>
+      <td><code>multiple</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Allows selecting multiple values</td>
     </tr>
     <tr>
       <td><code>disabled</code></td>
