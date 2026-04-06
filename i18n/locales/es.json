@@ -45,5 +45,9 @@
     "warningDescription": "Su licencia está por vencer. Renuévela para evitar interrupciones.",
     "errorDescription": "Su licencia ha sido suspendida. Contacte soporte.",
     "successDescription": "La licencia de Olive Garden - Nueva York, NY ha sido renovada."
+  },
+  "tooltip": {
+    "content": "La información útil va aquí",
+    "trigger": "Pasa el cursor sobre mí"
   }
 }

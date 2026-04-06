@@ -1,0 +1,152 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TooltipStories from './Tooltip.stories';
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+A lightweight informative popup that appears when the user hovers, focuses, or taps a trigger element. Use tooltips to provide supplemental context for icon buttons, abbreviated labels, or form fields that need extra explanation.
+
+---
+
+## Usage
+
+```tsx
+import { Tooltip, Button } from '@bmi/mui-tonic-components';
+
+<Tooltip title="Helpful information goes here" placement="top">
+  <Button variant="outlined">Hover over me</Button>
+</Tooltip>
+```
+
+---
+
+## Playground
+
+<Canvas of={TooltipStories.Playground} />
+<Controls of={TooltipStories.Playground} />
+
+---
+
+## Placements
+
+The `placement` prop controls which side of the trigger the tooltip appears on.
+Tonic supports all four primary directions (`top`, `bottom`, `left`, `right`) as
+well as their `*-start` and `*-end` sub-variants for edge-aligned positioning.
+
+<Canvas of={TooltipStories.Placements} />
+
+---
+
+## States
+
+<Canvas of={TooltipStories.States} />
+
+---
+
+## With Arrow
+
+Tonic defaults `arrow` to `true`, adding a small directional pointer that visually
+connects the tooltip to its trigger. Disable it for floating-label style callouts.
+
+<Canvas of={TooltipStories.WithArrow} />
+
+---
+
+## Under the Hood
+
+This component wraps [`MuiTooltip`](https://mui.com/material-ui/api/tooltip/).
+
+**MUI base:** `@mui/material/Tooltip`  
+**Theme override:** `packages/theme/src/overrides/tooltip.ts`
+
+All visual styling (background, typography, border-radius, arrow colour) lives in
+the theme override. The component's only job is to enforce Tonic prop defaults and
+forward everything else to MUI.
+
+<table>
+  <thead>
+    <tr>
+      <th>Tonic prop</th>
+      <th>Maps to MUI prop</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>placement</code></td>
+      <td><code>placement</code></td>
+      <td>Restricted type union matching Figma directions</td>
+    </tr>
+    <tr>
+      <td><code>arrow</code></td>
+      <td><code>arrow</code></td>
+      <td>Defaults to <code>true</code> (MUI default is <code>false</code>)</td>
+    </tr>
+    <tr>
+      <td><code>title</code></td>
+      <td><code>title</code></td>
+      <td>Tooltip content — string or ReactNode</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>title</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>Content shown inside the tooltip</td>
+    </tr>
+    <tr>
+      <td><code>placement</code></td>
+      <td><code>TooltipPlacement</code></td>
+      <td><code>'bottom'</code></td>
+      <td>Position relative to the trigger element</td>
+    </tr>
+    <tr>
+      <td><code>arrow</code></td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Renders a directional arrow from tooltip to trigger</td>
+    </tr>
+  </tbody>
+</table>
+
+> All other [MUI TooltipProps](https://mui.com/material-ui/api/tooltip/) are accepted.
+
+---
+
+## Accessibility
+
+- Always provide a meaningful `title` — screen readers announce it as the accessible name for icon-only triggers.
+- Wrap non-interactive elements (e.g. disabled buttons, `<span>`) in a `<span>` so mouse events can propagate.
+- Tooltips are not a substitute for persistent help text — use helper text or labels for critical information.
+- The tooltip is announced via `aria-describedby` automatically by MUI.
+
+---
+
+## Do / Don't
+
+**Do**
+- Use tooltips to clarify icon-only buttons where the icon alone is ambiguous
+- Keep tooltip text concise — one short sentence or a few words
+- Always wrap disabled MUI buttons in a `<span>` to ensure tooltip events fire
+
+**Don't**
+- Don't put interactive content (links, buttons) inside the tooltip `title`
+- Don't use tooltips as the sole source of required information
+- Don't rely on tooltip text for mobile-only flows — touch devices may not trigger hover

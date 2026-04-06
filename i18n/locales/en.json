@@ -45,5 +45,9 @@
     "warningDescription": "Your license is expiring soon. Please renew to avoid disruption.",
     "errorDescription": "Your license has been suspended. Please contact support.",
     "successDescription": "Olive Garden - New York, NY license has been renewed."
+  },
+  "tooltip": {
+    "content": "Helpful information goes here",
+    "trigger": "Hover over me"
   }
 }
