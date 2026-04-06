@@ -12,7 +12,8 @@
     "loading": "Loading",
     "success": "Success",
     "hover": "Hover",
-    "active": "Active"
+    "active": "Active",
+    "editing": "Editing"
   },
   "button": {
     "label": "Button",
@@ -59,5 +60,8 @@
   "listItem": {
     "primaryText": "List Item",
     "secondaryText": "Second text"
+  },
+  "amountEditField": {
+    "displayValue": "1,750"
   }
 }

@@ -12,7 +12,8 @@
     "loading": "Cargando",
     "success": "Éxito",
     "hover": "Hover",
-    "active": "Activo"
+    "active": "Activo",
+    "editing": "Editando"
   },
   "button": {
     "label": "Botón",
@@ -59,5 +60,8 @@
   "listItem": {
     "primaryText": "Elemento de lista",
     "secondaryText": "Texto secundario"
+  },
+  "amountEditField": {
+    "displayValue": "1.750"
   }
 }
