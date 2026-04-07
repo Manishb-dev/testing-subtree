@@ -17,7 +17,7 @@ const FIGMA_STATES: { key: string; state: ListItemState }[] = [
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta = {
-  title: 'Shared/ListItem/TonicListItem',
+  title: 'Atomic/ListItem/TonicListItem',
   component: ListItem,
   parameters: {
     layout: 'centered',

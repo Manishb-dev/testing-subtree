@@ -63,5 +63,19 @@
   },
   "amountEditField": {
     "displayValue": "1.750"
-  }
+  },
+  "stepper": {
+    "business": "Negocio",
+    "terms": "Términos",
+    "payment": "Pago",
+    "businessInfo": "Info del negocio",
+    "ownerInfo": "Info del propietario",
+    "bankInfo": "Info bancaria",
+    "review": "Revisión",
+    "step": "Paso"  },
+  "tabs": {
+    "dashboard": "Panel",
+    "analytics": "Anal\u00edticas",
+    "reports": "Informes",
+    "settings": "Configuraci\u00f3n"  }
 }

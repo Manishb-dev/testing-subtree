@@ -1,0 +1,199 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TabsStories from './Tabs.stories';
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+Navigation bar that groups related views behind pill-shaped tab items. Use Tabs to let users switch between peer-level content panels without leaving the page.
+
+---
+
+## Usage
+
+```tsx
+import { Tabs, Tab } from '@bmi/mui-tonic-components';
+
+const [value, setValue] = useState(0);
+
+<Tabs value={value} onChange={(_, v) => setValue(v)}>
+  <Tab label="Dashboard" value={0} />
+  <Tab label="Analytics" value={1} />
+  <Tab label="Reports" value={2} />
+</Tabs>
+```
+
+---
+
+## Playground
+
+<Canvas of={TabsStories.Playground} />
+<Controls of={TabsStories.Playground} />
+
+---
+
+## States
+
+Each `Tab` can be in one of three states: unselected (default), selected, or disabled.
+The selected tab receives a solid `paper4` background fill with white text and a semi-bold weight.
+The default tab shows secondary text with no background.
+
+<Canvas of={TabsStories.States} />
+
+---
+
+## Variants
+
+The `variant` prop controls how the tab list distributes space and handles overflow.
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Behaviour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>standard</code></td>
+      <td>Tabs sit at their natural width. Default choice for most navigation bars.</td>
+    </tr>
+    <tr>
+      <td><code>scrollable</code></td>
+      <td>Tabs overflow horizontally and can be scrolled. Use when the number of tabs is variable or large.</td>
+    </tr>
+    <tr>
+      <td><code>fullWidth</code></td>
+      <td>Each tab stretches to fill an equal share of the container width. Best for small fixed sets (2–4 tabs).</td>
+    </tr>
+  </tbody>
+</table>
+
+<Canvas of={TabsStories.Variants} />
+
+---
+
+## Orientations
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>When to use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>horizontal</code></td>
+      <td>Default. Use for top-level page navigation or content switching at the top of a section.</td>
+    </tr>
+    <tr>
+      <td><code>vertical</code></td>
+      <td>Stack tabs in a column. Use for side-panel navigation or settings pages.</td>
+    </tr>
+  </tbody>
+</table>
+
+<Canvas of={TabsStories.Orientations} />
+
+---
+
+## Under the Hood
+
+This component wraps [`MuiTabs`](https://mui.com/material-ui/api/tabs/) and [`MuiTab`](https://mui.com/material-ui/api/tab/).
+
+**MUI base:** `@mui/material/Tabs` + `@mui/material/Tab`  
+**Theme override:** `packages/theme/src/overrides/tabs.ts`
+
+The Tonic Tabs design replaces MUI's default underline indicator with a pill-shaped background fill on the selected tab. The indicator is hidden via the theme and a `backgroundColor` + `borderRadius` override is applied to `.Mui-selected` on the `MuiTab` slot.
+
+<table>
+  <thead>
+    <tr>
+      <th>Tonic prop</th>
+      <th>Maps to MUI prop</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>variant</code></td>
+      <td>Forwarded directly; Tonic restricts the type to the supported union.</td>
+    </tr>
+    <tr>
+      <td><code>orientation</code></td>
+      <td><code>orientation</code></td>
+      <td>Forwarded directly.</td>
+    </tr>
+  </tbody>
+</table>
+
+`indicatorColor` and `textColor` are omitted — all colouring is handled by the theme override.
+
+---
+
+## Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>any</code></td>
+      <td>—</td>
+      <td>The value of the currently selected tab. Required for controlled usage.</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>(event, value) =&gt; void</code></td>
+      <td>—</td>
+      <td>Callback fired when the active tab changes.</td>
+    </tr>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>TabsVariant</code></td>
+      <td><code>'standard'</code></td>
+      <td>Layout variant controlling scrolling and width distribution.</td>
+    </tr>
+    <tr>
+      <td><code>orientation</code></td>
+      <td><code>TabsOrientation</code></td>
+      <td><code>'horizontal'</code></td>
+      <td>Direction the tab list renders.</td>
+    </tr>
+  </tbody>
+</table>
+
+> All other [MUI TabsProps](https://mui.com/material-ui/api/tabs/) are accepted.
+
+---
+
+## Accessibility
+
+- `Tabs` renders a `role="tablist"` container; each `Tab` is a `role="tab"` button. The associated panel must have `role="tabpanel"` and be linked via `aria-controls` / `aria-labelledby`.
+- Pass `aria-label` or `aria-labelledby` to the `Tabs` component to identify the navigation region for screen readers.
+- Keyboard navigation: `←` / `→` (or `↑` / `↓` in vertical mode) moves focus between tabs. `Enter` or `Space` activates the focused tab.
+- Disabled tabs remain focusable by keyboard but emit no `onChange` event and convey their state via `aria-disabled="true"`.
+
+---
+
+## Do / Don't
+
+**Do**
+- Keep tab labels short — one to two words that clearly describe the content panel.
+- Use `Tabs` for peer-level content switching, not for multi-step flows (use `Stepper` instead).
+- Always bind `value` and `onChange` — uncontrolled Tabs are not supported by this component.
+- When using `fullWidth`, limit tabs to 2–4 items so each label stays readable.
+
+**Don't**
+- Don't use Tabs as a page-level router without also updating the URL when the tab changes.
+- Don't nest Tabs inside another Tabs instance — use a single navigation hierarchy.
+- Don't mix disabled and active tabs unless there is a clear reason (e.g. permissions-based access).

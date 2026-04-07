@@ -1,0 +1,69 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as PencilSimpleIconStories from './PencilSimpleIcon.stories';
+
+<Meta of={PencilSimpleIconStories} />
+
+# PencilSimpleIcon
+
+Pencil icon used for editing, writing, and signature contexts. Accepts `size`, `color`, `variant`, `containedShape`, and `bgColor` props.
+
+---
+
+## Usage
+
+```tsx
+import { PencilSimpleIcon } from '@bmi/mui-tonic-icons';
+
+<PencilSimpleIcon />
+<PencilSimpleIcon size="large" />
+<PencilSimpleIcon size="small" color="primary" />
+<PencilSimpleIcon variant="filled" />
+<PencilSimpleIcon variant="contained" containedShape="circle" bgColor="primary.main" />
+```
+
+---
+
+## Playground
+
+<Canvas of={PencilSimpleIconStories.Playground} />
+<Controls of={PencilSimpleIconStories.Playground} />
+
+---
+
+## Variants
+
+**Outlined** uses the stroke-weight paths (default). **Filled** uses the solid-weight paths for higher visual emphasis. **Contained** places the icon inside a shaped, colored background.
+
+<Canvas of={PencilSimpleIconStories.Variants} />
+
+---
+
+## Sizes
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Pixels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>small</td><td>16 × 16 px</td></tr>
+    <tr><td>medium</td><td>24 × 24 px (default)</td></tr>
+    <tr><td>large</td><td>32 × 32 px</td></tr>
+  </tbody>
+</table>
+
+<Canvas of={PencilSimpleIconStories.Sizes} />
+
+---
+
+## Colors
+
+<Canvas of={PencilSimpleIconStories.Colors} />
+
+---
+
+## Contained Shapes
+
+<Canvas of={PencilSimpleIconStories.ContainedShapes} />
