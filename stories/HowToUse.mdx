@@ -1,0 +1,71 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="How to Use" />
+
+# How to use the packages
+
+A step-by-step guide to consuming `@bmi/mui-tonic-components` in your React application.
+
+---
+
+## 1. Install peer dependencies
+
+Tonic requires MUI v7, Emotion, and the Tonic theme & icons packages as peer dependencies.
+Install everything in one go:
+
+<Source language="bash" code={`npm install @bmi/mui-tonic-components @bmi/mui-tonic-theme @bmi/mui-tonic-icons \
+  @mui/material @emotion/react @emotion/styled`} />
+
+---
+
+## 2. Apply the Tonic theme
+
+Wrap your application root with MUI's `ThemeProvider` and pass in the Tonic theme.
+This ensures every Tonic component picks up the correct colours, typography and spacing.
+
+<Source language="tsx" code={`// src/App.tsx
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { lightTheme } from '@bmi/mui-tonic-theme';
+
+export default function App() {
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <CssBaseline />
+      {/* your application routes / pages */}
+    </ThemeProvider>
+  );
+}`} />
+
+> **Tip:** Tonic also exports a `darkTheme` if your app supports dark mode.
+
+---
+
+## 3. Use components
+
+Import any component from `@bmi/mui-tonic-components` and use it like a regular React component.
+All props are fully typed.
+
+---
+
+### Example
+
+<Source language="tsx" code={`import { Button } from '@bmi/mui-tonic-components';
+
+export function MyPage() {
+  return (
+    <Button variant="contained" onClick={() => console.log('clicked')}>
+      Pay Now
+    </Button>
+  );
+}`} />
+
+---
+
+## Key Rules
+
+1. **Always import components from `@bmi/mui-tonic-components`** - never directly from `@mui/material`.
+2. **Never add your own `ThemeProvider` inside a page or component** - the root provider is sufficient.
+3. **Icons are re-exported** from `@bmi/mui-tonic-components`, so there is no need to install `@bmi/mui-tonic-icons` separately in application code (it must still be installed as a peer dependency).
+4. **All visual styling lives in the theme**. If you need a style change, update `@bmi/mui-tonic-theme` - do not add inline overrides.
+
+---

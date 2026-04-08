@@ -13,7 +13,8 @@
     "success": "Success",
     "hover": "Hover",
     "active": "Active",
-    "editing": "Editing"
+    "editing": "Editing",
+    "withAction": "With Action"
   },
   "button": {
     "label": "Button",
@@ -79,5 +80,12 @@
     "analytics": "Analytics",
     "reports": "Reports",
     "settings": "Settings"
+  },
+  "snackbar": {
+    "successMessage": "License has been renewed successfully.",
+    "warningMessage": "License is expiring soon. Renew now.",
+    "errorMessage": "License has been suspended. Pay now.",
+    "close": "Close",
+    "undo": "Undo"
   }
 }

@@ -13,7 +13,8 @@
     "success": "Éxito",
     "hover": "Hover",
     "active": "Activo",
-    "editing": "Editando"
+    "editing": "Editando",
+    "withAction": "Con acci\u00f3n"
   },
   "button": {
     "label": "Botón",
@@ -77,5 +78,12 @@
     "dashboard": "Panel",
     "analytics": "Anal\u00edticas",
     "reports": "Informes",
-    "settings": "Configuraci\u00f3n"  }
+    "settings": "Configuraci\u00f3n"  },
+  "snackbar": {
+    "successMessage": "La licencia se ha renovado exitosamente.",
+    "warningMessage": "La licencia está por vencer. Renueve ahora.",
+    "errorMessage": "La licencia ha sido suspendida. Pague ahora.",
+    "close": "Cerrar",
+    "undo": "Deshacer"
+  }
 }

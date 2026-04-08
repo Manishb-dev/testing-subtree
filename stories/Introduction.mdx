@@ -4,58 +4,86 @@
 
 # Tonic - BMI Design System
 
-**Version:** 0.1.0 | **Built on:** MUI v5 | **Status:** In Development
+**Version:** 0.1.0 &nbsp;|&nbsp; **Built on:** MUI v7 &nbsp;|&nbsp; **Status:** In Development
 
 ---
 
 ## What is Tonic?
 
-Tonic is BMI's internal design system built on top of Material UI (MUI).
-It provides a shared component library, design tokens, and documentation
-used across the Licensing Portal and Affiliate Portal.
+Tonic is BMI's internal design system.
+It provides a shared component library, a Figma-synced theme, 45+ icons, and this
+documentation site, all used across the **Licensing Portal** and **Affiliate Portal**.
 
 ---
 
-## Package Structure
+## Packages
 
-| Package | Description |
-|---|---|
-| `@bmi/mui-tonic-theme` | MUI theme config, design tokens synced from Figma |
-| `@bmi/mui-tonic-components` | Themed MUI component wrappers and shared patterns |
-| `@bmi/mui-tonic-storybook` | This documentation site |
-
----
-
-## How to use
-```bash
-npm install @bmi/mui-tonic-components
-```
-```tsx
-import { Button } from '@bmi/mui-tonic-components';
-
-<Button variant="contained">Pay Now</Button>
-```
-
----
-
-## Component Status
-
-| Component | Status |
-|---|---|
-| Button | ✅ Ready |
-| TextField | 🚧 In Progress |
-| Select | 🚧 In Progress |
-| Table | ⏳ Planned |
-| StatusChip | ⏳ Planned |
-| PaymentModule | ⏳ Planned |
+<table>
+  <thead>
+    <tr>
+      <th>Package</th>
+      <th>npm name</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Theme</strong></td>
+      <td><code>@bmi/mui-tonic-theme</code></td>
+      <td>MUI theme config & design tokens synced from Figma</td>
+    </tr>
+    <tr>
+      <td><strong>Components</strong></td>
+      <td><code>@bmi/mui-tonic-components</code></td>
+      <td>Themed MUI wrappers, shared components & patterns</td>
+    </tr>
+    <tr>
+      <td><strong>Icons</strong></td>
+      <td><code>@bmi/mui-tonic-icons</code></td>
+      <td>Phosphor-based SVG icon set wrapped in MUI SvgIcon</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
-## Figma Sync
+## Component Layers
 
-The theme is automatically synced from Figma variables via the `npm run theme:sync` command.
-Any token changes in Figma are reflected in `@bmi/mui-tonic-theme` after the next sync.
+Tonic organises components into three layers:
+
+<table>
+  <thead>
+    <tr>
+      <th>Layer</th>
+      <th>Location</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Atomic</strong></td>
+      <td><code>atoms/</code></td>
+      <td>Typed wrappers around a single MUI component (Button, Select, Checkbox...)</td>
+    </tr>
+    <tr>
+      <td><strong>Shared</strong></td>
+      <td><code>shared/</code></td>
+      <td>Composed from atomic components, reusable across portals (AmountEditField, AvatarLabel...)</td>
+    </tr>
+    <tr>
+      <td><strong>Patterns</strong></td>
+      <td><code>patterns/</code></td>
+      <td>Full UI sections assembled from shared + atomic components</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
-> For questions contact the Design Systems Team.
+
+## Quick Links
+
+- **[How to Use](?path=/docs/how-to-use--docs)** - Installation, setup & a working example
+- **[Icons](?path=/docs/foundations-icons--docs)** - Browse the full icon catalogue
+
+---
