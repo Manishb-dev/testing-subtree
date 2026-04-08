@@ -75,7 +75,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Foundations', 'Assets', 'Icons', 'Atomic', '*'],
+        order: ['Introduction', 'How to Use', 'Foundations', 'Assets', 'Icons', 'Atomic', '*'],
       },
     },
   },
