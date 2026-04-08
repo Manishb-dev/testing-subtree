@@ -24,7 +24,7 @@ const steps: TonicStepConfig[] = [
 <Stepper
   steps={steps}
   activeStep={2}
-  completedSteps={[0, 1]}
+  lastCompletedStep={1}
 />
 ```
 
@@ -39,7 +39,7 @@ const steps: TonicStepConfig[] = [
 
 ## Sub-Step Progression
 
-Shows the full Figma variant matrix: Business sub-steps 1→3, then Terms, then Payment. Each row advances the `activeStep` flat index and fills in `completedSteps`.
+Shows the full Figma variant matrix: Business sub-steps 1→3, then Terms, then Payment. Each row advances the `activeStep` flat index — completed steps are derived automatically.
 
 <Canvas of={StepperStories.SubStepProgression} />
 
@@ -105,9 +105,9 @@ The `generateRenderItems` helper transforms the step config into an alternating 
       <td>Maps across all steps and sub-steps</td>
     </tr>
     <tr>
-      <td><code>completedSteps</code></td>
-      <td>Array of completed flat indices</td>
-      <td>Drives pill and bar styling</td>
+      <td><code>lastCompletedStep</code></td>
+      <td>Last completed flat index</td>
+      <td>All indices up to and including this value are treated as completed. Defaults to <code>activeStep - 1</code></td>
     </tr>
     <tr>
       <td><code>compact</code></td>
@@ -149,10 +149,10 @@ The `generateRenderItems` helper transforms the step config into an alternating 
       <td>Flat zero-based index of the current step</td>
     </tr>
     <tr>
-      <td><code>completedSteps</code></td>
-      <td><code>number[]</code></td>
-      <td><code>[]</code></td>
-      <td>Flat indices of all completed steps</td>
+      <td><code>lastCompletedStep</code></td>
+      <td><code>number</code></td>
+      <td><code>activeStep - 1</code></td>
+      <td>Flat index of the last completed step. All steps up to and including this index are marked complete</td>
     </tr>
     <tr>
       <td><code>compact</code></td>
@@ -192,10 +192,10 @@ The `generateRenderItems` helper transforms the step config into an alternating 
 
 **Do**
 - Use flat indices consistently — the consumer owns the mapping between logical step and flat index
-- Provide `completedSteps` to reflect real progress (don't auto-compute from `activeStep`)
+- Provide `lastCompletedStep` to control progress explicitly (pass `activeStep - 1` for standard linear flows)
 - Use `compact` on viewports under ~400px for a mobile-friendly layout
 
 **Don't**
 - Don't put business logic inside the stepper — it's a dumb visual indicator
-- Don't rely on internal state — pass `activeStep` and `completedSteps` from the consumer
+- Don't rely on internal state — pass `activeStep` and optionally `lastCompletedStep` from the consumer
 - Don't use `onStepClick` for steps that aren't completed — the component disables them automatically

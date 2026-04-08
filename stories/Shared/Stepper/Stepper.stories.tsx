@@ -49,12 +49,12 @@ const meta = {
   },
   argTypes: {
     activeStep: { control: 'number', description: 'Flat zero-based index of the active step.' },
+    lastCompletedStep: { control: 'number', description: 'Flat index of the last completed step. Defaults to activeStep - 1.' },
     compact: { control: 'boolean', description: 'Hides labels for inactive steps (mobile mode).' },
   },
   args: {
     steps: defaultSteps,
     activeStep: 0,
-    completedSteps: [],
     onStepClick: fn(),
   },
 } satisfies Meta<typeof Stepper>;
@@ -83,16 +83,16 @@ const SubStepProgressionRenderer = (args: ComponentProps<typeof Stepper>) => {
 
   // Flat indices: 0=sub1, 1=sub2, 2=sub3, 3=Terms, 4=Payment
   const progressions = [
-    { label: 'Business 1', activeStep: 0, completedSteps: [] as number[] },
-    { label: 'Business 2', activeStep: 1, completedSteps: [0] },
-    { label: 'Business 3', activeStep: 2, completedSteps: [0, 1] },
-    { label: 'Terms', activeStep: 3, completedSteps: [0, 1, 2] },
-    { label: 'Payment', activeStep: 4, completedSteps: [0, 1, 2, 3] },
+    { label: 'Business 1', activeStep: 0 },
+    { label: 'Business 2', activeStep: 1 },
+    { label: 'Business 3', activeStep: 2 },
+    { label: 'Terms', activeStep: 3 },
+    { label: 'Payment', activeStep: 4 },
   ];
 
   return (
     <Stack spacing={4}>
-      {progressions.map(({ label, activeStep, completedSteps }) => (
+      {progressions.map(({ label, activeStep }) => (
         <Stack key={label} spacing={1}>
           <Typography variant="caption" color="text.secondary">
             {label}
@@ -101,7 +101,6 @@ const SubStepProgressionRenderer = (args: ComponentProps<typeof Stepper>) => {
             {...args}
             steps={steps}
             activeStep={activeStep}
-            completedSteps={completedSteps}
           />
         </Stack>
       ))}
@@ -121,15 +120,15 @@ const StepProgressionRenderer = (args: ComponentProps<typeof Stepper>) => {
 
   // Flat indices: 0=BusinessInfo, 1=OwnerInfo, 2=BankInfo, 3=Review
   const progressions = [
-    { label: 'Step 1', activeStep: 0, completedSteps: [] as number[] },
-    { label: 'Step 2', activeStep: 1, completedSteps: [0] },
-    { label: 'Step 3', activeStep: 2, completedSteps: [0, 1] },
-    { label: 'Step 4', activeStep: 3, completedSteps: [0, 1, 2] },
+    { label: 'Step 1', activeStep: 0 },
+    { label: 'Step 2', activeStep: 1 },
+    { label: 'Step 3', activeStep: 2 },
+    { label: 'Step 4', activeStep: 3 },
   ];
 
   return (
     <Stack spacing={4}>
-      {progressions.map(({ label, activeStep, completedSteps }) => (
+      {progressions.map(({ label, activeStep }) => (
         <Stack key={label} spacing={1}>
           <Typography variant="caption" color="text.secondary">
             {label}
@@ -138,7 +137,6 @@ const StepProgressionRenderer = (args: ComponentProps<typeof Stepper>) => {
             {...args}
             steps={steps}
             activeStep={activeStep}
-            completedSteps={completedSteps}
           />
         </Stack>
       ))}
@@ -157,14 +155,14 @@ const CompactRenderer = (args: ComponentProps<typeof Stepper>) => {
   const steps = useStepsWithSubSteps();
 
   const progressions = [
-    { label: 'Business 1 (compact)', activeStep: 0, completedSteps: [] as number[] },
-    { label: 'Terms (compact)', activeStep: 3, completedSteps: [0, 1, 2] },
-    { label: 'Payment (compact)', activeStep: 4, completedSteps: [0, 1, 2, 3] },
+    { label: 'Business 1 (compact)', activeStep: 0 },
+    { label: 'Terms (compact)', activeStep: 3 },
+    { label: 'Payment (compact)', activeStep: 4 },
   ];
 
   return (
     <Stack spacing={4}>
-      {progressions.map(({ label, activeStep, completedSteps }) => (
+      {progressions.map(({ label, activeStep }) => (
         <Stack key={label} spacing={1}>
           <Typography variant="caption" color="text.secondary">
             {label}
@@ -174,7 +172,6 @@ const CompactRenderer = (args: ComponentProps<typeof Stepper>) => {
               {...args}
               steps={steps}
               activeStep={activeStep}
-              completedSteps={completedSteps}
               compact
             />
           </Box>
@@ -207,7 +204,7 @@ const CustomStepsRenderer = (args: ComponentProps<typeof Stepper>) => {
       {...args}
       steps={steps}
       activeStep={3}
-      completedSteps={[0, 1, 2]}
+      lastCompletedStep={2}
     />
   );
 };
@@ -217,7 +214,7 @@ export const CustomSteps: Story = {
   render: (args) => <CustomStepsRenderer {...args} />,
   args: {
     activeStep: 3,
-    completedSteps: [0, 1, 2],
+    lastCompletedStep: 2,
   },
 };
 
@@ -228,8 +225,6 @@ const InteractiveWrapper = (args: ComponentProps<typeof Stepper>) => {
   const total = getTotalSteps(steps);
 
   const [activeStep, setActiveStep] = useState(0);
-
-  const completedSteps = Array.from({ length: activeStep }, (_, i) => i);
 
   const handleNext = () => {
     setActiveStep((prev) => Math.min(prev + 1, total - 1));
@@ -245,7 +240,6 @@ const InteractiveWrapper = (args: ComponentProps<typeof Stepper>) => {
         {...args}
         steps={steps}
         activeStep={activeStep}
-        completedSteps={completedSteps}
         onStepClick={(idx) => {
           setActiveStep(idx);
           args.onStepClick?.(idx);
