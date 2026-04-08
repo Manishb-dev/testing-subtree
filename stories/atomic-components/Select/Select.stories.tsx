@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import { useState, type ComponentProps } from 'react';
-import { Select, Stack, Typography } from '@bmi/mui-tonic-components';
-import MenuItem from '@mui/material/MenuItem';
+import { Select, MenuItem, Checkbox, Stack, Typography } from '@bmi/mui-tonic-components';
 import { useTranslation } from 'react-i18next';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -184,6 +183,7 @@ export const Sizes: Story = {
 
 const MultipleRenderer = (args: ComponentProps<typeof Select>) => {
   const { t } = useTranslation();
+  const selectedValues = ['option-1', 'option-3'];
   return (
     <Stack direction="row" spacing={3} alignItems="center">
       {([
@@ -195,11 +195,16 @@ const MultipleRenderer = (args: ComponentProps<typeof Select>) => {
             {...args}
             {...extraProps}
             multiple
-            value={['option-1', 'option-3']}
+            value={selectedValues}
             displayEmpty
           >
             {sampleOptions.map(({ value, label }) => (
               <MenuItem key={value} value={value}>
+                <Checkbox
+                  size="small"
+                  checked={selectedValues.includes(value)}
+                  sx={{ p: 0 }}
+                />
                 {label}
               </MenuItem>
             ))}
