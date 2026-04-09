@@ -14,7 +14,9 @@
     "hover": "Hover",
     "active": "Active",
     "editing": "Editing",
-    "withAction": "With Action"
+    "withAction": "With Action",
+    "readOnly": "Read-only",
+    "filled": "Filled"
   },
   "button": {
     "label": "Button",
@@ -87,5 +89,13 @@
     "errorMessage": "License has been suspended. Pay now.",
     "close": "Close",
     "undo": "Undo"
+  },
+  "textField": {
+    "label": "Label",
+    "placeholder": "Input Text",
+    "helperText": "Helper text",
+    "option1": "Option 1",
+    "option2": "Option 2",
+    "option3": "Option 3"
   }
 }

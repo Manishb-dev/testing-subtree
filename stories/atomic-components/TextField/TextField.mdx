@@ -1,0 +1,227 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TextFieldStories from './TextField.stories';
+
+<Meta of={TextFieldStories} />
+
+# TextField
+
+Outlined text input for forms, search fields, and data entry. Supports text, password, number, email, select, and multiline modes.
+
+---
+
+## Usage
+
+```tsx
+import { TextField } from '@bmi/mui-tonic-components';
+
+<TextField label="Name" placeholder="Enter your name" required />
+```
+
+---
+
+## Playground
+
+<Canvas of={TextFieldStories.Playground} />
+<Controls of={TextFieldStories.Playground} />
+
+---
+
+## States
+
+Default, filled, disabled, read-only, and error states. The label remains above the input
+in all states. Disabled and read-only share the same muted background with a lighter border.
+
+<Canvas of={TextFieldStories.States} />
+
+---
+
+## Sizes
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Height</th>
+      <th>Use case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>small</code></td>
+      <td>40px</td>
+      <td>Dense tables, sidebars, inline controls</td>
+    </tr>
+    <tr>
+      <td><code>medium</code></td>
+      <td>48px</td>
+      <td>Standard forms, default choice</td>
+    </tr>
+  </tbody>
+</table>
+
+<Canvas of={TextFieldStories.Sizes} />
+
+---
+
+## Select Type
+
+Use the `select` prop with `MenuItem` children to render a dropdown.
+The existing Tonic `MenuItem` component is used for option rendering and styling.
+
+```tsx
+import { TextField, MenuItem } from '@bmi/mui-tonic-components';
+
+<TextField select label="Category" required>
+  <MenuItem value="a">Option A</MenuItem>
+  <MenuItem value="b">Option B</MenuItem>
+</TextField>
+```
+
+<Canvas of={TextFieldStories.SelectType} />
+
+---
+
+## Multiline
+
+Set `multiline` and optionally `rows` to render a textarea.
+Height grows with content unless `rows` is fixed.
+
+<Canvas of={TextFieldStories.Multiline} />
+
+---
+
+## Under the Hood
+
+This component wraps [`MuiTextField`](https://mui.com/material-ui/api/text-field/).
+
+**MUI base:** `@mui/material/TextField`
+**Variant:** Always `outlined` — locked by the Tonic wrapper
+
+The label is positioned statically above the input (never floats).
+All visual styling lives in the component's styled wrapper.
+
+<table>
+  <thead>
+    <tr>
+      <th>Tonic prop</th>
+      <th>Maps to MUI prop</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>size</code></td>
+      <td>Controls input padding (40px or 48px height)</td>
+    </tr>
+    <tr>
+      <td><code>select</code></td>
+      <td><code>select</code></td>
+      <td>Renders a dropdown; pass <code>MenuItem</code> as children</td>
+    </tr>
+    <tr>
+      <td><code>slotProps</code></td>
+      <td><code>slotProps</code></td>
+      <td>MUI v7 slot configuration. <code>inputLabel.shrink</code> is always <code>true</code></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>'small' | 'medium'</code></td>
+      <td><code>'medium'</code></td>
+      <td>Visual size of the text field</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>Label positioned above the input</td>
+    </tr>
+    <tr>
+      <td><code>helperText</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>Hint or error message below the input</td>
+    </tr>
+    <tr>
+      <td><code>error</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Applies error styling to border and helper text</td>
+    </tr>
+    <tr>
+      <td><code>required</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Shows red asterisk after label text</td>
+    </tr>
+    <tr>
+      <td><code>select</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Renders a dropdown. Use <code>MenuItem</code> children for options</td>
+    </tr>
+    <tr>
+      <td><code>multiline</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Renders a textarea instead of single-line input</td>
+    </tr>
+    <tr>
+      <td><code>type</code></td>
+      <td><code>string</code></td>
+      <td><code>'text'</code></td>
+      <td>HTML input type (text, password, number, email, etc.)</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Disables the input</td>
+    </tr>
+  </tbody>
+</table>
+
+> All other [MUI TextFieldProps](https://mui.com/material-ui/api/text-field/) are accepted.
+> Use `slotProps` for advanced customisation (MUI v7 pattern).
+
+---
+
+## Accessibility
+
+- Always provide a `label` — the label is linked to the input via MUI's internal `htmlFor` mechanism.
+- Use `helperText` with `error` to surface validation messages to screen readers.
+- For select type, keyboard navigation (arrow keys, Enter) works natively through MUI's Select.
+- The `required` prop adds both a visible asterisk and the `aria-required` attribute.
+
+---
+
+## Do / Don't
+
+**Do**
+- Use `required` to indicate mandatory fields — never add `*` manually to the label.
+- Use `helperText` for permanent guidance and for error messaging.
+- Use `size="small"` in dense layouts like table rows or sidebars.
+- Pass `MenuItem` children when using `select` mode.
+
+**Don't**
+- Don't use `placeholder` as a substitute for `label`.
+- Don't use `select` for more than ~10 options — consider an autocomplete pattern instead.
+- Don't set both `multiline` and `select` — they are mutually exclusive.
+- Don't override `variant` — Tonic always uses `outlined`.

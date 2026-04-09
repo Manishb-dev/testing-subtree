@@ -14,7 +14,9 @@
     "hover": "Hover",
     "active": "Activo",
     "editing": "Editando",
-    "withAction": "Con acci\u00f3n"
+    "withAction": "Con acci\u00f3n",
+    "readOnly": "Solo lectura",
+    "filled": "Completado"
   },
   "button": {
     "label": "Botón",
@@ -85,5 +87,13 @@
     "errorMessage": "La licencia ha sido suspendida. Pague ahora.",
     "close": "Cerrar",
     "undo": "Deshacer"
+  },
+  "textField": {
+    "label": "Etiqueta",
+    "placeholder": "Texto de entrada",
+    "helperText": "Texto de ayuda",
+    "option1": "Opci\u00f3n 1",
+    "option2": "Opci\u00f3n 2",
+    "option3": "Opci\u00f3n 3"
   }
 }
