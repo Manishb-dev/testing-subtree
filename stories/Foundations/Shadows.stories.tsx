@@ -1,6 +1,5 @@
 ﻿import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useTheme } from '@mui/material/styles';
-import { shadows } from '@bmi/mui-tonic-theme';
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -51,6 +50,13 @@ function ShadowCard({ name, value }: { name: string; value: string }) {
 
 function ShadowsPage() {
   const theme = useTheme();
+
+  // Derived from the active theme — updates on light/dark switch
+  const shadowEntries: Array<[string, string]> = [
+    ['low',    theme.shadows[1]],
+    ['medium', theme.shadows[2]],
+    ['high',   theme.shadows[3]],
+  ];
   return (
     <div
       style={{
@@ -72,7 +78,7 @@ function ShadowsPage() {
 
       {/* Cards */}
       <div style={{ display: 'flex', gap: '48px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
-        {Object.entries(shadows).map(([name, value]) => (
+        {shadowEntries.map(([name, value]) => (
           <ShadowCard key={name} name={name} value={value} />
         ))}
       </div>
@@ -92,7 +98,7 @@ function ShadowsPage() {
           Side-by-side elevation comparison
         </h2>
         <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-end', flexWrap: 'wrap' }}>
-          {Object.entries(shadows).map(([name, value], i) => (
+          {shadowEntries.map(([name, value], i) => (
             <div
               key={name}
               style={{
