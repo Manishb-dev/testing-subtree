@@ -17,7 +17,7 @@ const meta: Meta<typeof Paper> = {
     },
     elevation: {
       control: 'select',
-      options: [0, 1, 2, 3, 4],
+      options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
     },
     square: { control: 'boolean' },
   },
@@ -80,19 +80,22 @@ export const Variants: Story = {
 // ─── Elevations ───────────────────────────────────────────────────────────────
 
 /**
- * All five elevation levels from the Tonic shadow scale.
- * Elevation 0 is flat (no shadow), 4 is the deepest (xl shadow).
- * Figma: Tonic/Paper → elevation axis
+ * All MUI elevation levels (0–24).
+ * - `0`    → no shadow
+ * - `1`    → Tonic low
+ * - `2`    → Tonic medium
+ * - `3`    → Tonic high
+ * - `4–24` → MUI default shadow scale
  */
 export const Elevations: Story = {
   render: (args: TonicPaperProps) => (
     <Stack
       direction="row"
-      spacing={4}
-      alignItems="flex-end"
-      sx={{ p: 4, bgcolor: 'background.paper1', borderRadius: 1 }}
+      flexWrap="wrap"
+      gap={4}
+      sx={{ p: 4, bgcolor: 'background.paper1', borderRadius: 1, maxWidth: 900 }}
     >
-      {([0, 1, 2, 3, 4] as PaperElevation[]).map((elevation) => (
+      {(Array.from({ length: 25 }, (_, i) => i) as PaperElevation[]).map((elevation) => (
         <Stack key={elevation} alignItems="center" spacing={1.5}>
           <Paper {...args} elevation={elevation} variant="elevation">
             <SampleContent />
@@ -100,15 +103,15 @@ export const Elevations: Story = {
           <Typography
             variant="caption"
             color="text.secondary"
-            sx={{ whiteSpace: 'pre', textAlign: 'center' }}
+            sx={{ textAlign: 'center' }}
           >
-            {`elevation ${elevation}\n${(['none', 'sm', 'md', 'lg', 'xl'] as const)[elevation]}`}
+            {`elevation ${elevation}`}
           </Typography>
         </Stack>
       ))}
     </Stack>
   ),
-  args: { sx: { p: 3, width: 180 } },
+  args: { sx: { p: 3, width: 140 } },
 };
 
 // ─── Square ───────────────────────────────────────────────────────────────────
