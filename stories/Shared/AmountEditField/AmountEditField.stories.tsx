@@ -12,7 +12,7 @@ const meta = {
   title: 'Shared/AmountEditField/TonicAmountEditField',
   component: AmountEditField,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
   },
   argTypes: {
     displayValue: { control: 'text' },
