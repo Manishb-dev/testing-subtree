@@ -1,0 +1,115 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ShieldCheckIconStories from './ShieldCheckIcon.stories';
+
+<Meta of={ShieldCheckIconStories} />
+
+# ShieldCheckIcon
+
+Shield with a checkmark. Used for authentication, security verification, and referral states.
+
+---
+
+## Usage
+
+```tsx
+import { ShieldCheckIcon } from '@bmi/mui-tonic-icons';
+
+<ShieldCheckIcon />
+<ShieldCheckIcon size="large" />
+<ShieldCheckIcon size="small" color="success" />
+<ShieldCheckIcon variant="filled" />
+<ShieldCheckIcon variant="contained" containedShape="circle" bgColor="success.main" />
+```
+
+---
+
+## Playground
+
+<Canvas of={ShieldCheckIconStories.Playground} />
+<Controls of={ShieldCheckIconStories.Playground} />
+
+---
+
+## Variants
+
+**Outlined** uses the stroke-weight paths (default). **Filled** uses the solid-weight paths for higher visual emphasis. **Contained** places the icon inside a shaped, colored background.
+
+<Canvas of={ShieldCheckIconStories.Variants} />
+
+---
+
+## Sizes
+
+<table>
+  <thead>
+    <tr><th>Size</th><th>Pixels</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>small</td><td>16 × 16 px</td></tr>
+    <tr><td>medium</td><td>24 × 24 px (default)</td></tr>
+    <tr><td>large</td><td>32 × 32 px</td></tr>
+  </tbody>
+</table>
+
+<Canvas of={ShieldCheckIconStories.Sizes} />
+
+---
+
+## Colors
+
+All MUI semantic palette colors are supported via the `color` prop.
+
+<Canvas of={ShieldCheckIconStories.Colors} />
+
+---
+
+## Contained Shapes
+
+The contained variant supports three shapes: **circle**, **square**, and **rounded**.
+
+<Canvas of={ShieldCheckIconStories.ContainedShapes} />
+
+---
+
+## Under the Hood
+
+**Package:** `@bmi/mui-tonic-icons`
+**MUI base:** `@mui/material/SvgIcon`
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>'small' | 'medium' | 'large'</code></td>
+      <td><code>'medium'</code></td>
+      <td>Icon size (small = 16px, medium = 24px, large = 32px)</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>'inherit' | 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success' | 'action' | 'disabled'</code></td>
+      <td><code>'inherit'</code></td>
+      <td>Semantic theme color</td>
+    </tr>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>'outlined' | 'filled' | 'contained'</code></td>
+      <td><code>'outlined'</code></td>
+      <td>Visual weight</td>
+    </tr>
+    <tr>
+      <td><code>containedShape</code></td>
+      <td><code>'circle' | 'square' | 'rounded'</code></td>
+      <td><code>'circle'</code></td>
+      <td>Background shape when variant is contained</td>
+    </tr>
+    <tr>
+      <td><code>bgColor</code></td>
+      <td><code>string</code></td>
+      <td><code>'primary.main'</code></td>
+      <td>Background color token when variant is contained</td>
+    </tr>
+  </tbody>
+</table>

@@ -29,6 +29,8 @@ import {
   ForkKnifeIcon,
   GraduationCapIcon,
   GuitarIcon,
+  HeadsetIcon,
+  InfoIcon,
   KeyboardIcon,
   MaskHappyIcon,
   MicrophoneStageIcon,
@@ -45,6 +47,7 @@ import {
   ScanIcon,
   ScreencastIcon,
   ShippingContainerIcon,
+  ShieldCheckIcon,
   ShoppingBagIcon,
   StarIcon,
   StethoscopeIcon,
@@ -55,6 +58,7 @@ import {
   VideoCameraIcon,
   VolleyballIcon,
   WarningIcon,
+  WarningOctagonIcon,
 } from '@bmi/mui-tonic-icons';
 import type { IconVariant } from '@bmi/mui-tonic-icons';
 
@@ -87,6 +91,8 @@ const icons: { name: string; component: React.ComponentType<any> }[] = [
   { name: 'ForkKnifeIcon', component: ForkKnifeIcon },
   { name: 'GraduationCapIcon', component: GraduationCapIcon },
   { name: 'GuitarIcon', component: GuitarIcon },
+  { name: 'HeadsetIcon', component: HeadsetIcon },
+  { name: 'InfoIcon', component: InfoIcon },
   { name: 'KeyboardIcon', component: KeyboardIcon },
   { name: 'MaskHappyIcon', component: MaskHappyIcon },
   { name: 'MicrophoneStageIcon', component: MicrophoneStageIcon },
@@ -103,6 +109,7 @@ const icons: { name: string; component: React.ComponentType<any> }[] = [
   { name: 'ScanIcon', component: ScanIcon },
   { name: 'ScreencastIcon', component: ScreencastIcon },
   { name: 'ShippingContainerIcon', component: ShippingContainerIcon },
+  { name: 'ShieldCheckIcon', component: ShieldCheckIcon },
   { name: 'ShoppingBagIcon', component: ShoppingBagIcon },
   { name: 'StarIcon', component: StarIcon },
   { name: 'StethoscopeIcon', component: StethoscopeIcon },
@@ -113,6 +120,7 @@ const icons: { name: string; component: React.ComponentType<any> }[] = [
   { name: 'VideoCameraIcon', component: VideoCameraIcon },
   { name: 'VolleyballIcon', component: VolleyballIcon },
   { name: 'WarningIcon', component: WarningIcon },
+  { name: 'WarningOctagonIcon', component: WarningOctagonIcon },
 ];
 /* eslint-enable @typescript-eslint/no-explicit-any */
 

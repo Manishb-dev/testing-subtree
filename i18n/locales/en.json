@@ -100,5 +100,29 @@
   },
   "pagination": {
     "textLabel": "Text"
+  },
+  "dialog": {
+    "heading": "Heading Text",
+    "body": "Body Text",
+    "primaryAction": "Confirm",
+    "secondaryAction": "Cancel",
+    "successHeading": "Payment Successful",
+    "successBody": "Your payment has been processed successfully.",
+    "errorHeading": "Payment Failed",
+    "errorBody": "Something went wrong. Please try again.",
+    "infoHeading": "Information",
+    "infoBody": "Please review the details before proceeding.",
+    "warningHeading": "Are you sure?",
+    "warningBody": "This action cannot be undone.",
+    "softDeclineHeading": "Soft Decline",
+    "softDeclineBody": "The transaction was soft declined. Please retry.",
+    "referralHeading": "Referral Required",
+    "referralBody": "This application requires additional verification.",
+    "hardDeclineHeading": "Hard Decline",
+    "hardDeclineBody": "The transaction has been permanently declined.",
+    "warningCircleHeading": "Attention Required",
+    "warningCircleBody": "Please review the flagged items before continuing.",
+    "contactHeading": "Contact Support",
+    "contactBody": "Please reach out to our support team for assistance."
   }
 }

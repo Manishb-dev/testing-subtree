@@ -98,5 +98,29 @@
   },
   "pagination": {
     "textLabel": "Texto"
+  },
+  "dialog": {
+    "heading": "Texto de encabezado",
+    "body": "Texto del cuerpo",
+    "primaryAction": "Confirmar",
+    "secondaryAction": "Cancelar",
+    "successHeading": "Pago exitoso",
+    "successBody": "Su pago ha sido procesado exitosamente.",
+    "errorHeading": "Pago fallido",
+    "errorBody": "Algo salió mal. Por favor, inténtelo de nuevo.",
+    "infoHeading": "Información",
+    "infoBody": "Por favor revise los detalles antes de continuar.",
+    "warningHeading": "¿Está seguro?",
+    "warningBody": "Esta acción no se puede deshacer.",
+    "softDeclineHeading": "Rechazo suave",
+    "softDeclineBody": "La transacción fue rechazada suavemente. Por favor, reintente.",
+    "referralHeading": "Referencia requerida",
+    "referralBody": "Esta solicitud requiere verificación adicional.",
+    "hardDeclineHeading": "Rechazo definitivo",
+    "hardDeclineBody": "La transacción ha sido rechazada permanentemente.",
+    "warningCircleHeading": "Atención requerida",
+    "warningCircleBody": "Por favor revise los elementos marcados antes de continuar.",
+    "contactHeading": "Contactar soporte",
+    "contactBody": "Comuníquese con nuestro equipo de soporte para asistencia."
   }
 }

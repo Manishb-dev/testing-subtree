@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import { useState, type ComponentProps } from 'react';
-import { ListItem, Avatar, Stack, Typography, StarIcon, ErrorIcon } from '@bmi/mui-tonic-components';
+import { ListItem, Avatar, Stack, Typography } from '@bmi/mui-tonic-components';
+import { StarIcon, ErrorIcon } from '@bmi/mui-tonic-icons';
 import type { ListItemState } from '@bmi/mui-tonic-components';
 import MuiList from '@mui/material/List';
 import { useTranslation } from 'react-i18next';

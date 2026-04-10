@@ -1,6 +1,7 @@
 ﻿import type { Meta, StoryObj } from '@storybook/react-vite';
 import { type ComponentProps } from 'react';
-import { Avatar, StarIcon, Stack, Typography } from '@bmi/mui-tonic-components';
+import { Avatar, Stack, Typography } from '@bmi/mui-tonic-components';
+import { StarIcon } from '@bmi/mui-tonic-icons';
 import type { AvatarSize } from '@bmi/mui-tonic-components';
 
 // ─── Meta ─────────────────────────────────────────────────────────────────────

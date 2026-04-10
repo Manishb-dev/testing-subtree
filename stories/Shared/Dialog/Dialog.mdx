@@ -1,0 +1,204 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as DialogStories from './Dialog.stories';
+
+<Meta of={DialogStories} />
+
+# Dialog
+
+Centered popup dialog for confirmations, status notifications, and simple user decisions. Renders an optional status icon, heading, body text, and one or two action buttons over a backdrop.
+
+---
+
+## Usage
+
+```tsx
+import { Dialog } from '@bmi/mui-tonic-components';
+import { CheckCircleIcon } from '@bmi/mui-tonic-icons';
+
+<Dialog
+  open={isOpen}
+  onClose={() => setOpen(false)}
+  icon={<CheckCircleIcon size="large" variant="filled" sx={{ color: 'success.main', width: 82, height: 82, fontSize: 82 }} />}
+  heading="Payment Successful"
+  body="Your payment has been processed successfully."
+  primaryActionLabel="Done"
+  onPrimaryAction={() => setOpen(false)}
+/>
+```
+
+---
+
+## Playground
+
+<Canvas of={DialogStories.Playground} />
+<Controls of={DialogStories.Playground} />
+
+---
+
+## With Secondary CTA
+
+Use `secondaryActionLabel` to render a text-variant button below the primary action. Ideal for confirmation dialogs that need a cancel option.
+
+<Canvas of={DialogStories.WithSecondaryCta} />
+
+---
+
+## Without Icon
+
+The `icon` prop is optional. When omitted, the dialog renders heading and body only.
+
+<Canvas of={DialogStories.WithoutIcon} />
+
+---
+
+## States
+
+Pass different Tonic icons with appropriate colors to communicate status:
+
+<table>
+  <thead>
+    <tr><th>State</th><th>Icon</th><th>Color token</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Success</td><td><code>CheckCircleIcon</code></td><td><code>success.main</code></td></tr>
+    <tr><td>Error</td><td><code>ErrorIcon</code></td><td><code>error.main</code></td></tr>
+    <tr><td>Soft Decline</td><td><code>ErrorIcon</code></td><td><code>warning.main</code></td></tr>
+    <tr><td>Info</td><td><code>InfoIcon</code></td><td><code>info.main</code></td></tr>
+    <tr><td>Referral</td><td><code>ShieldCheckIcon</code></td><td><code>warning.main</code></td></tr>
+    <tr><td>Hard Decline</td><td><code>WarningOctagonIcon</code></td><td><code>error.main</code></td></tr>
+    <tr><td>Warning Circle</td><td><code>WarningIcon</code></td><td><code>info.main</code></td></tr>
+    <tr><td>Contact</td><td><code>HeadsetIcon</code></td><td><code>secondary.main</code></td></tr>
+  </tbody>
+</table>
+
+<Canvas of={DialogStories.States} />
+
+---
+
+## Under the Hood
+
+This is a **shared** component composed from base Tonic primitives.
+
+**Uses:** `Dialog` (MUI), `Button` (Tonic), `Typography` (Tonic), `Stack` (Tonic)
+**Styled wrapper:** `packages/components/src/shared/Dialog/Dialog.styles.ts`
+
+The dialog's paper surface is styled to match the Tonic popup card design — white background, light border, 8px radius, fixed 348px width.
+
+<table>
+  <thead>
+    <tr><th>Tonic prop</th><th>Description</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>open</code></td><td>Controls dialog visibility</td><td>Forwarded to MUI Dialog</td></tr>
+    <tr><td><code>onClose</code></td><td>Close callback (backdrop / Escape)</td><td>Forwarded to MUI Dialog</td></tr>
+    <tr><td><code>icon</code></td><td>Status icon at the top</td><td>Any React node — use Tonic icons</td></tr>
+    <tr><td><code>heading</code></td><td>Bold heading text</td><td>Rendered as <code>h4</code></td></tr>
+    <tr><td><code>body</code></td><td>Supporting text or content</td><td>String or React node</td></tr>
+    <tr><td><code>primaryActionLabel</code></td><td>Primary button label</td><td>Contained, large variant</td></tr>
+    <tr><td><code>onPrimaryAction</code></td><td>Primary button click handler</td><td>—</td></tr>
+    <tr><td><code>secondaryActionLabel</code></td><td>Optional secondary button label</td><td>Text variant, appears below primary</td></tr>
+    <tr><td><code>onSecondaryAction</code></td><td>Secondary button click handler</td><td>—</td></tr>
+  </tbody>
+</table>
+
+---
+
+## Props
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>open</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Whether the dialog is visible</td>
+    </tr>
+    <tr>
+      <td><code>onClose</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td>—</td>
+      <td>Fired on backdrop click or Escape</td>
+    </tr>
+    <tr>
+      <td><code>icon</code></td>
+      <td><code>React.ReactNode</code></td>
+      <td>—</td>
+      <td>Status icon rendered at the top</td>
+    </tr>
+    <tr>
+      <td><code>heading</code></td>
+      <td><code>string</code></td>
+      <td>—</td>
+      <td>Heading text (required)</td>
+    </tr>
+    <tr>
+      <td><code>body</code></td>
+      <td><code>React.ReactNode</code></td>
+      <td>—</td>
+      <td>Body text or custom content</td>
+    </tr>
+    <tr>
+      <td><code>primaryActionLabel</code></td>
+      <td><code>string</code></td>
+      <td>—</td>
+      <td>Primary button label (required)</td>
+    </tr>
+    <tr>
+      <td><code>onPrimaryAction</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td>—</td>
+      <td>Primary button click handler</td>
+    </tr>
+    <tr>
+      <td><code>secondaryActionLabel</code></td>
+      <td><code>string</code></td>
+      <td>—</td>
+      <td>Secondary button label (optional)</td>
+    </tr>
+    <tr>
+      <td><code>onSecondaryAction</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td>—</td>
+      <td>Secondary button click handler</td>
+    </tr>
+    <tr>
+      <td><code>sx</code></td>
+      <td><code>SxProps&lt;Theme&gt;</code></td>
+      <td>—</td>
+      <td>Additional MUI system styles</td>
+    </tr>
+    <tr>
+      <td><code>DialogProps</code></td>
+      <td><code>Omit&lt;MuiDialogProps, 'open' | 'onClose'&gt;</code></td>
+      <td>—</td>
+      <td>Forwarded to the underlying MUI Dialog</td>
+    </tr>
+  </tbody>
+</table>
+
+> All other [MUI DialogProps](https://mui.com/material-ui/api/dialog/) can be passed via `DialogProps`.
+
+---
+
+## Accessibility
+
+- The dialog traps focus automatically via MUI's built-in focus management.
+- Pressing Escape fires `onClose` by default.
+- The `heading` text serves as the accessible dialog title. For screen readers, consider passing `DialogProps={{ 'aria-labelledby': 'dialog-title' }}` when custom heading markup is needed.
+
+---
+
+## Do / Don't
+
+**Do**
+- Use filled icon variants at `large` size with custom `sx` dimensions and semantic color tokens for clear status communication
+- Keep heading and body text concise — this is a confirmation dialog, not a page
+- Always provide `onClose` so users can dismiss via backdrop or Escape
+
+**Don't**
+- Don't nest forms or complex layouts inside the dialog body — use a full page or drawer instead
+- Don't use more than two action buttons — the dialog is designed for one primary and one optional secondary action
+- Don't hardcode hex colors on icons — use MUI palette tokens like `success.main` or `error.main`
