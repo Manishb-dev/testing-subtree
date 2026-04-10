@@ -95,5 +95,8 @@
     "option1": "Opci\u00f3n 1",
     "option2": "Opci\u00f3n 2",
     "option3": "Opci\u00f3n 3"
+  },
+  "pagination": {
+    "textLabel": "Texto"
   }
 }
