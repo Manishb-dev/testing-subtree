@@ -124,5 +124,10 @@
     "warningCircleBody": "Please review the flagged items before continuing.",
     "contactHeading": "Contact Support",
     "contactBody": "Please reach out to our support team for assistance."
+  },
+  "card": {
+    "title": "Card Title",
+    "body": "This is the card body content. It can contain any text or elements.",
+    "action": "Action"
   }
 }

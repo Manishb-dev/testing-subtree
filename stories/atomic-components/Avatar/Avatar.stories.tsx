@@ -54,7 +54,7 @@ export const ContentTypes: Story = {
       </Stack>
       <Stack alignItems="center" spacing={1}>
         <Avatar {...args}>
-          <StarIcon size={24} />
+          <StarIcon size="medium" />
         </Avatar>
         <Typography variant="caption" color="text.secondary">
           Icon

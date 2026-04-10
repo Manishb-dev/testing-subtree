@@ -47,7 +47,7 @@ All props are fully typed.
 
 ---
 
-### Example
+### Example — component
 
 <Source language="tsx" code={`import { Button } from '@bmi/mui-tonic-components';
 
@@ -61,11 +61,23 @@ export function MyPage() {
 
 ---
 
+### Example — icon
+
+Icons live in their own package. Import them from `@bmi/mui-tonic-icons`:
+
+<Source language="tsx" code={`import { StarIcon } from '@bmi/mui-tonic-icons';
+
+export function MyPage() {
+  return <StarIcon />;
+}`} />
+
+---
+
 ## Key Rules
 
 1. **Always import components from `@bmi/mui-tonic-components`** - never directly from `@mui/material`.
 2. **Never add your own `ThemeProvider` inside a page or component** - the root provider is sufficient.
-3. **Icons are re-exported** from `@bmi/mui-tonic-components`, so there is no need to install `@bmi/mui-tonic-icons` separately in application code (it must still be installed as a peer dependency).
+3. **Icons must be imported from `@bmi/mui-tonic-icons`** directly — they are not re-exported from `@bmi/mui-tonic-components`. Make sure `@bmi/mui-tonic-icons` is installed in your application.
 4. **All visual styling lives in the theme**. If you need a style change, update `@bmi/mui-tonic-theme` - do not add inline overrides.
 
 ---

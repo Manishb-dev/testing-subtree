@@ -122,5 +122,10 @@
     "warningCircleBody": "Por favor revise los elementos marcados antes de continuar.",
     "contactHeading": "Contactar soporte",
     "contactBody": "Comuníquese con nuestro equipo de soporte para asistencia."
+  },
+  "card": {
+    "title": "Título de tarjeta",
+    "body": "Este es el contenido del cuerpo de la tarjeta. Puede contener cualquier texto o elemento.",
+    "action": "Acción"
   }
 }
