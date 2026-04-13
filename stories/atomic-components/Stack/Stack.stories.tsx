@@ -5,7 +5,7 @@ import type { TonicStackProps } from '@bmi/mui-tonic-components';
 // --- Meta ---------------------------------------------------------------------
 
 const meta: Meta<typeof Stack> = {
-  title: 'Atomic/Stack/TonicStack',
+  title: 'Components/Atoms/Stack/TonicStack',
   component: Stack,
   parameters: {
     layout: 'centered',

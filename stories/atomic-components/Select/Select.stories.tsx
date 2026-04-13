@@ -15,7 +15,7 @@ const sampleOptions = [
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta = {
-  title: 'Atomic/Select/TonicSelect',
+  title: 'Components/Atoms/Select/TonicSelect',
   component: Select,
   parameters: {
     layout: 'centered',

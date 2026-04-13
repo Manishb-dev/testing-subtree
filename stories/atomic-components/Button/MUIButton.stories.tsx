@@ -1,11 +1,11 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import { useState, type ComponentProps } from 'react';
 import { Button, Stack, Typography } from '@bmi/mui-tonic-components';
 import type { ButtonLoadingState } from '@bmi/mui-tonic-components';
 import { useTranslation } from 'react-i18next';
 
-// ─── Inline SVG icons (16px, matches Figma Button_v3 icon size) ──────────────
+// --- Inline SVG icons (16px, matches Figma Button_v3 icon size) --------------
 
 const StarIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -19,10 +19,10 @@ const ArrowIcon = () => (
   </svg>
 );
 
-// ─── Meta ─────────────────────────────────────────────────────────────────────
+// --- Meta ---------------------------------------------------------------------
 
 const meta = {
-  title: 'Atomic/Button/TonicButton',
+  title: 'Components/Atoms/Button/TonicButton',
   component: Button,
   parameters: {
     layout: 'centered',
@@ -53,7 +53,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ─── Playground ───────────────────────────────────────────────────────────────
+// --- Playground ---------------------------------------------------------------
 
 const PlaygroundRenderer = (args: ComponentProps<typeof Button>) => {
   const { t } = useTranslation();
@@ -69,14 +69,14 @@ export const Playground: Story = {
   },
 };
 
-// ─── Variants ─────────────────────────────────────────────────────────────────
+// --- Variants -----------------------------------------------------------------
 
 /**
  * All three visual variants side-by-side.
  * - `contained`: high-emphasis primary action
  * - `outlined`: medium-emphasis secondary action
  * - `text`: low-emphasis inline action
- * Figma: Tonic/Button → variant axis.
+ * Figma: Tonic/Button ? variant axis.
  */
 const VariantsRenderer = (args: ComponentProps<typeof Button>) => {
   const { t } = useTranslation();
@@ -99,11 +99,11 @@ export const Variants: Story = {
   args: { color: 'primary', size: 'medium' },
 };
 
-// ─── States ───────────────────────────────────────────────────────────────────
+// --- States -------------------------------------------------------------------
 
 /**
  * All meaningful states side-by-side - Default, Disabled, Loading, and Success.
- * For the animated Loading → Success transition see the Interactive Loading Flow story.
+ * For the animated Loading ? Success transition see the Interactive Loading Flow story.
  */
 const StatesRenderer = (args: ComponentProps<typeof Button>) => {
   const { t } = useTranslation();
@@ -129,7 +129,7 @@ export const States: Story = {
   args: { variant: 'contained', color: 'primary', size: 'medium' },
 };
 
-// ─── Sizes ────────────────────────────────────────────────────────────────────
+// --- Sizes --------------------------------------------------------------------
 
 /** All four sizes side-by-side with pixel height spec from Figma. */
 const SizesRenderer = (args: ComponentProps<typeof Button>) => {
@@ -162,7 +162,7 @@ export const Sizes: Story = {
   args: { variant: 'contained', color: 'primary' },
 };
 
-// ─── Colors ───────────────────────────────────────────────────────────────────
+// --- Colors -------------------------------------------------------------------
 
 /** All six semantic colors across contained, outlined, and text variants. */
 const ColorsRenderer = (args: ComponentProps<typeof Button>) => {
@@ -190,7 +190,7 @@ export const Colors: Story = {
   args: { size: 'medium' },
 };
 
-// ─── With Icons ───────────────────────────────────────────────────────────────
+// --- With Icons ---------------------------------------------------------------
 
 /** Start icon, end icon, and both icons side-by-side. */
 const WithIconsRenderer = (args: ComponentProps<typeof Button>) => {
@@ -217,9 +217,9 @@ export const WithIcons: Story = {
   args: { variant: 'contained', color: 'primary', size: 'medium' },
 };
 
-// ─── Interactive ──────────────────────────────────────────────────────────────
+// --- Interactive --------------------------------------------------------------
 
-/** Click to trigger the full loading → success → idle transition with real timers. */
+/** Click to trigger the full loading ? success ? idle transition with real timers. */
 const InteractiveLoadingFlowRenderer = () => {
   const { t } = useTranslation();
   const [state, setState] = useState<ButtonLoadingState | undefined>(undefined);

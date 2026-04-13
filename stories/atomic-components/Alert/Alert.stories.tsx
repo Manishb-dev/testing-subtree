@@ -1,13 +1,13 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { type ComponentProps } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Stack, Typography } from '@bmi/mui-tonic-components';
 import type { TonicAlertProps } from '@bmi/mui-tonic-components';
 
-// ─── Meta ─────────────────────────────────────────────────────────────────────
+// --- Meta ---------------------------------------------------------------------
 
 const meta = {
-  title: 'Atomic/Alert/TonicAlert',
+  title: 'Components/Atoms/Alert/TonicAlert',
   component: Alert,
   parameters: {
     layout: 'centered',
@@ -29,7 +29,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ─── Playground ───────────────────────────────────────────────────────────────
+// --- Playground ---------------------------------------------------------------
 
 /** Interactive sandbox - adjust all controls in the panel. */
 export const Playground: Story = {
@@ -40,7 +40,7 @@ export const Playground: Story = {
   },
 };
 
-// ─── Severities ───────────────────────────────────────────────────────────────
+// --- Severities ---------------------------------------------------------------
 
 const SeveritiesRenderer = (args: ComponentProps<typeof Alert>) => {
   const { t } = useTranslation();
@@ -68,7 +68,7 @@ export const Severities: Story = {
   render: (args) => <SeveritiesRenderer {...args} />,
 };
 
-// ─── States ───────────────────────────────────────────────────────────────────
+// --- States -------------------------------------------------------------------
 
 const StatesRenderer = (args: ComponentProps<typeof Alert>) => {
   const { t } = useTranslation();
@@ -100,7 +100,7 @@ export const States: Story = {
   args: { severity: 'warning' },
 };
 
-// ─── WithDescription ──────────────────────────────────────────────────────────
+// --- WithDescription ----------------------------------------------------------
 
 const WithDescriptionRenderer = (args: ComponentProps<typeof Alert>) => {
   const { t } = useTranslation();

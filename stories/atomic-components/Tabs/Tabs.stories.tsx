@@ -8,7 +8,7 @@ import { Tabs, Tab } from '@bmi/mui-tonic-components';
 import type { TonicTabsProps } from '@bmi/mui-tonic-components';
 
 const meta: Meta<typeof Tabs> = {
-  title: 'Atomic/Tabs/TonicTabs',
+  title: 'Components/Atoms/Tabs/TonicTabs',
   component: Tabs,
   parameters: {
     layout: 'centered',

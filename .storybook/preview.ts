@@ -75,7 +75,16 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Introduction', 'How to Use', 'Foundations', 'Assets', 'Icons', 'Atomic', '*'],
+        order: [
+          'Getting Started',
+          ['Welcome', 'How to Use', 'Contribution Guide'],
+          'Foundations',
+          'Components',
+          ['Atoms', 'Shared', 'Patterns'],
+          'Assets',
+          'Icons',
+          '*',
+        ],
       },
     },
   },

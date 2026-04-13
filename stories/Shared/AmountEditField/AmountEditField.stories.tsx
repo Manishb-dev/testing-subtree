@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta = {
-  title: 'Shared/AmountEditField/TonicAmountEditField',
+  title: 'Components/Shared/AmountEditField/TonicAmountEditField',
   component: AmountEditField,
   parameters: {
     layout: 'padded',

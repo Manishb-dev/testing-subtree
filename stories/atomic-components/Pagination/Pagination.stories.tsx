@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta = {
-  title: 'Atomic/Pagination/TonicPagination',
+  title: 'Components/Atoms/Pagination/TonicPagination',
   component: Pagination,
   parameters: {
     layout: 'centered',

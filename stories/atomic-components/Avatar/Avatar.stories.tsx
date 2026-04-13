@@ -1,13 +1,13 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { type ComponentProps } from 'react';
 import { Avatar, Stack, Typography } from '@bmi/mui-tonic-components';
 import { StarIcon } from '@bmi/mui-tonic-icons';
 import type { AvatarSize } from '@bmi/mui-tonic-components';
 
-// ─── Meta ─────────────────────────────────────────────────────────────────────
+// --- Meta ---------------------------------------------------------------------
 
 const meta = {
-  title: 'Atomic/Avatar/TonicAvatar',
+  title: 'Components/Atoms/Avatar/TonicAvatar',
   component: Avatar,
   parameters: {
     layout: 'centered',
@@ -31,7 +31,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ─── Playground ───────────────────────────────────────────────────────────────
+// --- Playground ---------------------------------------------------------------
 
 export const Playground: Story = {
   args: {
@@ -40,7 +40,7 @@ export const Playground: Story = {
   },
 };
 
-// ─── Content Types ────────────────────────────────────────────────────────────
+// --- Content Types ------------------------------------------------------------
 
 /** All three content types side-by-side - Text, Icon, and Image. */
 export const ContentTypes: Story = {
@@ -75,7 +75,7 @@ export const ContentTypes: Story = {
   args: { size: 'extraLarge' },
 };
 
-// ─── Sizes ────────────────────────────────────────────────────────────────────
+// --- Sizes --------------------------------------------------------------------
 
 /** All sizes with pixel spec labels from Figma Avatar_v3. */
 export const Sizes: Story = {
@@ -105,7 +105,7 @@ export const Sizes: Story = {
   args: {},
 };
 
-// ─── Sizes with Icon ──────────────────────────────────────────────────────────
+// --- Sizes with Icon ----------------------------------------------------------
 
 /** Icon content across all sizes - icon scales with the avatar. */
 export const SizesWithIcon: Story = {
@@ -143,7 +143,7 @@ export const SizesWithIcon: Story = {
   args: {},
 };
 
-// ─── Sizes with Image ─────────────────────────────────────────────────────────
+// --- Sizes with Image ---------------------------------------------------------
 
 /** Image content across all sizes. */
 export const SizesWithImage: Story = {

@@ -1,13 +1,13 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import { useState, type ComponentProps } from 'react';
 import { Switch, Stack, Typography } from '@bmi/mui-tonic-components';
 import { useTranslation } from 'react-i18next';
 
-// ─── Meta ─────────────────────────────────────────────────────────────────────
+// --- Meta ---------------------------------------------------------------------
 
 const meta = {
-  title: 'Atomic/Switch/TonicSwitch',
+  title: 'Components/Atoms/Switch/TonicSwitch',
   component: Switch,
   parameters: {
     layout: 'centered',
@@ -37,7 +37,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ─── Playground ───────────────────────────────────────────────────────────────
+// --- Playground ---------------------------------------------------------------
 
 /**
  * Fully interactive playground - all controls are live.
@@ -68,7 +68,7 @@ export const Playground: Story = {
   },
 };
 
-// ─── States ───────────────────────────────────────────────────────────────────
+// --- States -------------------------------------------------------------------
 
 const StatesRenderer = (args: ComponentProps<typeof Switch>) => {
   const { t } = useTranslation();
@@ -100,7 +100,7 @@ export const States: Story = {
   args: { color: 'primary', size: 'small' },
 };
 
-// ─── Sizes ────────────────────────────────────────────────────────────────────
+// --- Sizes --------------------------------------------------------------------
 
 /** Both sizes side-by-side with pixel spec labels from Figma. */
 export const Sizes: Story = {
@@ -126,7 +126,7 @@ export const Sizes: Story = {
   args: { color: 'primary' },
 };
 
-// ─── Colors ───────────────────────────────────────────────────────────────────
+// --- Colors -------------------------------------------------------------------
 
 /** All semantic colors in their checked (on) state. */
 export const Colors: Story = {
@@ -145,7 +145,7 @@ export const Colors: Story = {
   args: { size: 'small' },
 };
 
-// ─── WithLabel ────────────────────────────────────────────────────────────────
+// --- WithLabel ----------------------------------------------------------------
 
 /** Opt-in labelled variant - renders the switch wrapped in FormControlLabel. */
 const WithLabelRenderer = (args: ComponentProps<typeof Switch>) => {
@@ -162,7 +162,7 @@ export const WithLabel: Story = {
   },
 };
 
-// ─── Interactive ───────────────────────────────────────────────────────────────
+// --- Interactive ---------------------------------------------------------------
 
 const InteractiveWrapper = (args: ComponentProps<typeof Switch>) => {
   const [checked, setChecked] = useState(args.checked ?? false);

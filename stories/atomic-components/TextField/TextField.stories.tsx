@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta = {
-  title: 'Atomic/TextField/TonicTextField',
+  title: 'Components/Atoms/TextField/TonicTextField',
   component: TextField,
   parameters: {
     layout: 'centered',

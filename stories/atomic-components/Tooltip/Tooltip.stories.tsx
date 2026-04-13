@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'Atomic/Tooltip/TonicTooltip',
+  title: 'Components/Atoms/Tooltip/TonicTooltip',
   component: Tooltip,
   parameters: {
     layout: 'centered',

@@ -42,7 +42,7 @@ const getTotalSteps = (steps: TonicStepConfig[]) =>
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta = {
-  title: 'Shared/Stepper/TonicStepper',
+  title: 'Components/Shared/Stepper/TonicStepper',
   component: Stepper,
   parameters: {
     layout: 'padded',

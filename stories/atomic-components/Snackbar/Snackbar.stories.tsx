@@ -8,7 +8,7 @@ import type { SnackbarSeverity } from '@bmi/mui-tonic-components';
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta = {
-  title: 'Atomic/Snackbar/TonicSnackbar',
+  title: 'Components/Atoms/Snackbar/TonicSnackbar',
   component: Snackbar,
   parameters: {
     layout: 'centered',

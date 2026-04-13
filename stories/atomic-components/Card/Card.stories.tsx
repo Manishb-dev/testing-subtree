@@ -19,7 +19,7 @@ type CardArgs = {
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta: Meta<CardArgs> = {
-  title: 'Atomic/Card/TonicCard',
+  title: 'Components/Atoms/Card/TonicCard',
   component: Card,
   parameters: {
     layout: 'centered',

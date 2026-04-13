@@ -1,13 +1,13 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import { useState, type ComponentProps } from 'react';
 import { Radio, Stack, Typography } from '@bmi/mui-tonic-components';
 import { useTranslation } from 'react-i18next';
 
-// ─── Meta ─────────────────────────────────────────────────────────────────────
+// --- Meta ---------------------------------------------------------------------
 
 const meta = {
-  title: 'Atomic/Radio/TonicRadio',
+  title: 'Components/Atoms/Radio/TonicRadio',
   component: Radio,
   parameters: {
     layout: 'centered',
@@ -37,12 +37,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ─── Playground ───────────────────────────────────────────────────────────────
+// --- Playground ---------------------------------------------------------------
 
 /**
  * Fully interactive playground - all controls are live.
  * Selecting the radio updates the checked state in real time.
- * Figma: Tonic/Radio → Default state
+ * Figma: Tonic/Radio ? Default state
  */
 const PlaygroundWrapper = (args: ComponentProps<typeof Radio>) => {
   const { t } = useTranslation();
@@ -68,13 +68,13 @@ export const Playground: Story = {
   },
 };
 
-// ─── States ───────────────────────────────────────────────────────────────────
+// --- States -------------------------------------------------------------------
 
 /**
  * All meaningful states side-by-side.
  * Error state uses `color="error"` per Figma - the outer ring turns error.main
  * even when unchecked, which is visually distinct from all other color values.
- * Figma: Tonic/Radio → state axis
+ * Figma: Tonic/Radio ? state axis
  */
 const StatesRenderer = (args: ComponentProps<typeof Radio>) => {
   const { t } = useTranslation();
@@ -108,11 +108,11 @@ export const States: Story = {
   args: { color: 'primary', size: 'medium' },
 };
 
-// ─── Sizes ────────────────────────────────────────────────────────────────────
+// --- Sizes --------------------------------------------------------------------
 
 /**
  * Both sizes in their selected state.
- * Figma: Tonic/Radio → size axis (small = 20px, medium = 24px)
+ * Figma: Tonic/Radio ? size axis (small = 20px, medium = 24px)
  */
 export const Sizes: Story = {
   render: (args) => (
@@ -137,7 +137,7 @@ export const Sizes: Story = {
   args: { color: 'primary' },
 };
 
-// ─── Colors ───────────────────────────────────────────────────────────────────
+// --- Colors -------------------------------------------------------------------
 
 /** All semantic palette colors in their selected state. */
 export const Colors: Story = {
@@ -156,7 +156,7 @@ export const Colors: Story = {
   args: { size: 'medium' },
 };
 
-// ─── WithLabel ────────────────────────────────────────────────────────────────
+// --- WithLabel ----------------------------------------------------------------
 
 /** Radio button wrapped in FormControlLabel - opt-in labelled variant via the `label` prop. */
 const WithLabelRenderer = (args: ComponentProps<typeof Radio>) => {
@@ -173,7 +173,7 @@ export const WithLabel: Story = {
   },
 };
 
-// ─── Interactive ──────────────────────────────────────────────────────────────
+// --- Interactive --------------------------------------------------------------
 
 const InteractiveWrapper = (args: ComponentProps<typeof Radio>) => {
   const [checked, setChecked] = useState(false);

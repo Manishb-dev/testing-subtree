@@ -1,0 +1,219 @@
+﻿import { Meta, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Contribution Guide" />
+
+# Contribution Guide
+
+This document explains how to contribute to Tonic - BMI's internal design system.
+Follow these rules exactly to keep the codebase consistent and maintainable.
+
+## Repository Structure
+
+```
+bmi-tonic/
+  packages/
+    components/      # @bmi/mui-tonic-components
+      src/
+        atoms/       -- typed MUI wrappers (Button, Select...)
+        shared/      -- composed reusable components
+        patterns/    -- full UI sections / page regions
+        index.ts     -- barrel export for everything
+    icons/           # @bmi/mui-tonic-icons
+      src/           -- one file per icon + index.ts
+    theme/           # @bmi/mui-tonic-theme
+    storybook/       # documentation site (this app)
+      .storybook/
+      stories/
+```
+
+---
+
+## 1. Adding a Component
+
+### Step 1 - Classify the component layer
+
+<table>
+  <thead>
+    <tr>
+      <th>Layer</th>
+      <th>When to use</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Atomic</strong></td>
+      <td>Typed wrapper around a single MUI component. No composition, no state.</td>
+      <td><code>atoms/[ComponentName]/</code></td>
+    </tr>
+    <tr>
+      <td><strong>Shared</strong></td>
+      <td>Composed from atomic components. Reusable across portals. UI-only state allowed.</td>
+      <td><code>shared/[ComponentName]/</code></td>
+    </tr>
+    <tr>
+      <td><strong>Pattern</strong></td>
+      <td>Full UI section from shared + atomic components. All data via props.</td>
+      <td><code>patterns/[ComponentName]/</code></td>
+    </tr>
+  </tbody>
+</table>
+
+If a component imports Redux, i18n, react-router, or any API layer - it does **not** belong in Tonic. It stays in the consuming application.
+
+### Step 2 - Create the component files
+
+Each component lives in its own folder:
+
+```
+packages/components/src/[layer]/[ComponentName]/
+  [ComponentName].tsx          -- component implementation
+  [ComponentName].types.ts     -- prop types / interfaces
+  index.ts                     -- re-export
+```
+
+### Step 3 - Export from the package barrel
+
+Add an export to `packages/components/src/index.ts`:
+
+<Source language="ts" code={`export { ComponentName } from './[layer]/ComponentName';
+export type { ComponentNameProps } from './[layer]/ComponentName';`} />
+
+### Step 4 - Follow naming conventions
+
+- Component files: **PascalCase** (`StatusChip.tsx`)
+- Props interface: `Tonic[ComponentName]Props` (always prefix with `Tonic`)
+- All props must be typed - no `any`, no untyped objects
+
+---
+
+## 2. Adding an Icon
+
+Icons live in `packages/icons/src/`. Each icon is a separate file.
+
+### Structure
+
+```
+packages/icons/src/
+  [IconName]Icon.tsx    -- icon component
+  index.ts             -- barrel re-export
+```
+
+### Icon component pattern
+
+<Source language="tsx" code={`import MuiSvgIcon, { SvgIconProps as MuiSvgIconProps } from '@mui/material/SvgIcon';
+
+export type IconSize = 48 | 32 | 24 | 20 | 16 | 14;
+
+export interface TonicStarIconProps extends Omit<MuiSvgIconProps, 'fontSize'> {
+  /** Icon size in pixels. @default 24 */
+  size?: IconSize;
+}
+
+export const StarIcon = ({ size = 24, sx, ...rest }: TonicStarIconProps) => (
+  <MuiSvgIcon
+    viewBox="0 0 256 256"
+    sx={[{ width: size, height: size, fontSize: size }, ...(Array.isArray(sx) ? sx : [sx])]}
+    {...rest}
+  >
+    <path d="..." />
+  </MuiSvgIcon>
+);`} />
+
+### Rules
+- Always use `currentColor` - icon colors must inherit from the parent context
+- viewBox must match the source SVG exactly
+- Export from `packages/icons/src/index.ts`
+- After adding the icon, add it to `stories/Foundations/Icons.stories.tsx` so it appears in the catalogue
+
+---
+
+## 3. Writing Stories
+
+Every component must have a story. Stories live in `packages/storybook/stories/`.
+
+### File location
+
+```
+stories/
+  Atomic/[ComponentName]/[ComponentName].stories.tsx
+  Atomic/[ComponentName]/[ComponentName].mdx
+  Shared/[ComponentName]/[ComponentName].stories.tsx
+  Shared/[ComponentName]/[ComponentName].mdx
+  Patterns/[ComponentName]/[ComponentName].stories.tsx
+  Patterns/[ComponentName]/[ComponentName].mdx
+```
+
+### Title convention
+
+```
+Atomic components:   title: 'Atomic/[ComponentName]/Tonic[ComponentName]'
+Shared components:   title: 'Shared/[ComponentName]/Tonic[ComponentName]'
+Pattern components:  title: 'Patterns/[ComponentName]/Tonic[ComponentName]'
+```
+
+### Import rules
+
+- Always import components from `@bmi/mui-tonic-components`
+- Always import icons from `@bmi/mui-tonic-icons`
+- Never import directly from `@mui/material/[Component]`
+- Never add `ThemeProvider` inside a story - the global decorator handles this
+
+### Do not add stories for this section (`Getting Started/`)
+
+The pages under **Getting Started** are maintained docs pages (MDX only), not interactive stories.
+Do **not** add `.stories.tsx` files here.
+
+---
+
+## 4. Theme Changes
+
+Theme tokens live in `packages/theme/src/`. Changes here affect every component in every portal.
+
+- Never hardcode hex values or font sizes inside a component - always reference a theme token
+- If a token does not exist, add it to the theme first and document the addition in your PR
+
+---
+
+## 5. Code Standards
+
+- **TypeScript strict mode** is enabled - all types must be explicit
+- **No `any`** - use `unknown` if the type is genuinely unknown and narrow it
+- **No direct MUI imports inside components** - import from `@bmi/mui-tonic-components` in stories; within the components package import from `@mui/material` only
+- **No side effects at module level** - no API calls, no timers, no subscriptions outside React lifecycle
+- **Props spread with care** - always explicitly list picked props; avoid spreading unknown objects onto DOM elements
+
+---
+
+## 6. Pull Request Checklist
+
+Before opening a PR, verify:
+
+- [ ] Component is in the correct layer (Atomic / Shared / Pattern)
+- [ ] Props interface is named `Tonic[ComponentName]Props`
+- [ ] Component is exported from `packages/components/src/index.ts`
+- [ ] A story exists and the title matches the naming convention
+- [ ] New icons are added to `stories/Foundations/Icons.stories.tsx`
+- [ ] No hardcoded colors, spacing, or typography values
+- [ ] No `any` types
+- [ ] `ThemeProvider` is not duplicated inside a story
+
+---
+
+## 7. Running Storybook Locally
+
+<Source language="bash" code={`# Install dependencies (from repo root)
+npm install
+
+# Start Storybook dev server
+npm run storybook`} />
+
+Storybook will be available at `http://localhost:6006`.
+
+---
+
+## Helpful Links
+
+- **[Welcome](?path=/docs/getting-started-welcome--docs)** - What Tonic is and its package overview
+- **[How to Use](?path=/docs/getting-started-how-to-use--docs)** - Installation and setup guide
+- **[Icons](?path=/story/assets-icons--all-icons)** - Full icon catalogue

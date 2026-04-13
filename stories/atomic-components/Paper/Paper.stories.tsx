@@ -5,7 +5,7 @@ import type { TonicPaperProps, PaperElevation } from '@bmi/mui-tonic-components'
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta: Meta<typeof Paper> = {
-  title: 'Atomic/Paper/TonicPaper',
+  title: 'Components/Atoms/Paper/TonicPaper',
   component: Paper,
   parameters: {
     layout: 'centered',

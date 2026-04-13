@@ -1,13 +1,13 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import { type ComponentProps } from 'react';
 import { Chip, Stack, Typography } from '@bmi/mui-tonic-components';
 import { useTranslation } from 'react-i18next';
 
-// ─── Meta ─────────────────────────────────────────────────────────────────────
+// --- Meta ---------------------------------------------------------------------
 
 const meta = {
-  title: 'Atomic/Chip/TonicChip',
+  title: 'Components/Atoms/Chip/TonicChip',
   component: Chip,
   parameters: {
     layout: 'centered',
@@ -36,7 +36,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ─── Playground ───────────────────────────────────────────────────────────────
+// --- Playground ---------------------------------------------------------------
 
 export const Playground: Story = {
   args: {
@@ -47,7 +47,7 @@ export const Playground: Story = {
   },
 };
 
-// ─── Variants ─────────────────────────────────────────────────────────────────
+// --- Variants -----------------------------------------------------------------
 
 const VariantsRenderer = (args: ComponentProps<typeof Chip>) => {
   const { t } = useTranslation();
@@ -71,7 +71,7 @@ export const Variants: Story = {
   args: { color: 'default', size: 'medium' },
 };
 
-// ─── States ───────────────────────────────────────────────────────────────────
+// --- States -------------------------------------------------------------------
 
 const StatesRenderer = (args: ComponentProps<typeof Chip>) => {
   const { t } = useTranslation();
@@ -98,7 +98,7 @@ export const States: Story = {
   args: { variant: 'filled', color: 'default', size: 'medium' },
 };
 
-// ─── Sizes ────────────────────────────────────────────────────────────────────
+// --- Sizes --------------------------------------------------------------------
 
 const SizesRenderer = (args: ComponentProps<typeof Chip>) => {
   const { t } = useTranslation();
@@ -129,7 +129,7 @@ export const Sizes: Story = {
   args: { variant: 'filled', color: 'default' },
 };
 
-// ─── Colors ───────────────────────────────────────────────────────────────────
+// --- Colors -------------------------------------------------------------------
 
 const ColorsRenderer = (args: ComponentProps<typeof Chip>) => {
   const { t } = useTranslation();
@@ -153,7 +153,7 @@ export const Colors: Story = {
   args: { size: 'medium', variant: 'filled' },
 };
 
-// ─── Deletable ────────────────────────────────────────────────────────────────
+// --- Deletable ----------------------------------------------------------------
 
 const DeletableRenderer = (args: ComponentProps<typeof Chip>) => {
   const { t } = useTranslation();

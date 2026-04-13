@@ -1,8 +1,8 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import { IconButton, Stack, Typography } from '@bmi/mui-tonic-components';
 
-// ─── Inline SVG icon (24px, matches Figma IconButton_v3 icon size) ────────────
+// --- Inline SVG icon (24px, matches Figma IconButton_v3 icon size) ------------
 
 const StarIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -10,10 +10,10 @@ const StarIcon = () => (
   </svg>
 );
 
-// ─── Meta ─────────────────────────────────────────────────────────────────────
+// --- Meta ---------------------------------------------------------------------
 
 const meta = {
-  title: 'Atomic/Button/TonicIconButton',
+  title: 'Components/Atoms/Button/TonicIconButton',
   component: IconButton,
   parameters: {
     layout: 'centered',
@@ -44,7 +44,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ─── Variants ─────────────────────────────────────────────────────────────────
+// --- Variants -----------------------------------------------------------------
 
 /** Transparent background, icon in the theme color. */
 export const Default: Story = {
@@ -53,7 +53,7 @@ export const Default: Story = {
 
 /**
  * Filled circular background using Color.main, white icon.
- * From Figma: IconButton_v3 → variant=contained.
+ * From Figma: IconButton_v3 ? variant=contained.
  */
 export const Contained: Story = {
   args: { color: 'primary', size: 'medium', variant: 'contained' },
@@ -77,7 +77,7 @@ export const BothVariants: Story = {
   args: { color: 'primary', size: 'large', onClick: fn() },
 };
 
-// ─── States ───────────────────────────────────────────────────────────────────
+// --- States -------------------------------------------------------------------
 
 export const Disabled: Story = {
   args: { color: 'primary', size: 'medium', disabled: true },
@@ -88,7 +88,7 @@ export const DisabledContained: Story = {
   args: { color: 'primary', size: 'medium', variant: 'contained', disabled: true },
 };
 
-// ─── Sizes ────────────────────────────────────────────────────────────────────
+// --- Sizes --------------------------------------------------------------------
 // From Figma: small=32px, medium=36px, large=40px, extraLarge=48px (all with 24px icon)
 
 export const AllSizes: Story = {
@@ -113,7 +113,7 @@ export const AllSizes: Story = {
   args: { color: 'primary', onClick: fn() },
 };
 
-// ─── Colors ───────────────────────────────────────────────────────────────────
+// --- Colors -------------------------------------------------------------------
 
 /** Default (transparent) variant across all theme colors. */
 export const AllColors: Story = {

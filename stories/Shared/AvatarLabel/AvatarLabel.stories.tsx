@@ -1,13 +1,13 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { type ComponentProps } from 'react';
 import { AvatarLabel, Stack, Typography } from '@bmi/mui-tonic-components';
 import { StarIcon } from '@bmi/mui-tonic-icons';
 import { useTranslation } from 'react-i18next';
 
-// ─── Meta ─────────────────────────────────────────────────────────────────────
+// --- Meta ---------------------------------------------------------------------
 
 const meta = {
-  title: 'Shared/AvatarLabel/TonicAvatarLabel',
+  title: 'Components/Shared/AvatarLabel/TonicAvatarLabel',
   component: AvatarLabel,
   parameters: {
     layout: 'centered',
@@ -29,7 +29,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ─── Default ──────────────────────────────────────────────────────────────────
+// --- Default ------------------------------------------------------------------
 
 export const Default: Story = {
   args: {
@@ -39,7 +39,7 @@ export const Default: Story = {
   },
 };
 
-// ─── States ───────────────────────────────────────────────────────────────────
+// --- States -------------------------------------------------------------------
 
 const StatesRenderer = (args: ComponentProps<typeof AvatarLabel>) => {
   const { t } = useTranslation();
@@ -96,7 +96,7 @@ export const States: Story = {
   args: { title: '' },
 };
 
-// ─── SubtitleVariants ─────────────────────────────────────────────────────────
+// --- SubtitleVariants ---------------------------------------------------------
 
 const SubtitleVariantsRenderer = (args: ComponentProps<typeof AvatarLabel>) => {
   const { t } = useTranslation();
@@ -126,7 +126,7 @@ export const SubtitleVariants: Story = {
   args: { title: '' },
 };
 
-// ─── CustomAvatarColor ────────────────────────────────────────────────────────
+// --- CustomAvatarColor --------------------------------------------------------
 
 const CustomAvatarColorRenderer = (args: ComponentProps<typeof AvatarLabel>) => {
   const { t } = useTranslation();

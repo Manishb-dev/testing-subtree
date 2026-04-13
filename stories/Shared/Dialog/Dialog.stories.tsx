@@ -56,7 +56,7 @@ type DialogStoryArgs = TonicDialogProps & { iconState?: IconState };
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta: Meta<DialogStoryArgs> = {
-  title: 'Shared/Dialog/TonicDialog',
+  title: 'Components/Shared/Dialog/TonicDialog',
   component: Dialog,
   parameters: {
     layout: 'centered',

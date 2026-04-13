@@ -5,7 +5,7 @@ import type { TonicTypographyProps, TypographyVariant } from '@bmi/mui-tonic-com
 // --- Meta ---------------------------------------------------------------------
 
 const meta: Meta<typeof Typography> = {
-  title: 'Atomic/Typography/TonicTypography',
+  title: 'Components/Atoms/Typography/TonicTypography',
   component: Typography,
   parameters: {
     layout: 'centered',

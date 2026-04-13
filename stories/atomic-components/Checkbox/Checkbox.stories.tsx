@@ -1,13 +1,13 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import { useState, type ComponentProps } from 'react';
 import { Checkbox, Stack, Typography } from '@bmi/mui-tonic-components';
 import { useTranslation } from 'react-i18next';
 
-// ─── Meta ─────────────────────────────────────────────────────────────────────
+// --- Meta ---------------------------------------------------------------------
 
 const meta = {
-  title: 'Atomic/Checkbox/TonicCheckbox',
+  title: 'Components/Atoms/Checkbox/TonicCheckbox',
   component: Checkbox,
   parameters: {
     layout: 'centered',
@@ -38,7 +38,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ─── Playground ───────────────────────────────────────────────────────────────
+// --- Playground ---------------------------------------------------------------
 
 const PlaygroundRenderer = (args: ComponentProps<typeof Checkbox>) => {
   const { t } = useTranslation();
@@ -53,7 +53,7 @@ export const Playground: Story = {
   },
 };
 
-// ─── States ───────────────────────────────────────────────────────────────────
+// --- States -------------------------------------------------------------------
 
 const StatesRenderer = (args: ComponentProps<typeof Checkbox>) => {
   const { t } = useTranslation();
@@ -87,7 +87,7 @@ export const States: Story = {
   args: { color: 'primary', size: 'medium' },
 };
 
-// ─── Sizes ────────────────────────────────────────────────────────────────────
+// --- Sizes --------------------------------------------------------------------
 
 /** Both sizes side-by-side with pixel spec labels from Figma. */
 export const Sizes: Story = {
@@ -113,7 +113,7 @@ export const Sizes: Story = {
   args: { color: 'primary' },
 };
 
-// ─── Colors ───────────────────────────────────────────────────────────────────
+// --- Colors -------------------------------------------------------------------
 
 /** All semantic colors in their checked state. */
 export const Colors: Story = {
@@ -132,7 +132,7 @@ export const Colors: Story = {
   args: { size: 'medium' },
 };
 
-// ─── WithLabel ────────────────────────────────────────────────────────────────
+// --- WithLabel ----------------------------------------------------------------
 
 /** Opt-in labelled variant - renders the checkbox wrapped in FormControlLabel. */
 const WithLabelRenderer = (args: ComponentProps<typeof Checkbox>) => {
@@ -149,7 +149,7 @@ export const WithLabel: Story = {
   },
 };
 
-// ─── Interactive ───────────────────────────────────────────────────────────────
+// --- Interactive ---------------------------------------------------------------
 
 const InteractiveWrapper = (args: ComponentProps<typeof Checkbox>) => {
   const [checked, setChecked] = useState(args.checked ?? false);

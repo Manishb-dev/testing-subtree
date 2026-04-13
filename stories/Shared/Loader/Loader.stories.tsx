@@ -6,7 +6,7 @@ import type { LoaderColor, LoaderSize } from '@bmi/mui-tonic-components';
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta = {
-  title: 'Shared/Loader/TonicLoader',
+  title: 'Components/Shared/Loader/TonicLoader',
   component: Loader,
   parameters: {
     layout: 'centered',

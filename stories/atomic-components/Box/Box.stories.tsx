@@ -1,11 +1,11 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Box, Stack, Typography } from '@bmi/mui-tonic-components';
 import type { TonicBoxProps } from '@bmi/mui-tonic-components';
 
-// ─── Meta ─────────────────────────────────────────────────────────────────────
+// --- Meta ---------------------------------------------------------------------
 
 const meta: Meta<typeof Box> = {
-  title: 'Atomic/Box/TonicBox',
+  title: 'Components/Atoms/Box/TonicBox',
   component: Box,
   parameters: {
     layout: 'centered',
@@ -18,7 +18,7 @@ const meta: Meta<typeof Box> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ─── Playground ───────────────────────────────────────────────────────────────
+// --- Playground ---------------------------------------------------------------
 
 export const Playground: Story = {
   args: {
@@ -33,7 +33,7 @@ export const Playground: Story = {
   },
 };
 
-// ─── Surface Levels ───────────────────────────────────────────────────────────
+// --- Surface Levels -----------------------------------------------------------
 
 /**
  * Box using each background surface token from the theme.
@@ -70,7 +70,7 @@ export const SurfaceLevels: Story = {
   ),
 };
 
-// ─── With Border ──────────────────────────────────────────────────────────────
+// --- With Border --------------------------------------------------------------
 
 /**
  * Box demonstrating each border token from the theme.
