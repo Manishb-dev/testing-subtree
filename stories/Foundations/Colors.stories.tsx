@@ -15,6 +15,31 @@ import {
 
 type ColorScale = Record<string, string>;
 
+/** Build a reverse map: normalised hex → "ScaleName[stop]" */
+const hexToScaleRef = (() => {
+  const scaleEntries: { scaleName: string; scale: ColorScale }[] = [
+    { scaleName: 'Neutral', scale: Neutral },
+    { scaleName: 'blue', scale: blue },
+    { scaleName: 'purple', scale: purple },
+    { scaleName: 'red', scale: red },
+    { scaleName: 'rose', scale: rose },
+    { scaleName: 'orange', scale: orange },
+    { scaleName: 'green', scale: green },
+    { scaleName: 'Limon', scale: Limon },
+  ];
+  const map = new Map<string, string>();
+  for (const { scaleName, scale } of scaleEntries) {
+    for (const [stop, hex] of Object.entries(scale)) {
+      map.set(hex.toLowerCase(), `${scaleName}[${stop}]`);
+    }
+  }
+  return map;
+})();
+
+function resolveScaleRef(value: string): string | null {
+  return hexToScaleRef.get(value.toLowerCase()) ?? null;
+}
+
 const palettes: { name: string; scale: ColorScale }[] = [
   { name: 'Neutral', scale: Neutral },
   { name: 'Blue', scale: blue },
@@ -114,7 +139,7 @@ function ColorsPage() {
           fontFamily: 'IBM Plex Sans, Arial, sans-serif',
         }}
       >
-        Color Scales
+        Color Ramps
       </h1>
       <p
         style={{
@@ -149,11 +174,11 @@ export default meta;
 // ─── Stories ──────────────────────────────────────────────────────────────────
 
 export const ColorScales: StoryObj = {
-  name: 'Color Scales',
+  name: 'Color Ramps',
   render: () => <ColorsPage />,
 };
 
-// ─── Semantic Palette (theme-aware) ───────────────────────────────────────────
+// ─── Color Tokens (theme-aware) ───────────────────────────────────────────
 
 function SemanticSwatch({ token, value }: { token: string; value: string }) {
   const luminance = (() => {
@@ -164,6 +189,8 @@ function SemanticSwatch({ token, value }: { token: string; value: string }) {
     const b = parseInt(hex.slice(4, 6), 16);
     return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   })();
+
+  const scaleRef = resolveScaleRef(value);
 
   return (
     <div
@@ -192,9 +219,27 @@ function SemanticSwatch({ token, value }: { token: string; value: string }) {
           color: luminance > 0.5 ? '#000' : '#fff',
         }}
       />
-      <div style={{ fontFamily: 'IBM Plex Sans, Arial, sans-serif' }}>
-        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'inherit' }}>{token}</div>
-        <div style={{ fontSize: '0.65rem', fontFamily: 'monospace', opacity: 0.6 }}>{value}</div>
+      <div style={{ fontFamily: 'IBM Plex Sans, Arial, sans-serif', minWidth: 0 }}>
+        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'inherit', marginBottom: '3px' }}>{token}</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+          <span style={{ fontSize: '0.65rem', fontFamily: 'monospace', opacity: 0.6 }}>{value}</span>
+          {scaleRef && (
+            <span
+              style={{
+                fontSize: '0.6rem',
+                fontFamily: 'monospace',
+                background: 'rgba(0,0,0,0.07)',
+                borderRadius: '3px',
+                padding: '1px 5px',
+                color: 'inherit',
+                opacity: 0.75,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {scaleRef}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -234,7 +279,7 @@ function SemanticPalettePage() {
   return (
     <div style={{ padding: '32px', minHeight: '100vh', background: palette.background.default, color: palette.text.primary }}>
       <h1 style={{ margin: '0 0 8px', fontSize: '1.5rem', fontWeight: 700, fontFamily: 'IBM Plex Sans, Arial, sans-serif' }}>
-        Semantic Palette
+        Color Tokens
       </h1>
       <p style={{ margin: '0 0 32px', fontSize: '0.875rem', opacity: 0.6, fontFamily: 'IBM Plex Sans, Arial, sans-serif' }}>
         Active theme: <strong>{palette.mode}</strong>. Toggle the theme in the toolbar to see values change.
@@ -247,6 +292,6 @@ function SemanticPalettePage() {
 }
 
 export const SemanticPalette: StoryObj = {
-  name: 'Semantic Palette',
+  name: 'Color Tokens',
   render: () => <SemanticPalettePage />,
 };

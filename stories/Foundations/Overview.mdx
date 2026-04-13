@@ -1,0 +1,227 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Overview" />
+
+# Foundations Overview
+
+Foundations are the raw design decisions that every component in Tonic is built upon.
+They live in the `@bmi/mui-tonic-theme` package and are the **single source of truth** for
+visual style - components never hard-code a colour, size, or shadow value; they always
+consume a token.
+
+---
+
+## What are Foundations?
+
+Foundations are the lowest-level, non-component design values in the system.
+They have no React implementation of their own - they are plain JavaScript constants
+that feed directly into the MUI theme and, through it, into every component.
+
+Changing a foundation value in one place updates every component that references it
+automatically, in both light and dark mode.
+
+---
+
+## Foundation Categories
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Export</th>
+      <th>Story</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Colors</strong></td>
+      <td><code>Neutral, blue, purple, red, rose, orange, green, Limon</code></td>
+      <td>[Foundations/Colors](?path=/story/foundations-colors--color-scales)</td>
+      <td>Raw colour scales (100–950) and semantic palette tokens mapped to MUI roles.</td>
+    </tr>
+    <tr>
+      <td><strong>Typography</strong></td>
+      <td><code>typography</code></td>
+      <td>[Foundations/Typography](?path=/story/foundations-typography--type-scale)</td>
+      <td>Font family, sizes, weights, line-heights and letter-spacings for every type variant.</td>
+    </tr>
+    <tr>
+      <td><strong>Spacing</strong></td>
+      <td><code>spacing</code></td>
+      <td>[Foundations/Spacing](?path=/story/foundations-spacing--spacing-scale)</td>
+      <td>Base unit (px) used by <code>theme.spacing(n)</code> - multiply by any factor to get a consistent rhythm.</td>
+    </tr>
+    <tr>
+      <td><strong>Border Radius</strong></td>
+      <td><code>shape</code></td>
+      <td>[Foundations/Border Radius](?path=/story/foundations-borderradius--radius-scale)</td>
+      <td>Base border-radius multiplied by component size factors to produce a consistent rounding scale.</td>
+    </tr>
+    <tr>
+      <td><strong>Shadows</strong></td>
+      <td><code>lightShadows, darkShadows</code></td>
+      <td>[Foundations/Shadows](?path=/story/foundations-shadows--shadow-tokens)</td>
+      <td>Elevation shadows for light and dark mode, keyed by elevation level.</td>
+    </tr>
+    <tr>    
+      <td><strong>Icons</strong></td>
+      <td><code>@bmi/mui-tonic-icons</code></td>
+      <td>[Foundations/Icons](?path=/story/assets-icons--all-icons)</td>
+      <td>Phosphor-based SVG icons wrapped as MUI <code>SvgIcon</code> components, tree-shakeable.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Token Philosophy
+
+Tonic uses a **two-tier token model**:
+
+### Tier 1 - Raw scales
+
+Numeric colour stops (`blue[500]`), unitless spacing multipliers, and named shadow levels.
+These describe *what the value is* - they have no semantic meaning on their own.
+
+```ts
+import { blue, Neutral } from '@bmi/mui-tonic-theme';
+
+blue['500']    // #1c81e6
+Neutral['900'] // #1d2d38
+```
+
+### Tier 2 - Semantic tokens
+
+MUI palette slots (`palette.primary.main`, `palette.text.secondary`) that map a raw scale
+value to a *role* in the UI. Semantic tokens are what components consume.
+
+```ts
+// Inside a component - reads the semantic token, not the raw scale
+sx={{ color: 'primary.main' }}
+```
+
+Reason: swapping a theme (e.g. dark mode, brand variant) only requires changing
+the Tier 2 mapping. Components remain untouched.
+
+---
+
+## Token Hierarchy
+
+```
+Raw scale value          →  Semantic token            →  Component prop
+────────────────────────────────────────────────────────────────────────
+blue[500] (#1c81e6)      →  palette.primary.main      →  color="primary"
+Neutral[900] (#1d2d38)   →  palette.text.primary      →  (default text)
+orange[400]              →  palette.warning.main      →  color="warning"
+```
+
+The hierarchy ensures that:
+
+1. **Designers** work with semantic names in Figma (e.g. *Primary / Main*).
+2. **Developers** consume the same semantic names via MUI sx / styled.
+3. **Raw scales** are only referenced in theme configuration files - never in component code.
+
+---
+
+## Theming
+
+Tonic ships two complete themes built from the same foundations:
+
+<table>
+  <thead>
+    <tr>
+      <th>Theme</th>
+      <th>Export</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Light</strong></td>
+      <td><code>lightTheme</code></td>
+      <td>Default. White backgrounds, dark text.</td>
+    </tr>
+    <tr>
+      <td><strong>Dark</strong></td>
+      <td><code>darkTheme</code></td>
+      <td>Dark backgrounds, light text.</td>
+    </tr>
+  </tbody>
+</table>
+
+Both themes share the same raw colour scales; only the semantic mapping differs.
+The active theme is set once at the app root via `ThemeProvider` and propagates
+automatically to every component - including Storybook stories.
+
+```tsx
+import { lightTheme, darkTheme } from '@bmi/mui-tonic-theme';
+import { ThemeProvider } from '@mui/material/styles';
+
+<ThemeProvider theme={lightTheme}>
+  <App />
+</ThemeProvider>
+```
+
+> In Storybook, the theme is toggled via the toolbar. No story should import or apply a
+> `ThemeProvider` directly.
+
+---
+
+## Usage Guidelines
+
+- **Always consume semantic tokens** from the palette - not raw scale values - inside components.
+- **Never hard-code hex values** in component code or stories.
+- **Spacing** must use `theme.spacing(n)` or the `sx` shorthand (`p: 2`, `mt: 1`) - never raw pixel strings.
+- **Typography variants** must use an existing variant key (`body1`, `caption`, `h4` …) - do not create ad-hoc font styles.
+- **Icons** are imported individually from `@bmi/mui-tonic-icons` for tree-shaking.
+- **Border radius** is applied via component-level `size` props or `sx={{ borderRadius: n }}` - the base unit comes from `theme.shape.borderRadius`.
+
+---
+
+## Code Integration
+
+Install the theme and component packages:
+
+```bash
+npm install @bmi/mui-tonic-theme @bmi/mui-tonic-components @bmi/mui-tonic-icons
+```
+
+Set up the theme provider in your application root:
+
+```tsx
+import { lightTheme } from '@bmi/mui-tonic-theme';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+
+export function App() {
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <CssBaseline />
+      {/* your app */}
+    </ThemeProvider>
+  );
+}
+```
+
+Consume foundation tokens inside components via MUI's `sx` prop or `styled`:
+
+```tsx
+// ✅ Correct - uses semantic tokens
+<Box sx={{ color: 'text.secondary', p: 2, borderRadius: 1 }} />
+
+// ❌ Wrong - hard-coded values bypass the token system
+<Box sx={{ color: '#73838f', padding: '16px', borderRadius: '4px' }} />
+```
+
+Reference a raw scale only when configuring the theme itself:
+
+```ts
+// theme file only
+import { blue, Neutral } from '@bmi/mui-tonic-theme';
+
+primary: {
+  main: blue['500'],
+  dark: blue['600'],
+  contrastText: Neutral['000'],
+}
+```
