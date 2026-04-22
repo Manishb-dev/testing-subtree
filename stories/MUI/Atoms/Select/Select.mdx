@@ -1,0 +1,199 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SelectStories from './Select.stories';
+
+<Meta of={SelectStories} />
+
+# Select
+
+Dropdown control for choosing a single value from a predefined list. Use select for compact form fields where screen space is limited and the option set is moderate (5–15 items).
+
+---
+
+## Usage
+
+```tsx
+import { Select } from '@bmi/tonic-components-mui';
+import MenuItem from '@mui/material/MenuItem';
+
+<Select variant="filled" size="medium" value="option-1">
+  <MenuItem value="option-1">Option 1</MenuItem>
+  <MenuItem value="option-2">Option 2</MenuItem>
+</Select>
+```
+
+---
+
+## Playground
+
+<Canvas of={SelectStories.Playground} />
+<Controls of={SelectStories.Playground} />
+
+---
+
+## Variants
+
+`filled` uses a solid white background with a subtle shadow; `outlined` uses a transparent background with a visible border. Use `filled` for primary form fields and `outlined` for secondary or inline selectors.
+
+<Canvas of={SelectStories.Variants} />
+
+---
+
+## States
+
+<Canvas of={SelectStories.States} />
+
+---
+
+## Sizes
+
+<table>
+  <thead>
+    <tr><th>Size</th><th>Height</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>small</code></td><td>32px</td></tr>
+    <tr><td><code>medium</code></td><td>40px</td></tr>
+  </tbody>
+</table>
+
+<Canvas of={SelectStories.Sizes} />
+
+---
+
+## Multiple
+
+Set `multiple` to allow selecting more than one option. When enabled, `value` must be an array. Selected values render as a comma-separated list by default — pass `renderValue` for custom rendering (e.g. chips).
+
+<Canvas of={SelectStories.Multiple} />
+
+---
+
+## Under the Hood
+
+This component wraps [`MuiSelect`](https://mui.com/material-ui/api/select/).
+
+**MUI base:** `@mui/material/Select`
+**Theme override:** `packages/theme/src/overrides/select.ts`
+
+All visual styling lives in the theme override. The component's only job is to enforce the Tonic prop vocabulary and forward everything to MUI.
+
+<table>
+  <thead>
+    <tr><th>Tonic prop</th><th>Maps to MUI prop</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>size</code></td>
+      <td>Restricted to <code>'small' | 'medium'</code></td>
+    </tr>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>variant</code></td>
+      <td>Restricted to <code>'filled' | 'outlined'</code></td>
+    </tr>
+    <tr>
+      <td><code>multiple</code></td>
+      <td><code>multiple</code></td>
+      <td>Maps directly — enables multi-select mode</td>
+    </tr>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>value</code></td>
+      <td>The currently selected value (array when <code>multiple</code>)</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>onChange</code></td>
+      <td>Fired when the user selects an option</td>
+    </tr>
+    <tr>
+      <td><code>displayEmpty</code></td>
+      <td><code>displayEmpty</code></td>
+      <td>When <code>true</code>, renders the select even if the value is empty</td>
+    </tr>
+    <tr>
+      <td><code>sx</code></td>
+      <td><code>sx</code></td>
+      <td>Normalized to array and forwarded as-is</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Props
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>'filled' | 'outlined'</code></td>
+      <td><code>'filled'</code></td>
+      <td>Visual style of the select</td>
+    </tr>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>SelectSize</code></td>
+      <td><code>'medium'</code></td>
+      <td>Size of the component</td>
+    </tr>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>unknown</code></td>
+      <td>—</td>
+      <td>Currently selected value</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>(event: SelectChangeEvent) =&gt; void</code></td>
+      <td>—</td>
+      <td>Called when the selection changes</td>
+    </tr>
+    <tr>
+      <td><code>displayEmpty</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Render select even when value is empty</td>
+    </tr>
+    <tr>
+      <td><code>multiple</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Allows selecting multiple values</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Disables interaction and reduces visual emphasis</td>
+    </tr>
+  </tbody>
+</table>
+
+> All other [MUI SelectProps](https://mui.com/material-ui/api/select/) are accepted.
+
+---
+
+## Accessibility
+
+- The Select renders a `role="combobox"` by default, which is announced by screen readers as a dropdown selector.
+- Always pair with a visible label or `aria-label` so users understand the purpose of the field.
+- Keyboard users can navigate options with arrow keys and confirm with Enter — this behavior is handled by MUI out of the box.
+
+---
+
+## Do / Don't
+
+**Do**
+- Use `filled` for primary form contexts where the field should be visually distinct from the background
+- Use `outlined` for inline or secondary selectors where a lighter visual weight is appropriate
+- Keep option lists concise — for more than 15 items, consider an autocomplete or search-enabled dropdown
+
+**Don't**
+- Don't use Select for binary choices — use a Switch or Radio instead
+- Don't nest complex content inside MenuItems — keep options to short text labels
+- Don't omit a label; users cannot tell what the select controls without context

@@ -1,0 +1,158 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as AlertStories from './Alert.stories';
+
+<Meta of={AlertStories} />
+
+# Alert
+
+A contextual banner for surfacing feedback messages - warnings, errors, and success confirmations. Use it to communicate system or workflow status to the user.
+
+---
+
+## Usage
+
+```tsx
+import { Alert } from '@bmi/tonic-components-mui';
+
+<Alert
+  severity="warning"
+  title="License Renew Reminder"
+  description="Your license is expiring soon. Please renew to avoid disruption."
+/>
+```
+
+---
+
+## Playground
+
+<Canvas of={AlertStories.Playground} />
+<Controls of={AlertStories.Playground} />
+
+---
+
+## Severities
+
+The `severity` prop controls the icon, background color, and accent color. Choose the severity that best matches the meaning of the message.
+
+<table>
+  <thead>
+    <tr><th>Severity</th><th>Use when</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>warning</code></td><td>Action is required soon, but not urgent</td></tr>
+    <tr><td><code>error</code></td><td>A blocking issue has occurred or access has been restricted</td></tr>
+    <tr><td><code>success</code></td><td>A positive action has been completed</td></tr>
+  </tbody>
+</table>
+
+<Canvas of={AlertStories.Severities} />
+
+---
+
+## States
+
+An Alert can contain a title only or a title with an optional description for additional context.
+
+<Canvas of={AlertStories.States} />
+
+---
+
+## With Description
+
+The `description` prop adds a secondary line of body text beneath the title.
+
+<Canvas of={AlertStories.WithDescription} />
+
+---
+
+## Under the Hood
+
+This component wraps [`MuiAlert`](https://mui.com/material-ui/api/alert/) and [`MuiAlertTitle`](https://mui.com/material-ui/api/alert-title/).
+
+**MUI base:** `@mui/material/Alert`
+**Theme override:** `packages/theme/src/overrides/alert.ts`
+
+All visual styling - background color, left accent bar, icon container, and typography weight - lives in the theme override.
+
+<table>
+  <thead>
+    <tr><th>Tonic prop</th><th>Maps to MUI prop</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>severity</code></td>
+      <td><code>severity</code></td>
+      <td>Restricted to <code>'warning' | 'error' | 'success'</code> (no <code>info</code>)</td>
+    </tr>
+    <tr>
+      <td><code>title</code></td>
+      <td><code>AlertTitle</code> children</td>
+      <td>Rendered inside the <code>message</code> slot as a bold header</td>
+    </tr>
+    <tr>
+      <td><code>description</code></td>
+      <td>Alert children</td>
+      <td>Rendered below the title; omit to show title-only layout</td>
+    </tr>
+    <tr>
+      <td><code>icon</code></td>
+      <td><code>icon</code></td>
+      <td>Pre-wired to Tonic icons per severity; not exposed as a prop</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Props
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>severity</code></td>
+      <td><code>'warning' | 'error' | 'success'</code></td>
+      <td><code>'warning'</code></td>
+      <td>Determines icon, background, and accent color</td>
+    </tr>
+    <tr>
+      <td><code>title</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>Primary message rendered as a bold alert title (required)</td>
+    </tr>
+    <tr>
+      <td><code>description</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>Optional supporting text rendered below the title</td>
+    </tr>
+  </tbody>
+</table>
+
+> All other [MUI AlertProps](https://mui.com/material-ui/api/alert/) are accepted.
+
+---
+
+## Accessibility
+
+- The underlying `MuiAlert` renders with `role="alert"` by default, which announces the message to screen readers immediately.
+- The `severity` prop maps to `aria-live` attributes managed by MUI - no additional ARIA attributes are needed.
+- Ensure `title` is descriptive enough to convey the alert intent without relying on the `description` alone.
+
+---
+
+## Do / Don't
+
+**Do**
+- Use `warning` for expiring resources or time-sensitive actions that don't block the user yet
+- Use `error` for suspended accounts, failed operations, or access restrictions
+- Use `success` to confirm a completed action such as a license renewal or form submission
+- Keep `title` to a single short phrase (3–6 words)
+
+**Don't**
+- Don't use Alert for persistent navigation or global page headers - use AppBar or Banners instead
+- Don't stack more than two Alerts on screen at once; prioritize the most critical
+- Don't use `info` severity - it is not part of the Tonic vocabulary for this component

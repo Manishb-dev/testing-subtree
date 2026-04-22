@@ -1,10 +1,10 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { ScreencastIcon } from '@bmi/mui-tonic-icons';
-import type { IconSize, IconVariant, IconContainedShape } from '@bmi/mui-tonic-icons';
+import { ScreencastIcon } from '@bmi/tonic-icons-web';
+import type { IconSize, IconVariant, IconContainedShape } from '@bmi/tonic-icons-web';
 
 const meta: Meta<typeof ScreencastIcon> = {
   title: 'Icons/ScreencastIcon',

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { HeadsetIcon } from '@bmi/mui-tonic-icons';
-import type { IconSize, IconVariant, IconContainedShape } from '@bmi/mui-tonic-icons';
+import { HeadsetIcon } from '@bmi/tonic-icons-web';
+import type { IconSize, IconVariant, IconContainedShape } from '@bmi/tonic-icons-web';
 
 const meta: Meta<typeof HeadsetIcon> = {
   title: 'Icons/HeadsetIcon',

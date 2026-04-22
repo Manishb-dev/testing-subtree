@@ -1,5 +1,5 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
-import { spacing } from '@bmi/mui-tonic-theme';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { spacing } from '@bmi/tonic-theme-mui';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 

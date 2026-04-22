@@ -1,4 +1,4 @@
-﻿import { Meta, Source } from '@storybook/addon-docs/blocks';
+import { Meta, Source } from '@storybook/addon-docs/blocks';
 
 <Meta title="Getting Started/Contribution Guide" />
 
@@ -12,15 +12,15 @@ Follow these rules exactly to keep the codebase consistent and maintainable.
 ```
 bmi-tonic/
   packages/
-    components/      # @bmi/mui-tonic-components
+    components/      # @bmi/tonic-components-mui
       src/
         atoms/       -- typed MUI wrappers (Button, Select...)
         shared/      -- composed reusable components
         patterns/    -- full UI sections / page regions
         index.ts     -- barrel export for everything
-    icons/           # @bmi/mui-tonic-icons
+    icons/           # @bmi/tonic-icons-web
       src/           -- one file per icon + index.ts
-    theme/           # @bmi/mui-tonic-theme
+    theme/           # @bmi/tonic-theme-mui
     storybook/       # documentation site (this app)
       .storybook/
       stories/
@@ -147,15 +147,15 @@ stories/
 ### Title convention
 
 ```
-Atomic components:   title: 'Atomic/[ComponentName]/Tonic[ComponentName]'
+Atomic components:   title: 'MUI/Atoms/[ComponentName]/Tonic[ComponentName]'
 Shared components:   title: 'Shared/[ComponentName]/Tonic[ComponentName]'
 Pattern components:  title: 'Patterns/[ComponentName]/Tonic[ComponentName]'
 ```
 
 ### Import rules
 
-- Always import components from `@bmi/mui-tonic-components`
-- Always import icons from `@bmi/mui-tonic-icons`
+- Always import components from `@bmi/tonic-components-mui`
+- Always import icons from `@bmi/tonic-icons-web`
 - Never import directly from `@mui/material/[Component]`
 - Never add `ThemeProvider` inside a story - the global decorator handles this
 
@@ -179,7 +179,7 @@ Theme tokens live in `packages/theme/src/`. Changes here affect every component 
 
 - **TypeScript strict mode** is enabled - all types must be explicit
 - **No `any`** - use `unknown` if the type is genuinely unknown and narrow it
-- **No direct MUI imports inside components** - import from `@bmi/mui-tonic-components` in stories; within the components package import from `@mui/material` only
+- **No direct MUI imports inside components** - import from `@bmi/tonic-components-mui` in stories; within the components package import from `@mui/material` only
 - **No side effects at module level** - no API calls, no timers, no subscriptions outside React lifecycle
 - **Props spread with care** - always explicitly list picked props; avoid spreading unknown objects onto DOM elements
 

@@ -5,7 +5,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 # Foundations Overview
 
 Foundations are the raw design decisions that every component in Tonic is built upon.
-They live in the `@bmi/mui-tonic-theme` package and are the **single source of truth** for
+They live in the `@bmi/tonic-theme-mui` package and are the **single source of truth** for
 visual style - components never hard-code a colour, size, or shadow value; they always
 consume a token.
 
@@ -66,7 +66,7 @@ automatically, in both light and dark mode.
     </tr>
     <tr>    
       <td><strong>Icons</strong></td>
-      <td><code>@bmi/mui-tonic-icons</code></td>
+      <td><code>@bmi/tonic-icons-web</code></td>
       <td>[Foundations/Icons](?path=/story/assets-icons--all-icons)</td>
       <td>Phosphor-based SVG icons wrapped as MUI <code>SvgIcon</code> components, tree-shakeable.</td>
     </tr>
@@ -85,7 +85,7 @@ Numeric colour stops (`blue[500]`), unitless spacing multipliers, and named shad
 These describe *what the value is* - they have no semantic meaning on their own.
 
 ```ts
-import { blue, Neutral } from '@bmi/mui-tonic-theme';
+import { blue, Neutral } from '@bmi/tonic-theme-mui';
 
 blue['500']    // #1c81e6
 Neutral['900'] // #1d2d38
@@ -155,7 +155,7 @@ The active theme is set once at the app root via `ThemeProvider` and propagates
 automatically to every component - including Storybook stories.
 
 ```tsx
-import { lightTheme, darkTheme } from '@bmi/mui-tonic-theme';
+import { lightTheme, darkTheme } from '@bmi/tonic-theme-mui';
 import { ThemeProvider } from '@mui/material/styles';
 
 <ThemeProvider theme={lightTheme}>
@@ -174,7 +174,7 @@ import { ThemeProvider } from '@mui/material/styles';
 - **Never hard-code hex values** in component code or stories.
 - **Spacing** must use `theme.spacing(n)` or the `sx` shorthand (`p: 2`, `mt: 1`) - never raw pixel strings.
 - **Typography variants** must use an existing variant key (`body1`, `caption`, `h4` …) - do not create ad-hoc font styles.
-- **Icons** are imported individually from `@bmi/mui-tonic-icons` for tree-shaking.
+- **Icons** are imported individually from `@bmi/tonic-icons-web` for tree-shaking.
 - **Border radius** is applied via component-level `size` props or `sx={{ borderRadius: n }}` - the base unit comes from `theme.shape.borderRadius`.
 
 ---
@@ -184,13 +184,13 @@ import { ThemeProvider } from '@mui/material/styles';
 Install the theme and component packages:
 
 ```bash
-npm install @bmi/mui-tonic-theme @bmi/mui-tonic-components @bmi/mui-tonic-icons
+npm install @bmi/tonic-theme-mui @bmi/tonic-components-mui @bmi/tonic-icons-web
 ```
 
 Set up the theme provider in your application root:
 
 ```tsx
-import { lightTheme } from '@bmi/mui-tonic-theme';
+import { lightTheme } from '@bmi/tonic-theme-mui';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 
 export function App() {
@@ -217,7 +217,7 @@ Reference a raw scale only when configuring the theme itself:
 
 ```ts
 // theme file only
-import { blue, Neutral } from '@bmi/mui-tonic-theme';
+import { blue, Neutral } from '@bmi/tonic-theme-mui';
 
 primary: {
   main: blue['500'],

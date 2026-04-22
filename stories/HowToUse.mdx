@@ -4,7 +4,7 @@ import { Meta, Source } from '@storybook/addon-docs/blocks';
 
 # How to use the packages
 
-A step-by-step guide to consuming `@bmi/mui-tonic-components` in your React application.
+A step-by-step guide to consuming `@bmi/tonic-components-mui` in your React application.
 
 ---
 
@@ -13,7 +13,7 @@ A step-by-step guide to consuming `@bmi/mui-tonic-components` in your React appl
 Tonic requires MUI v7, Emotion, and the Tonic theme & icons packages as peer dependencies.
 Install everything in one go:
 
-<Source language="bash" code={`npm install @bmi/mui-tonic-components @bmi/mui-tonic-theme @bmi/mui-tonic-icons \
+<Source language="bash" code={`npm install @bmi/tonic-components-mui @bmi/tonic-theme-mui @bmi/tonic-icons-web \
   @mui/material @emotion/react @emotion/styled`} />
 
 ---
@@ -25,7 +25,7 @@ This ensures every Tonic component picks up the correct colours, typography and 
 
 <Source language="tsx" code={`// src/App.tsx
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { lightTheme } from '@bmi/mui-tonic-theme';
+import { lightTheme } from '@bmi/tonic-theme-mui';
 
 export default function App() {
   return (
@@ -42,14 +42,14 @@ export default function App() {
 
 ## 3. Use components
 
-Import any component from `@bmi/mui-tonic-components` and use it like a regular React component.
+Import any component from `@bmi/tonic-components-mui` and use it like a regular React component.
 All props are fully typed.
 
 ---
 
 ### Example — component
 
-<Source language="tsx" code={`import { Button } from '@bmi/mui-tonic-components';
+<Source language="tsx" code={`import { Button } from '@bmi/tonic-components-mui';
 
 export function MyPage() {
   return (
@@ -63,9 +63,9 @@ export function MyPage() {
 
 ### Example — icon
 
-Icons live in their own package. Import them from `@bmi/mui-tonic-icons`:
+Icons live in their own package. Import them from `@bmi/tonic-icons-web`:
 
-<Source language="tsx" code={`import { StarIcon } from '@bmi/mui-tonic-icons';
+<Source language="tsx" code={`import { StarIcon } from '@bmi/tonic-icons-web';
 
 export function MyPage() {
   return <StarIcon />;
@@ -75,9 +75,9 @@ export function MyPage() {
 
 ## Key Rules
 
-1. **Always import components from `@bmi/mui-tonic-components`** - never directly from `@mui/material`.
+1. **Always import components from `@bmi/tonic-components-mui`** - never directly from `@mui/material`.
 2. **Never add your own `ThemeProvider` inside a page or component** - the root provider is sufficient.
-3. **Icons must be imported from `@bmi/mui-tonic-icons`** directly — they are not re-exported from `@bmi/mui-tonic-components`. Make sure `@bmi/mui-tonic-icons` is installed in your application.
-4. **All visual styling lives in the theme**. If you need a style change, update `@bmi/mui-tonic-theme` - do not add inline overrides.
+3. **Icons must be imported from `@bmi/tonic-icons-web`** directly — they are not re-exported from `@bmi/tonic-components-mui`. Make sure `@bmi/tonic-icons-web` is installed in your application.
+4. **All visual styling lives in the theme**. If you need a style change, update `@bmi/tonic-theme-mui` - do not add inline overrides.
 
 ---

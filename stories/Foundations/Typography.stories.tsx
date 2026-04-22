@@ -1,5 +1,5 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
-import { typography } from '@bmi/mui-tonic-theme';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { typography } from '@bmi/tonic-theme-mui';
 import type { CSSProperties } from 'react';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -80,7 +80,7 @@ function TypographyPage() {
       </h1>
       <p style={{ margin: '0 0 32px', fontSize: '0.875rem', color: '#73838f' }}>
         Type scale sourced from{' '}
-        <code style={{ fontSize: '0.8rem' }}>@bmi/mui-tonic-theme</code>. Font&nbsp;family:{' '}
+        <code style={{ fontSize: '0.8rem' }}>@bmi/tonic-theme-mui</code>. Font&nbsp;family:{' '}
         <strong>{fontFamily}</strong>
       </p>
 

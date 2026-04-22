@@ -1,4 +1,4 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useTheme } from '@mui/material/styles';
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -72,7 +72,7 @@ function ShadowsPage() {
       </h1>
       <p style={{ margin: '0 0 40px', fontSize: '0.875rem', color: theme.palette.text.secondary }}>
         Shadow tokens sourced from{' '}
-        <code style={{ fontSize: '0.8rem' }}>@bmi/mui-tonic-theme</code>. Cards are
+        <code style={{ fontSize: '0.8rem' }}>@bmi/tonic-theme-mui</code>. Cards are
         shown on a surface background to make shadows visible.
       </p>
 

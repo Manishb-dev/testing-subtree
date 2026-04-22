@@ -1,0 +1,65 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as BoxStories from './Box.stories';
+
+<Meta of={BoxStories} />
+
+# Box
+
+A generic layout primitive that renders a `<div>` by default. It accepts all MUI `sx` system props, making it the foundation for one-off layout needs that do not warrant a dedicated component. All design tokens (spacing, color, border-radius, shadow) come from the Tonic theme.
+
+---
+
+## Usage
+
+```tsx
+import { Box } from '@bmi/tonic-components-mui';
+
+<Box sx={{ p: 2, bgcolor: 'background.paper1', borderRadius: 1 }}>
+  Content
+</Box>
+```
+
+---
+
+## Playground
+
+<Canvas of={BoxStories.Playground} />
+<Controls of={BoxStories.Playground} />
+
+---
+
+## Surface Levels
+
+The theme defines layered background tokens (`default`, `paper`, `paper1`, `paper2`, `paper3`) to create visual depth. Use progressively higher levels for nested surfaces.
+
+<Canvas of={BoxStories.SurfaceLevels} />
+
+---
+
+## Border Tokens
+
+Borders are derived from `theme.palette.common.borders.*`. Use `light` for subtle dividers, `medium` for card outlines, and `dark` for high-contrast boundaries.
+
+<Canvas of={BoxStories.BorderTokens} />
+
+---
+
+## Under the Hood
+
+This component wraps [`MuiBox`](https://mui.com/material-ui/react-box/).
+
+**MUI base:** `@mui/material/Box`  
+**Theme override:** none - all styling is done by the consumer via `sx`.
+
+The component's only job is to forward `sx` as an array (enabling merge-safe composition) and pass everything else through to MUI.
+
+<table>
+  <thead>
+    <tr><th>Tonic prop</th><th>Maps to MUI prop</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>`sx`</td><td>`sx`</td><td>Always forwarded as an array for safe composition</td></tr>
+    <tr><td>`component`</td><td>`component`</td><td>Override the rendered HTML element</td></tr>
+    <tr><td>`...rest`</td><td>all MUI Box props</td><td>Passed through unchanged</td></tr>
+  </tbody>
+</table>

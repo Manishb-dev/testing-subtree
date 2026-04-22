@@ -59,8 +59,8 @@ import {
   VolleyballIcon,
   WarningIcon,
   WarningOctagonIcon,
-} from '@bmi/mui-tonic-icons';
-import type { IconVariant } from '@bmi/mui-tonic-icons';
+} from '@bmi/tonic-icons-web';
+import type { IconVariant } from '@bmi/tonic-icons-web';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const icons: { name: string; component: React.ComponentType<any> }[] = [

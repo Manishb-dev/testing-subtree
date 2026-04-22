@@ -1,0 +1,205 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as AvatarStories from './Avatar.stories';
+
+<Meta of={AvatarStories} />
+
+# Avatar
+
+A Tonic wrapper around [MUI Avatar](https://mui.com/material-ui/react-avatar/) that enforces the Tonic size vocabulary and supports three content types: text initials, icons, and images.
+
+---
+
+## Usage
+
+```tsx
+import { Avatar } from '@bmi/tonic-components-mui';
+import { StarIcon } from '@bmi/tonic-icons-web';
+
+{/* Text initials */}
+<Avatar size="extraLarge">AS</Avatar>
+
+{/* Icon content */}
+<Avatar size="large">
+  <StarIcon size={20} />
+</Avatar>
+
+{/* Image */}
+<Avatar size="extraLarge" src="/path/to/photo.jpg" alt="User name" />
+```
+
+---
+
+## Playground
+
+<Canvas of={AvatarStories.Playground} />
+<Controls of={AvatarStories.Playground} />
+
+---
+
+## Content Types
+
+Avatar supports three content modes determined by the props you pass:
+
+- **Text** - pass a short string (typically 1–2 initials) as `children`
+- **Icon** - pass a Tonic icon component as `children`
+- **Image** - set the `src` and `alt` props for a photo avatar
+
+<Canvas of={AvatarStories.ContentTypes} />
+
+---
+
+## Sizes
+
+All four sizes across the text content type.
+
+<table>
+  <thead>
+    <tr><th>Size</th><th>Dimensions</th><th>Font size</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>small</code></td><td>18 × 18 px</td><td>10px</td></tr>
+    <tr><td><code>medium</code></td><td>24 × 24 px</td><td>12px</td></tr>
+    <tr><td><code>large</code></td><td>32 × 32 px</td><td>14px</td></tr>
+    <tr><td><code>extraLarge</code></td><td>40 × 40 px</td><td>16px</td></tr>
+  </tbody>
+</table>
+
+<Canvas of={AvatarStories.Sizes} />
+
+---
+
+## Sizes with Icon
+
+Icon content scales with the avatar size. The theme override sets the icon size per variant.
+
+<table>
+  <thead>
+    <tr><th>Avatar size</th><th>Icon size</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>small</code></td><td>14px</td></tr>
+    <tr><td><code>medium</code></td><td>16px</td></tr>
+    <tr><td><code>large</code></td><td>20px</td></tr>
+    <tr><td><code>extraLarge</code></td><td>24px</td></tr>
+  </tbody>
+</table>
+
+<Canvas of={AvatarStories.SizesWithIcon} />
+
+---
+
+## Sizes with Image
+
+Image avatars scale identically - the image fills the circular container at each size.
+
+<Canvas of={AvatarStories.SizesWithImage} />
+
+---
+
+## Under the Hood
+
+This component is a thin wrapper around [`MuiAvatar`](https://mui.com/material-ui/api/avatar/).
+
+**MUI base:** `@mui/material/Avatar`
+**Theme override:** `packages/theme/src/overrides/avatar.ts`
+
+All visual styling - sizes, padding, font sizes, icon sizing, background color - lives in the theme override. The component's only job is to enforce the Tonic size vocabulary and forward everything to MUI.
+
+<table>
+  <thead>
+    <tr><th>Tonic prop</th><th>Maps to MUI prop</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>size</code> (augmented)</td>
+      <td>Custom prop added via MUI type augmentation; controls dimensions, font size, and icon size</td>
+    </tr>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>variant</code></td>
+      <td>MUI native - <code>circular</code> (default), <code>rounded</code>, <code>square</code></td>
+    </tr>
+    <tr>
+      <td><code>src</code></td>
+      <td><code>src</code></td>
+      <td>Image URL - triggers image content mode</td>
+    </tr>
+    <tr>
+      <td><code>children</code></td>
+      <td><code>children</code></td>
+      <td>Text initials or icon component</td>
+    </tr>
+    <tr>
+      <td><code>sx</code></td>
+      <td><code>sx</code></td>
+      <td>Normalized to array and forwarded as-is</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Props
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>'small' | 'medium' | 'large' | 'extraLarge'</code></td>
+      <td><code>'extraLarge'</code></td>
+      <td>Visual size of the avatar. Maps to Figma Avatar_v3 size variants.</td>
+    </tr>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>'circular' | 'rounded' | 'square'</code></td>
+      <td><code>'circular'</code></td>
+      <td>Shape of the avatar container.</td>
+    </tr>
+    <tr>
+      <td><code>src</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>Image source URL. When provided, renders an image avatar.</td>
+    </tr>
+    <tr>
+      <td><code>alt</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>Alt text for the image avatar. Required when <code>src</code> is set.</td>
+    </tr>
+    <tr>
+      <td><code>children</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>Text initials or icon component to render inside the avatar.</td>
+    </tr>
+  </tbody>
+</table>
+
+> All other [MUI AvatarProps](https://mui.com/material-ui/api/avatar/) are accepted.
+
+---
+
+## Accessibility
+
+- Always provide `alt` text when using image avatars so screen readers can identify the person.
+- For text/icon avatars used as decorative elements, pass `aria-hidden="true"` if the name is conveyed by adjacent text.
+- Use meaningful initials (e.g. first + last name) rather than arbitrary characters.
+
+---
+
+## Do / Don't
+
+**Do**
+- Use text avatars with 1–2 character initials for the best visual fit
+- Pair image avatars with an `alt` prop describing the person
+- Use the `size` prop rather than overriding dimensions via `sx`
+
+**Don't**
+- Don't use more than 2 characters as text content - it overflows smaller sizes
+- Don't hardcode pixel dimensions with `sx` - use the `size` prop instead
+- Don't omit `alt` on image avatars - it breaks accessibility

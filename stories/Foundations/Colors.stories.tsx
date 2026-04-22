@@ -1,4 +1,4 @@
-﻿import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useTheme } from '@mui/material/styles';
 import {
   Neutral,
@@ -9,7 +9,7 @@ import {
   orange,
   green,
   Limon,
-} from '@bmi/mui-tonic-theme';
+} from '@bmi/tonic-theme';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -150,7 +150,7 @@ function ColorsPage() {
         }}
       >
         Raw colour scales sourced from{' '}
-        <code style={{ fontSize: '0.8rem' }}>@bmi/mui-tonic-theme</code>. These are the
+        <code style={{ fontSize: '0.8rem' }}>@bmi/tonic-theme-mui</code>. These are the
         single source of truth for every colour in the design system.
       </p>
       {palettes.map(({ name, scale }) => (

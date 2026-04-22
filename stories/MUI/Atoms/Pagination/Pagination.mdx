@@ -1,0 +1,250 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as PaginationStories from './Pagination.stories';
+
+<Meta of={PaginationStories} />
+
+# Pagination
+
+Navigate between pages of content. Use pagination for tables, lists, or any dataset split across multiple pages. Supports first/last page shortcuts and an optional items-range label.
+
+---
+
+## Usage
+
+```tsx
+import { Pagination } from '@bmi/tonic-components-mui';
+
+<Pagination count={20} page={1} label="Items" totalItems={200} rowsPerPage={10} />
+```
+
+---
+
+## Playground
+
+<Canvas of={PaginationStories.Playground} />
+<Controls of={PaginationStories.Playground} />
+
+---
+
+## States
+
+<Canvas of={PaginationStories.States} />
+
+---
+
+## Sizes
+
+<table>
+  <thead>
+    <tr><th>Size</th><th>Item Height</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>small</code></td><td>26px</td></tr>
+    <tr><td><code>medium</code></td><td>32px</td></tr>
+    <tr><td><code>large</code></td><td>40px</td></tr>
+  </tbody>
+</table>
+
+<Canvas of={PaginationStories.Sizes} />
+
+---
+
+## With Label
+
+Pass `label` for a text prefix (e.g., "Items") and `totalItems` + `rowsPerPage` to automatically compute and display the range (e.g., "Items 1-10 of 200"). Commonly used in table footers.
+
+<Canvas of={PaginationStories.WithLabel} />
+
+---
+
+## Without Label
+
+Omit `label` to render only the navigation controls.
+
+<Canvas of={PaginationStories.WithoutLabel} />
+
+---
+
+## Interactive
+
+<Canvas of={PaginationStories.Interactive} />
+
+---
+
+## Responsive
+
+When `responsive` is `true`, the label/range text stacks **above** the pagination controls. Use this layout on narrow viewports (mobile / table-footer on small screens).
+
+<Canvas of={PaginationStories.Responsive} />
+
+---
+
+## Under the Hood
+
+This component wraps [`MuiPagination`](https://mui.com/material-ui/api/pagination/) and renders [`MuiPaginationItem`](https://mui.com/material-ui/api/pagination-item/) internally.
+
+**MUI base:** `@mui/material/Pagination` + `@mui/material/PaginationItem`
+**Styles:** `packages/components/src/atoms/Pagination/Pagination.styles.ts`
+
+Navigation icons (first, previous, next, last) are replaced with Tonic Caret icons from `@bmi/tonic-icons-web`. First and last page buttons are shown by default.
+
+<table>
+  <thead>
+    <tr><th>Tonic prop</th><th>Maps to MUI prop</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>size</code></td>
+      <td>Standard MUI sizes: <code>'small' | 'medium' | 'large'</code></td>
+    </tr>
+    <tr>
+      <td><code>count</code></td>
+      <td><code>count</code></td>
+      <td>Total number of pages</td>
+    </tr>
+    <tr>
+      <td><code>page</code></td>
+      <td><code>page</code></td>
+      <td>Current page (1-indexed)</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td>—</td>
+      <td>Tonic-only. Text prefix rendered before the computed range (e.g., "Items")</td>
+    </tr>
+    <tr>
+      <td><code>totalItems</code></td>
+      <td>—</td>
+      <td>Tonic-only. Total item count used to compute the range display</td>
+    </tr>
+    <tr>
+      <td><code>rowsPerPage</code></td>
+      <td>—</td>
+      <td>Tonic-only. Items per page used to compute the range display. Defaults to <code>10</code></td>
+    </tr>
+    <tr>
+      <td><code>responsive</code></td>
+      <td>—</td>
+      <td>Tonic-only. Stacks label/range above controls when <code>true</code>. Defaults to <code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>showFirstButton</code></td>
+      <td><code>showFirstButton</code></td>
+      <td>Defaults to <code>true</code> (MUI defaults to <code>false</code>)</td>
+    </tr>
+    <tr>
+      <td><code>showLastButton</code></td>
+      <td><code>showLastButton</code></td>
+      <td>Defaults to <code>true</code> (MUI defaults to <code>false</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Props
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>PaginationSize</code></td>
+      <td><code>'medium'</code></td>
+      <td>Size of the pagination items</td>
+    </tr>
+    <tr>
+      <td><code>count</code></td>
+      <td><code>number</code></td>
+      <td><code>1</code></td>
+      <td>Total number of pages</td>
+    </tr>
+    <tr>
+      <td><code>page</code></td>
+      <td><code>number</code></td>
+      <td>—</td>
+      <td>Current page (controlled)</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>(event, page: number) =&gt; void</code></td>
+      <td>—</td>
+      <td>Callback fired when the page changes</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>React.ReactNode</code></td>
+      <td>—</td>
+      <td>Text prefix shown before the range (e.g., "Items")</td>
+    </tr>
+    <tr>
+      <td><code>totalItems</code></td>
+      <td><code>number</code></td>
+      <td>—</td>
+      <td>Total item count. When set, shows the computed range (e.g., "1-10 of 200")</td>
+    </tr>
+    <tr>
+      <td><code>rowsPerPage</code></td>
+      <td><code>number</code></td>
+      <td><code>10</code></td>
+      <td>Items per page used to compute the range</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Disables all pagination items</td>
+    </tr>
+    <tr>
+      <td><code>showFirstButton</code></td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Show a button to jump to the first page</td>
+    </tr>
+    <tr>
+      <td><code>showLastButton</code></td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Show a button to jump to the last page</td>
+    </tr>
+    <tr>
+      <td><code>siblingCount</code></td>
+      <td><code>number</code></td>
+      <td><code>1</code></td>
+      <td>Number of sibling pages shown on each side of the current page</td>
+    </tr>
+    <tr>
+      <td><code>boundaryCount</code></td>
+      <td><code>number</code></td>
+      <td><code>1</code></td>
+      <td>Number of pages shown at the start and end</td>
+    </tr>
+  </tbody>
+</table>
+
+> All other [MUI PaginationProps](https://mui.com/material-ui/api/pagination/) are accepted (except `variant`, `shape`, and `color` which are enforced by Tonic).
+
+---
+
+## Accessibility
+
+- The component renders inside a `<nav>` element with `aria-label="pagination navigation"` by default. Override with the `aria-label` prop for context-specific labelling (e.g., `"Results pagination"`).
+- Each page button includes the page number in its accessible name.
+- First, previous, next, and last buttons have meaningful default aria-labels provided by MUI.
+
+---
+
+## Do / Don't
+
+**Do**
+- Use `label` to give users context about where they are in a dataset (e.g., "Items 13-22 of 200")
+- Control `page` and `onChange` together for predictable navigation
+- Pair with a table or list component — pagination should always accompany paginated content
+
+**Don't**
+- Don't use pagination for single-page content or fewer than two pages
+- Don't hide first/last buttons unless the dataset is very small — they help users jump quickly
+- Don't hardcode page counts — compute `count` from your data (`Math.ceil(total / pageSize)`)

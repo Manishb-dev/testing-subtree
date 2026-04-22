@@ -1,15 +1,19 @@
 {
-  "name": "@bmi/mui-tonic-storybook",
+  "name": "@bmi/tonic-storybook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@bmi/mui-tonic-components": "*",
-    "@bmi/mui-tonic-icons": "*",
-    "@bmi/mui-tonic-theme": "*",
+    "@bmi/tonic-components-mui": "*",
+    "@bmi/tonic-components-tamagui": "^0.1.0",
+    "@bmi/tonic-icons-web": "*",
+    "@bmi/tonic-theme-mui": "*",
+    "@tamagui/config": "^2.0.0-rc.41",
     "i18next": "26.0.2",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-i18next": "17.0.1"
+    "react-i18next": "17.0.1",
+    "react-native-web": "^0.21.2",
+    "tamagui": "^2.0.0-rc.41"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "5.0.2",

@@ -1,18 +1,24 @@
-﻿import type { Preview, Decorator } from '@storybook/react-vite';
+import type { Preview, Decorator } from '@storybook/react-vite';
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { lightTheme, darkTheme } from '@bmi/mui-tonic-theme';
+import { lightTheme, darkTheme } from '@bmi/tonic-theme-mui';
+import { TamaguiProvider } from 'tamagui';
+import { tamaguiConfig } from '../tamagui.config';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../i18n/config';
 
 const withTheme: Decorator = (Story, context) => {
   const currentTheme = context.globals['theme'] === 'dark' ? darkTheme : lightTheme;
   return React.createElement(
-    ThemeProvider,
-    { theme: currentTheme },
-    React.createElement(CssBaseline, null),
-    React.createElement(Story as unknown as React.FC, null),
+    TamaguiProvider,
+    { config: tamaguiConfig, defaultTheme: context.globals['theme'] === 'dark' ? 'dark' : 'light' },
+    React.createElement(
+      ThemeProvider,
+      { theme: currentTheme },
+      React.createElement(CssBaseline, null),
+      React.createElement(Story as unknown as React.FC, null),
+    ),
   );
 };
 
@@ -79,11 +85,11 @@ const preview: Preview = {
           'Getting Started',
           ['Welcome', 'How to Use', 'Contribution Guide'],
           'Foundations',
+          'Assets',
           'Components',
           ['Atoms', 'Shared', 'Patterns'],
-          'Assets',
-          'Icons',
           '*',
+          'Icons',
         ],
       },
     },

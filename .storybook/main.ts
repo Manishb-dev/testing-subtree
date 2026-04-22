@@ -1,4 +1,4 @@
-﻿/// <reference types="node" />
+/// <reference types="node" />
 import type { StorybookConfig } from '@storybook/react-vite';
 import type { InlineConfig } from 'vite';
 import { dirname, resolve } from "path"
@@ -29,12 +29,21 @@ const config: StorybookConfig = {
   async viteFinal(config): Promise<InlineConfig> {
     const { mergeConfig } = await import('vite');
     return mergeConfig(config, {
+      define: {
+        // react-native-web and Tamagui reference process.env.NODE_ENV at runtime
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV ?? 'development'),
+      },
       resolve: {
         alias: {
+          // Required for Tamagui on web: redirect react-native imports to react-native-web
+          'react-native': 'react-native-web',
           // Resolve workspace packages from source so no build step is needed in dev.
-          '@bmi/mui-tonic-components': resolve(__dirname, '../../components/src/index.ts'),
-          '@bmi/mui-tonic-icons': resolve(__dirname, '../../icons/src/index.ts'),
-          '@bmi/mui-tonic-theme': resolve(__dirname, '../../theme/src/index.ts'),
+          '@bmi/tonic-components-mui': resolve(__dirname, '../../components-mui/src/index.ts'),
+          '@bmi/tonic-components-tamagui': resolve(__dirname, '../../components-tamagui/src/index.ts'),
+          '@bmi/tonic-icons-web': resolve(__dirname, '../../icons-web/src/index.ts'),
+          '@bmi/tonic-theme-mui': resolve(__dirname, '../../theme-mui/src/index.ts'),
+          '@bmi/tonic-theme': resolve(__dirname, '../../theme-core/src/index.ts'),
+          '@bmi/tonic-components': resolve(__dirname, '../../components-core/src/index.ts'),
         },
       },
     });
