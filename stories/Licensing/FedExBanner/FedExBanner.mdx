@@ -1,0 +1,179 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as FedExBannerStories from './FedExBanner.stories';
+
+<Meta of={FedExBannerStories} />
+
+# FedExBanner
+
+Promotional banner for the Licensing Portal that surfaces a FedEx shipping discount offer to BMI members. Renders a wide desktop layout with a tear-off promo code and automatically collapses to a stacked mobile layout when the container width drops below 640 px.
+
+---
+
+## Usage
+
+```tsx
+import { FedExBanner } from '@bmi/tonic-components-licensing';
+
+<FedExBanner
+  title="Save up to 80% on FedEx® Services"
+  desc="New, bigger discounts designed for small business budgets exclusively for BMI members."
+  code="FJHZNC"
+  infoTooltip="Available to active BMI members only."
+  onRedeem={() => handleRedeem()}
+/>
+```
+
+---
+
+## Default
+
+<Canvas of={FedExBannerStories.Default} />
+<Controls of={FedExBannerStories.Default} />
+
+---
+
+## With Tooltip
+
+Renders the info icon next to the title. Clicking or hovering reveals the `infoTooltip` content — use it to surface eligibility criteria or programme details without cluttering the banner itself.
+
+<Canvas of={FedExBannerStories.WithTooltip} />
+
+---
+
+## Custom Content
+
+Demonstrates the banner configured with a custom promo code and all content props composed together. Use this pattern when targeting specific campaigns or member segments.
+
+<Canvas of={FedExBannerStories.CustomContent} />
+
+---
+
+## Responsive Behaviour
+
+The component observes its own container width via `ResizeObserver`. No extra work is required from the consumer:
+
+<table>
+  <thead>
+    <tr>
+      <th>Container width</th>
+      <th>Layout</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>≥ 640 px</td>
+      <td>Desktop — logo section + horizontal content + tear-off code</td>
+    </tr>
+    <tr>
+      <td>&lt; 640 px</td>
+      <td>Mobile — stacked layout via <code>FedExBannerMobile</code></td>
+    </tr>
+  </tbody>
+</table>
+
+Resize the Storybook canvas below 640 px to see the automatic switch to the mobile layout.
+
+---
+
+## Under the Hood
+
+This component is part of the **Licensing Portal** component library (`@bmi/tonic-components-licensing`) and is not in the shared Tonic MUI package.
+
+**Package:** `@bmi/tonic-components-licensing`
+**Mobile sub-component:** `FedExBannerMobile` (rendered internally — not exported for direct use)
+
+<table>
+  <thead>
+    <tr>
+      <th>Tonic prop</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>logo</code></td>
+      <td>Defaults to the bundled FedEx SVG asset. Override with a custom URL for white-label scenarios.</td>
+    </tr>
+    <tr>
+      <td><code>infoTooltip</code></td>
+      <td>When omitted, the info icon is not rendered.</td>
+    </tr>
+    <tr>
+      <td><code>onRedeem</code></td>
+      <td>When omitted, the "Redeem" button is still rendered but has no side-effect.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>logo</code></td>
+      <td><code>string</code></td>
+      <td>FedEx SVG</td>
+      <td>URL of the partner logo image.</td>
+    </tr>
+    <tr>
+      <td><code>title</code></td>
+      <td><code>React.ReactNode</code></td>
+      <td><code>'Save up to 80% on FedEx® Services'</code></td>
+      <td>Primary headline of the banner.</td>
+    </tr>
+    <tr>
+      <td><code>desc</code></td>
+      <td><code>React.ReactNode</code></td>
+      <td><em>BMI member copy</em></td>
+      <td>Supporting description shown below the title.</td>
+    </tr>
+    <tr>
+      <td><code>code</code></td>
+      <td><code>string</code></td>
+      <td><code>'FJHZNC'</code></td>
+      <td>Promo code displayed in the tear-off area. Copied to clipboard on click.</td>
+    </tr>
+    <tr>
+      <td><code>infoTooltip</code></td>
+      <td><code>React.ReactNode</code></td>
+      <td>—</td>
+      <td>Optional tooltip content shown next to the title via an info icon.</td>
+    </tr>
+    <tr>
+      <td><code>onRedeem</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td>—</td>
+      <td>Callback fired when the "Redeem" CTA button is clicked.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility
+
+- The promo code copy button announces the copy action visually via an icon swap (`CopySimpleIcon` → `CheckIcon`) and resets after 2 seconds.
+- The info icon wrapper has `tabIndex={0}` so keyboard users can focus and trigger the tooltip.
+- The logo `<img>` carries `alt="logo"` — override the `logo` prop only with images that have meaningful alternative text in their context.
+
+---
+
+## Do / Don't
+
+**Do**
+- Let the banner manage its own layout — do not constrain it to a fixed pixel width that prevents the mobile breakpoint from triggering.
+- Pass a translated `title` and `desc` when the consuming app supports multiple locales.
+
+**Don't**
+- Don't import `FedExBannerMobile` directly; it is an internal sub-component and its API may change.
+- Don't use this component outside the Licensing Portal — it contains licensing-specific branding and is not part of the shared Tonic library.

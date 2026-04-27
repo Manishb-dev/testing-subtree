@@ -127,5 +127,12 @@
     "title": "Título de tarjeta",
     "body": "Este es el contenido del cuerpo de la tarjeta. Puede contener cualquier texto o elemento.",
     "action": "Acción"
+  },
+  "fedExBanner": {
+    "title": "Ahorre hasta un 80% en los servicios de FedEx®",
+    "desc": "Nuevos descuentos más grandes diseñados para presupuestos de pequeñas empresas, exclusivos para miembros de BMI.",
+    "code": "FJHZNC",
+    "infoTooltip": "Este descuento exclusivo de envíos está disponible solo para miembros activos de BMI.",
+    "redeemButton": "Canjear oferta"
   }
 }

@@ -129,5 +129,12 @@
     "title": "Card Title",
     "body": "This is the card body content. It can contain any text or elements.",
     "action": "Action"
+  },
+  "fedExBanner": {
+    "title": "Save up to 80% on FedEx® Services",
+    "desc": "New, bigger discounts designed for small business budgets exclusively for BMI members.",
+    "code": "FJHZNC",
+    "infoTooltip": "This exclusive shipping discount is available for active BMI members only.",
+    "redeemButton": "Redeem Offer"
   }
 }

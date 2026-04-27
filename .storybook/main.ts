@@ -61,6 +61,7 @@ const config: StorybookConfig = {
           // Required for Tamagui on web: redirect react-native imports to react-native-web
           'react-native': 'react-native-web',
           // Resolve workspace packages from source so no build step is needed in dev.
+          '@bmi/tonic-components-licensing': resolve(__dirname, '../../components-licensing/src/index.ts'),
           '@bmi/tonic-components-mui': resolve(__dirname, '../../components-mui/src/index.ts'),
           '@bmi/tonic-components-tamagui': resolve(__dirname, '../../components-tamagui/src/index.ts'),
           '@bmi/tonic-icons-web': resolve(__dirname, '../../icons-web/src/index.ts'),

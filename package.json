@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@bmi/tonic-components-licensing": "*",
     "@bmi/tonic-components-mui": "*",
     "@bmi/tonic-components-tamagui": "^0.1.0",
     "@bmi/tonic-icons-web": "*",
