@@ -4,21 +4,19 @@ import { Meta, Source } from '@storybook/addon-docs/blocks';
 
 # How to use the packages
 
-A step-by-step guide to consuming `@bmi/tonic-components-mui` in your React application.
+Step-by-step guides for consuming Tonic components in your React application.
+Choose the framework that matches your project — **MUI** for standard web apps, **Tamagui** for cross-platform.
 
 ---
 
-## 1. Install peer dependencies
+## MUI (Web)
 
-Tonic requires MUI v7, Emotion, and the Tonic theme & icons packages as peer dependencies.
-Install everything in one go:
+### 1. Install dependencies
 
-<Source language="bash" code={`npm install @bmi/tonic-components-mui @bmi/tonic-theme-mui @bmi/tonic-icons-web \
+<Source language="bash" code={`npm install @bmi/tonic-components-mui @bmi/tonic-theme-mui @bmi/tonic-icons-web \\
   @mui/material @emotion/react @emotion/styled`} />
 
----
-
-## 2. Apply the Tonic theme
+### 2. Apply the Tonic theme
 
 Wrap your application root with MUI's `ThemeProvider` and pass in the Tonic theme.
 This ensures every Tonic component picks up the correct colours, typography and spacing.
@@ -38,16 +36,7 @@ export default function App() {
 
 > **Tip:** Tonic also exports a `darkTheme` if your app supports dark mode.
 
----
-
-## 3. Use components
-
-Import any component from `@bmi/tonic-components-mui` and use it like a regular React component.
-All props are fully typed.
-
----
-
-### Example — component
+### 3. Use components
 
 <Source language="tsx" code={`import { Button } from '@bmi/tonic-components-mui';
 
@@ -59,25 +48,61 @@ export function MyPage() {
   );
 }`} />
 
----
-
-### Example — icon
+### 4. Use icons
 
 Icons live in their own package. Import them from `@bmi/tonic-icons-web`:
 
 <Source language="tsx" code={`import { StarIcon } from '@bmi/tonic-icons-web';
 
 export function MyPage() {
-  return <StarIcon />;
+  return <StarIcon size="medium" />;
+}`} />
+
+---
+
+## Tamagui (Cross-platform)
+
+### 1. Install dependencies
+
+<Source language="bash" code={`npm install @bmi/tonic-components-tamagui @bmi/tonic-theme-tamagui \\
+  tamagui @tamagui/config react-native-web`} />
+
+### 2. Apply the Tonic Tamagui theme
+
+Wrap your application root with `TamaguiProvider` and pass in the Tonic Tamagui config:
+
+<Source language="tsx" code={`// src/App.tsx
+import { TamaguiProvider } from 'tamagui';
+import { tamaguiConfig } from '@bmi/tonic-theme-tamagui';
+
+export default function App() {
+  return (
+    <TamaguiProvider config={tamaguiConfig} defaultTheme="light">
+      {/* your application routes / pages */}
+    </TamaguiProvider>
+  );
+}`} />
+
+### 3. Use components
+
+<Source language="tsx" code={`import { Button } from '@bmi/tonic-components-tamagui';
+
+export function MyPage() {
+  return (
+    <Button variant="contained" onPress={() => console.log('clicked')}>
+      Pay Now
+    </Button>
+  );
 }`} />
 
 ---
 
 ## Key Rules
 
-1. **Always import components from `@bmi/tonic-components-mui`** - never directly from `@mui/material`.
-2. **Never add your own `ThemeProvider` inside a page or component** - the root provider is sufficient.
-3. **Icons must be imported from `@bmi/tonic-icons-web`** directly — they are not re-exported from `@bmi/tonic-components-mui`. Make sure `@bmi/tonic-icons-web` is installed in your application.
-4. **All visual styling lives in the theme**. If you need a style change, update `@bmi/tonic-theme-mui` - do not add inline overrides.
+1. **MUI consumers:** always import from `@bmi/tonic-components-mui` — never directly from `@mui/material`.
+2. **Tamagui consumers:** always import from `@bmi/tonic-components-tamagui` — never directly from `tamagui`.
+3. **Never add your own `ThemeProvider` inside a page or component** — the root provider is sufficient.
+4. **Icons must be imported from `@bmi/tonic-icons-web`** — they are not re-exported from the component packages.
+5. **All visual styling lives in the theme** — update `@bmi/tonic-theme-mui` or `@bmi/tonic-theme-tamagui`; do not add inline overrides.
 
 ---

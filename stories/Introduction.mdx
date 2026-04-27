@@ -4,15 +4,19 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Tonic - BMI Design System
 
-**Version:** 0.1.0 &nbsp;|&nbsp; **Built on:** MUI v7 &nbsp;|&nbsp; **Status:** In Development
+**Version:** 0.1.0 &nbsp;|&nbsp; **Status:** In Development
 
 ---
 
 ## What is Tonic?
 
 Tonic is BMI's internal design system.
-It provides a shared component library, a Figma-synced theme, 45+ icons, and this
-documentation site, all used across the **BMI**.
+It provides a multi-framework component library, a Figma-synced theme, 45+ icons, and this
+documentation site — all used across **BMI** products.
+
+Tonic supports two UI frameworks side by side: **MUI** (web) and **Tamagui** (cross-platform).
+Use the **Framework** dropdown in the toolbar to switch between them — only the relevant components
+will appear in the sidebar.
 
 ---
 
@@ -28,19 +32,44 @@ documentation site, all used across the **BMI**.
   </thead>
   <tbody>
     <tr>
-      <td><strong>Theme</strong></td>
+      <td><strong>Core Components</strong></td>
+      <td><code>@bmi/tonic-components</code></td>
+      <td>Shared type contracts and base interfaces used by all framework packages</td>
+    </tr>
+    <tr>
+      <td><strong>MUI Components</strong></td>
+      <td><code>@bmi/tonic-components-mui</code></td>
+      <td>Themed MUI v7 wrappers, shared components & patterns for web</td>
+    </tr>
+    <tr>
+      <td><strong>Tamagui Components</strong></td>
+      <td><code>@bmi/tonic-components-tamagui</code></td>
+      <td>Cross-platform components built with Tamagui</td>
+    </tr>
+    <tr>
+      <td><strong>Core Theme</strong></td>
+      <td><code>@bmi/tonic-theme</code></td>
+      <td>Shared design tokens (colours, spacing, typography) used by all themes</td>
+    </tr>
+    <tr>
+      <td><strong>MUI Theme</strong></td>
       <td><code>@bmi/tonic-theme-mui</code></td>
       <td>MUI theme config & design tokens synced from Figma</td>
     </tr>
     <tr>
-      <td><strong>Components</strong></td>
-      <td><code>@bmi/tonic-components-mui</code></td>
-      <td>Themed MUI wrappers, shared components & patterns</td>
+      <td><strong>Tamagui Theme</strong></td>
+      <td><code>@bmi/tonic-theme-tamagui</code></td>
+      <td>Tamagui theme tokens synced from the core design tokens</td>
     </tr>
     <tr>
-      <td><strong>Icons</strong></td>
+      <td><strong>Icons (Web)</strong></td>
       <td><code>@bmi/tonic-icons-web</code></td>
-      <td>Phosphor-based SVG icon set wrapped in MUI SvgIcon</td>
+      <td>Phosphor-based SVG icon set wrapped in MUI SvgIcon, for web</td>
+    </tr>
+    <tr>
+      <td><strong>Icons (Native)</strong></td>
+      <td><code>@bmi/tonic-icons-native</code></td>
+      <td>Icon set for React Native / Tamagui targets</td>
     </tr>
   </tbody>
 </table>
@@ -49,7 +78,7 @@ documentation site, all used across the **BMI**.
 
 ## Component Layers
 
-Tonic organises components into three layers:
+Tonic organises components into three layers — consistent across both MUI and Tamagui packages:
 
 <table>
   <thead>
@@ -61,14 +90,14 @@ Tonic organises components into three layers:
   </thead>
   <tbody>
     <tr>
-      <td><strong>Atomic</strong></td>
+      <td><strong>Atoms</strong></td>
       <td><code>atoms/</code></td>
-      <td>Typed wrappers around a single MUI component (Button, Select, Checkbox...)</td>
+      <td>Typed wrappers around a single framework component (Button, Select, Checkbox…)</td>
     </tr>
     <tr>
       <td><strong>Shared</strong></td>
       <td><code>shared/</code></td>
-      <td>Composed from atomic components, reusable across portals (AmountEditField, AvatarLabel...)</td>
+      <td>Composed from atoms, reusable across portals (AmountEditField, AvatarLabel, Stepper…)</td>
     </tr>
     <tr>
       <td><strong>Patterns</strong></td>
@@ -80,10 +109,43 @@ Tonic organises components into three layers:
 
 ---
 
+## Storybook Navigation
+
+Use the toolbar at the top to customise your browsing experience:
+
+<table>
+  <thead>
+    <tr>
+      <th>Control</th>
+      <th>Options</th>
+      <th>Effect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Framework</strong></td>
+      <td>MUI / Tamagui</td>
+      <td>Shows only the selected framework's components in the sidebar</td>
+    </tr>
+    <tr>
+      <td><strong>Theme</strong></td>
+      <td>BMI Light / BMI Dark</td>
+      <td>Toggles the colour scheme for all previews</td>
+    </tr>
+    <tr>
+      <td><strong>Locale</strong></td>
+      <td>English / Español</td>
+      <td>Switches the language of all stories</td>
+    </tr>
+  </tbody>
+</table>
+
+---
 
 ## Quick Links
 
-- **[How to Use](?path=/docs/getting-started-how-to-use--docs)** - Installation, setup & a working example
-- **[Icons](?path=/docs/foundations-icons--docs)** - Browse the full icon catalogue
+- **[How to Use](?path=/docs/getting-started-how-to-use--docs)** — Installation, setup & working examples
+- **[Contribution Guide](?path=/docs/getting-started-contribution-guide--docs)** — How to add components, icons & stories
+- **[Icons](?path=/docs/foundations-icons--docs)** — Browse the full icon catalogue
 
 ---

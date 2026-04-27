@@ -36,14 +36,27 @@ const withI18n: Decorator = (Story, context) => {
 
 const preview: Preview = {
   globalTypes: {
+    framework: {
+      description: 'Component framework',
+      toolbar: {
+        title: 'Framework',
+        icon: 'component',
+        items: [
+          { value: 'all', title: 'All' }, 
+          { value: 'mui', title: 'MUI' },
+          { value: 'tamagui', title: 'Tamagui' },
+        ],
+        dynamicTitle: true,
+      },
+    },
     theme: {
       description: 'Global theme for components',
       toolbar: {
         title: 'Theme',
         icon: 'circlehollow',
         items: [
-          { value: 'light', icon: 'sun', title: 'BMI Light' },
-          { value: 'dark', icon: 'moon', title: 'BMI Dark' },
+          { value: 'light', icon: 'sun', title: 'Light' },
+          { value: 'dark', icon: 'moon', title: 'Dark' },
         ],
         dynamicTitle: true,
       },
@@ -60,10 +73,12 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+
   },
   initialGlobals: {
     theme: 'light',
     locale: 'en',
+    framework: 'all',
   },
   decorators: [withI18n, withTheme],
   parameters: {
