@@ -7,6 +7,7 @@
     "@bmi/tonic-components-mui": "*",
     "@bmi/tonic-components-tamagui": "^0.1.0",
     "@bmi/tonic-icons-web": "*",
+    "@bmi/tonic-theme": "*",
     "@bmi/tonic-theme-mui": "*",
     "@tamagui/config": "^2.0.0-rc.41",
     "i18next": "26.0.2",

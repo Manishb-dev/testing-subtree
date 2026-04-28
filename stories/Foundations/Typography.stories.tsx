@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { typography } from '@bmi/tonic-theme-mui';
+import { typography } from '@bmi/tonic-theme';
 import type { CSSProperties } from 'react';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────

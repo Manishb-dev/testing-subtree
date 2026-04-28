@@ -2,21 +2,43 @@ import type { Preview, Decorator } from '@storybook/react-vite';
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { lightTheme, darkTheme } from '@bmi/tonic-theme-mui';
 import { TamaguiProvider } from 'tamagui';
 import { tamaguiConfig } from '../tamagui.config';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../i18n/config';
+import { themeRegistry, themeToolbarItems, type ThemeKey } from '../src/themes/registry';
 
 const withTheme: Decorator = (Story, context) => {
-  const currentTheme = context.globals['theme'] === 'dark' ? darkTheme : lightTheme;
-  return React.createElement(
-    TamaguiProvider,
-    { config: tamaguiConfig, defaultTheme: context.globals['theme'] === 'dark' ? 'dark' : 'light' },
-    React.createElement(
+  const framework = (context.globals['framework'] as string) ?? 'all';
+  const themeKey = ((context.globals['theme'] as string) ?? 'tonic-light') as ThemeKey;
+  const { theme: muiTheme } = themeRegistry[themeKey] ?? themeRegistry['tonic-light'];
+  const tamaguiTheme = themeKey.endsWith('-dark') ? 'dark' : 'light';
+
+  if (framework === 'mui') {
+    return React.createElement(
       ThemeProvider,
-      { theme: currentTheme },
+      { theme: muiTheme },
       React.createElement(CssBaseline, null),
+      React.createElement(Story as unknown as React.FC, null),
+    );
+  }
+
+  if (framework === 'tamagui') {
+    return React.createElement(
+      TamaguiProvider,
+      { config: tamaguiConfig, defaultTheme: tamaguiTheme },
+      React.createElement(Story as unknown as React.FC, null),
+    );
+  }
+
+  // 'all' — both providers stacked
+  return React.createElement(
+    ThemeProvider,
+    { theme: muiTheme },
+    React.createElement(CssBaseline, null),
+    React.createElement(
+      TamaguiProvider,
+      { config: tamaguiConfig, defaultTheme: tamaguiTheme },
       React.createElement(Story as unknown as React.FC, null),
     ),
   );
@@ -53,11 +75,8 @@ const preview: Preview = {
       description: 'Global theme for components',
       toolbar: {
         title: 'Theme',
-        icon: 'circlehollow',
-        items: [
-          { value: 'light', icon: 'sun', title: 'Light' },
-          { value: 'dark', icon: 'moon', title: 'Dark' },
-        ],
+        icon: 'paintbrush',
+        items: themeToolbarItems,
         dynamicTitle: true,
       },
     },
@@ -76,7 +95,7 @@ const preview: Preview = {
 
   },
   initialGlobals: {
-    theme: 'light',
+    theme: 'tonic-light',
     locale: 'en',
     framework: 'all',
   },
